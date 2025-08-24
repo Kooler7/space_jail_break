@@ -1,0 +1,182 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0oxpwdga5piw"]
+
+[ext_resource type="Script" path="res://levels/main_menu/main_menu.gd" id="1_2parm"]
+[ext_resource type="ButtonGroup" uid="uid://cmu5nux3eosp6" path="res://resources/button_groups/screen_resolution_buttons.tres" id="4_waseq"]
+[ext_resource type="Texture2D" uid="uid://tganohsm144f" path="res://assets/test_jpgs/i.jpg" id="14_8xqg0"]
+[ext_resource type="Texture2D" uid="uid://do45kq617gvt" path="res://assets/test_jpgs/meglepett-macska.jpg" id="15_xr1ws"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_2parm")
+
+[node name="MainBG" type="Sprite2D" parent="."]
+texture = ExtResource("15_xr1ws")
+centered = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainBG"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -161.0
+offset_top = -137.5
+offset_right = 161.0
+offset_bottom = 137.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="ResumeBtn" type="Button" parent="MainBG/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
+theme_override_font_sizes/font_size = 30
+text = "ПРОДОЛЖИТЬ"
+
+[node name="StartBtn" type="Button" parent="MainBG/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
+theme_override_font_sizes/font_size = 30
+text = "НАЧАТЬ"
+
+[node name="SettingsBtn" type="Button" parent="MainBG/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
+theme_override_font_sizes/font_size = 30
+text = "НАСТРОЙКИ"
+
+[node name="QuitBtn" type="Button" parent="MainBG/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
+theme_override_font_sizes/font_size = 30
+text = "ВЫЙТИ"
+
+[node name="VersionNumber" type="Label" parent="MainBG"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -42.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+
+[node name="Label2" type="Label" parent="MainBG"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -260.0
+offset_top = 91.0
+offset_right = 260.0
+offset_bottom = 180.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Побег из Нью-Йорка"
+
+[node name="Label" type="Label" parent="MainBG"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -129.5
+offset_right = 129.5
+offset_bottom = 69.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0.996078, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "MainMenu"
+
+[node name="SettingsBG" type="Sprite2D" parent="."]
+position = Vector2(1920, 1080)
+texture = ExtResource("14_8xqg0")
+centered = false
+
+[node name="Label3" type="Label" parent="SettingsBG"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -129.5
+offset_right = 129.5
+offset_bottom = 69.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0.996078, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "MainMenuSettings"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="SettingsBG"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -209.0
+offset_top = -137.0
+offset_right = 208.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsBG/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsBG/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0.980392, 1)
+theme_override_font_sizes/font_size = 40
+text = "РАЗРЕШЕНИЕ"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsBG/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="854x480" type="CheckBox" parent="SettingsBG/VBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+button_group = ExtResource("4_waseq")
+text = "854x480"
+
+[node name="1280x720" type="CheckBox" parent="SettingsBG/VBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+button_group = ExtResource("4_waseq")
+text = "1280x720"
+
+[node name="1366x768" type="CheckBox" parent="SettingsBG/VBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+button_group = ExtResource("4_waseq")
+text = "1366x768"
+
+[node name="1920x1080" type="CheckBox" parent="SettingsBG/VBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+button_group = ExtResource("4_waseq")
+text = "1920x1080"
+
+[node name="SaveSettingsBtn" type="Button" parent="SettingsBG/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
+theme_override_font_sizes/font_size = 30
+text = "СОХРАНИТЬ"
+
+[node name="BackBtn" type="Button" parent="SettingsBG/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
+theme_override_font_sizes/font_size = 30
+text = "НАЗАД"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[connection signal="pressed" from="MainBG/VBoxContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="SettingsBG/VBoxContainer2/BackBtn" to="." method="_on_back_btn_pressed"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfahlpf0s8x42"]
+
+[ext_resource type="Script" path="res://main/main.gd" id="1_byjwn"]
+[ext_resource type="PackedScene" uid="uid://dpgf7tgds0nna" path="res://main/black_screen/black_screen.tscn" id="2_3k1hh"]
+[ext_resource type="PackedScene" uid="uid://ce45n20sncf0r" path="res://main/loading_screen/loading_screen.tscn" id="2_il76t"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_byjwn")
+
+[node name="LevelVeiwer" type="Node" parent="."]
+
+[node name="LoadingScreen" parent="." instance=ExtResource("2_il76t")]
+visible = false
+
+[node name="BlackScreen" parent="." instance=ExtResource("2_3k1hh")]
+mouse_filter = 2
