@@ -1,9 +1,11 @@
 extends Node2D
 
+@export var resolutions_button_group : ButtonGroup
 
 @onready var version : Label = $MainBG/VersionNumber
 @onready var camera : Camera2D = $Camera2D
 
+var resolution_buttons : Array  
 var cam_coordinates : Array = [
 	Vector2(0, 0),
 	Vector2(1920, 1080)
@@ -17,6 +19,8 @@ var current_cp : CameraPositions = CameraPositions.MAIN
 
 
 func _ready() -> void:
+	resolution_buttons = resolutions_button_group.get_buttons()
+	print(resolution_buttons[0].name)
 	version.text = "Ver. " + ProjectSettings.get_setting("application/config/version")
 
 
