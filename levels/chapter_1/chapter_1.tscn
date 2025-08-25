@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhlra330lktl8"]
+
+[ext_resource type="Texture2D" uid="uid://ck6aujxjx6esg" path="res://assets/test_jpgs/0c62615055ff1900688ad42c72b30b55.jpeg" id="1_qcbl5"]
+[ext_resource type="Texture2D" uid="uid://d1vssgmmudfeh" path="res://assets/test_jpgs/4.jpg" id="2_28jgj"]
+[ext_resource type="Texture2D" uid="uid://b3cr7rx3tw3xm" path="res://assets/test_jpgs/9bfe57644761a34c1444cb0dd4e79094.jpg" id="3_qonix"]
+
+[node name="Chapter1" type="Node2D"]
+
+[node name="SellFront" type="Sprite2D" parent="."]
+texture = ExtResource("1_qcbl5")
+centered = false
+
+[node name="Label2" type="Label" parent="SellFront"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -129.5
+offset_right = 129.5
+offset_bottom = 69.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0.996078, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "SellFront"
+horizontal_alignment = 1
+
+[node name="SellBack" type="Sprite2D" parent="."]
+position = Vector2(1920, 1080)
+texture = ExtResource("2_28jgj")
+centered = false
+
+[node name="Label2" type="Label" parent="SellBack"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -129.5
+offset_right = 129.5
+offset_bottom = 69.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0.996078, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "SellBack"
+horizontal_alignment = 1
+
+[node name="SellRightWall" type="Sprite2D" parent="."]
+position = Vector2(3840, 0)
+texture = ExtResource("3_qonix")
+centered = false
+
+[node name="Label2" type="Label" parent="SellRightWall"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -129.5
+offset_right = 129.5
+offset_bottom = 69.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0.996078, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "SellRightBack"
+horizontal_alignment = 1
