@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://yf161wg7gtxq"]
+
+[ext_resource type="Script" path="res://levels/main_menu/mm_elements/full_screen_switcher/full_screen_switcher.gd" id="1_2fexg"]
+
+[node name="FullScreenSwitcher" type="HBoxContainer"]
+script = ExtResource("1_2fexg")
+
+[node name="FullScreen" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "ПОЛНЫЙ ЭКРАН"
+
+[node name="CheckButton" type="CheckButton" parent="."]
+layout_mode = 2
+
+[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]

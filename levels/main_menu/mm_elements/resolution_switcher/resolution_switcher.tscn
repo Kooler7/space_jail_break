@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://jxetxyhxh1jb"]
+
+[ext_resource type="ButtonGroup" uid="uid://cmu5nux3eosp6" path="res://resources/button_groups/screen_resolution_buttons.tres" id="1_7n7rt"]
+[ext_resource type="Script" path="res://levels/main_menu/mm_elements/resolution_switcher/resolution_switcher.gd" id="1_uqmia"]
+
+[node name="ResolutionSwitcher" type="VBoxContainer"]
+script = ExtResource("1_uqmia")
+resolutions_button_group = ExtResource("1_7n7rt")
+
+[node name="Resolution" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0.980392, 1)
+theme_override_font_sizes/font_size = 40
+text = "РАЗРЕШЕНИЕ"
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="854x480" type="CheckBox" parent="Buttons"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+button_group = ExtResource("1_7n7rt")
+text = "854x480"
+
+[node name="1280x720" type="CheckBox" parent="Buttons"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+button_group = ExtResource("1_7n7rt")
+text = "1280x720"
+
+[node name="1366x768" type="CheckBox" parent="Buttons"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+button_group = ExtResource("1_7n7rt")
+text = "1366x768"
+
+[node name="1920x1080" type="CheckBox" parent="Buttons"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+button_group = ExtResource("1_7n7rt")
+text = "1920x1080"
