@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0oxpwdga5piw"]
+[gd_scene load_steps=8 format=3 uid="uid://b0oxpwdga5piw"]
 
 [ext_resource type="Script" path="res://levels/main_menu/main_menu.gd" id="1_2parm"]
 [ext_resource type="PackedScene" uid="uid://jxetxyhxh1jb" path="res://levels/main_menu/mm_elements/resolution_switcher/resolution_switcher.tscn" id="5_5paug"]
 [ext_resource type="PackedScene" uid="uid://yf161wg7gtxq" path="res://levels/main_menu/mm_elements/full_screen_switcher/full_screen_switcher.tscn" id="5_katyy"]
+[ext_resource type="PackedScene" uid="uid://46jf0xuiuh50" path="res://levels/main_menu/mm_elements/language_switcher/language_switcher.tscn" id="6_w83mj"]
 [ext_resource type="Texture2D" uid="uid://tganohsm144f" path="res://assets/test_jpgs/i.jpg" id="14_8xqg0"]
 [ext_resource type="Texture2D" uid="uid://do45kq617gvt" path="res://assets/test_jpgs/meglepett-macska.jpg" id="15_xr1ws"]
 
@@ -34,28 +35,28 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
 theme_override_font_sizes/font_size = 30
-text = "ПРОДОЛЖИТЬ"
+text = "RESUME_BTN"
 
 [node name="StartBtn" type="Button" parent="MainBG/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
 theme_override_font_sizes/font_size = 30
-text = "НАЧАТЬ"
+text = "START_BTN"
 
 [node name="SettingsBtn" type="Button" parent="MainBG/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
 theme_override_font_sizes/font_size = 30
-text = "НАСТРОЙКИ"
+text = "SETTINGS_BTN"
 
 [node name="QuitBtn" type="Button" parent="MainBG/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
 theme_override_font_sizes/font_size = 30
-text = "ВЫЙТИ"
+text = "QUIT_BTN"
 
 [node name="VersionNumber" type="Label" parent="MainBG"]
 anchors_preset = 3
@@ -133,47 +134,22 @@ resolutions_button_group = SubResource("ButtonGroup_6i8l5")
 [node name="FullScreenSwitcher" parent="SettingsBG/VBoxContainer2" instance=ExtResource("5_katyy")]
 layout_mode = 2
 
-[node name="LanguageSwitcher" type="VBoxContainer" parent="SettingsBG/VBoxContainer2"]
+[node name="LanguageSwitcher" parent="SettingsBG/VBoxContainer2" instance=ExtResource("6_w83mj")]
 layout_mode = 2
-
-[node name="Language" type="Label" parent="SettingsBG/VBoxContainer2/LanguageSwitcher"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.713726, 1, 1)
-theme_override_font_sizes/font_size = 30
-text = "ВЫБОР ЯЗЫКА"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SettingsBG/VBoxContainer2/LanguageSwitcher"]
-layout_mode = 2
-theme_override_constants/separation = 30
-
-[node name="English" type="CheckBox" parent="SettingsBG/VBoxContainer2/LanguageSwitcher/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "АНГЛИЙСКИЙ"
-
-[node name="Russian" type="CheckBox" parent="SettingsBG/VBoxContainer2/LanguageSwitcher/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "РУССКИЙ"
 
 [node name="SaveSettingsBtn" type="Button" parent="SettingsBG/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
 theme_override_font_sizes/font_size = 30
-text = "СОХРАНИТЬ"
+text = "SAVE_BTN"
 
 [node name="BackBtn" type="Button" parent="SettingsBG/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
 theme_override_font_sizes/font_size = 30
-text = "НАЗАД"
+text = "BACK_BTN"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0

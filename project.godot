@@ -28,6 +28,12 @@ window/size/viewport_height=1080
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://assets/test_localisations/Translations.en.translation", "res://assets/test_localisations/Translations.ru.translation")
+locale/test="en"
+locale/fallback="ru"
+
 [rendering]
 
 renderer/rendering_method="mobile"

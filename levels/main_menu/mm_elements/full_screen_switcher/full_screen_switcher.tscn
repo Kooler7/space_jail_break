@@ -9,7 +9,7 @@ script = ExtResource("1_2fexg")
 layout_mode = 2
 theme_override_colors/font_color = Color(0.972549, 0, 1, 1)
 theme_override_font_sizes/font_size = 20
-text = "ПОЛНЫЙ ЭКРАН"
+text = "FULLSCREEN_TXT"
 
 [node name="CheckButton" type="CheckButton" parent="."]
 layout_mode = 2

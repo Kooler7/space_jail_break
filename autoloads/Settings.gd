@@ -3,8 +3,10 @@ extends Node
 
 @onready var window : Window = get_window()
 
+
+
 #func _ready() -> void:
-	#set_screen_resolution()
+	#ProjectSettings.internationalization/locale/test = "en"
 
 enum ScreenStates {
 	WINDOWED,
@@ -22,6 +24,7 @@ var screen_sizes : Array = [
 	Vector2(1920, 1080)
 	]
 
+var languages : Array = ["en", "ru"]
 
 func check_screen_resolution() -> void:
 	match  screen_resolution:
@@ -50,3 +53,6 @@ func toggle_fullscreen(new_state) -> void:
 		ScreenStates.FULLSCREEN:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 			current_screen_state = ScreenStates.FULLSCREEN
+
+func set_language(language) -> void:
+	TranslationServer.set_locale(language)

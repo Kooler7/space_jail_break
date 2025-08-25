@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://46jf0xuiuh50"]
+
+[ext_resource type="Script" path="res://levels/main_menu/mm_elements/language_switcher/language_switcher.gd" id="1_5h2fc"]
+[ext_resource type="ButtonGroup" uid="uid://bwscf2wp2wyjb" path="res://resources/button_groups/languages_buttons.tres" id="2_yeb0o"]
+
+[node name="LanguageSwitcher" type="VBoxContainer"]
+script = ExtResource("1_5h2fc")
+
+[node name="Language" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.713726, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "LANGUAGES_TXT"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="English" type="CheckBox" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 20
+button_group = ExtResource("2_yeb0o")
+text = "ENGLISH_BTN"
+
+[node name="Russian" type="CheckBox" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 20
+button_group = ExtResource("2_yeb0o")
+text = "RUSSIAN_BTN"
+
+[connection signal="toggled" from="HBoxContainer/English" to="." method="_on_english_toggled"]
+[connection signal="toggled" from="HBoxContainer/Russian" to="." method="_on_russian_toggled"]
