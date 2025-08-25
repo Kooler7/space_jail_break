@@ -14,6 +14,7 @@ var is_loading_starting : bool = false
 @onready var level_viewer : Node = $LevelVeiwer
 
 
+
 func _ready() -> void:
 	start_loading()
 

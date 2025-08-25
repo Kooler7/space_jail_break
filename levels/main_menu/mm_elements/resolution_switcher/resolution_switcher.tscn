@@ -21,6 +21,7 @@ theme_override_constants/separation = 10
 [node name="854x480" type="CheckBox" parent="Buttons"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
+button_pressed = true
 button_group = ExtResource("1_7n7rt")
 text = "854x480"
 
