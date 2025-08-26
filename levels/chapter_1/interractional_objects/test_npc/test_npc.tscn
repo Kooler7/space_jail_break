@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://by2mx1gcr8qln"]
+
+[ext_resource type="Texture2D" uid="uid://d2ysg1juli1ph" path="res://icon.svg" id="1_v1s8j"]
+[ext_resource type="Script" path="res://levels/chapter_1/interractional_objects/test_npc/test_npc.gd" id="2_31de5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrgj3"]
+size = Vector2(134, 139)
+
+[node name="TestNPC" type="Sprite2D"]
+texture = ExtResource("1_v1s8j")
+script = ExtResource("2_31de5")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_wrgj3")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

@@ -1,8 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://biu2qf2hc50xs"]
+[gd_scene load_steps=9 format=3 uid="uid://b1m2eplotda6f"]
 
-[ext_resource type="Texture2D" uid="uid://1jxjgykvth0e" path="res://assets/test_jpgs/player_figure.png" id="1_py6j1"]
-[ext_resource type="Script" path="res://player/player.gd" id="1_qgkk4"]
-[ext_resource type="Script" path="res://player/gui.gd" id="3_li55m"]
+[ext_resource type="Script" path="res://player/gui.gd" id="1_k8rit"]
+
+[sub_resource type="Gradient" id="Gradient_5km63"]
+colors = PackedColorArray(0.298039, 0.321569, 0.368627, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aewkg"]
+gradient = SubResource("Gradient_5km63")
+width = 306
 
 [sub_resource type="Animation" id="Animation_xkosn"]
 resource_name = "explaner_popup"
@@ -99,40 +104,16 @@ _data = {
 "text_typing": SubResource("Animation_rt32c")
 }
 
-[sub_resource type="Gradient" id="Gradient_5km63"]
-colors = PackedColorArray(0.298039, 0.321569, 0.368627, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_aewkg"]
-gradient = SubResource("Gradient_5km63")
-width = 306
-
-[node name="Player" type="Node2D"]
-script = ExtResource("1_qgkk4")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../GUI")
-libraries = {
-"": SubResource("AnimationLibrary_px8n5")
-}
-
-[node name="Person" type="Sprite2D" parent="."]
-position = Vector2(450.313, 663.438)
-scale = Vector2(1.73002, 1.54329)
-texture = ExtResource("1_py6j1")
-
-[node name="GUI" type="Control" parent="."]
+[node name="GUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1920.0
-offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("3_li55m")
+script = ExtResource("1_k8rit")
 
-[node name="TextBubble" type="TextureRect" parent="GUI"]
+[node name="TextBubble" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
@@ -149,16 +130,7 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = SubResource("GradientTexture1D_aewkg")
 
-[node name="Button" type="Button" parent="GUI/TextBubble"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-flat = true
-
-[node name="Text" type="Label" parent="GUI"]
+[node name="Text" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -177,8 +149,7 @@ text = "Testing text Testing text Testing text Testing text Testing text Testing
 visible_characters = 0
 visible_ratio = 0.0
 
-[node name="Buttons" type="VBoxContainer" parent="GUI"]
-visible = false
+[node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -193,19 +164,19 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/separation = 15
 
-[node name="Button" type="Button" parent="GUI/Buttons"]
+[node name="Button" type="Button" parent="Buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Button"
 alignment = 0
 
-[node name="Button2" type="Button" parent="GUI/Buttons"]
+[node name="Button2" type="Button" parent="Buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "button2"
 alignment = 0
 
-[node name="Explaner" type="Label" parent="GUI"]
+[node name="Explaner" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 2
@@ -221,3 +192,8 @@ theme_override_font_sizes/font_size = 25
 text = "Test text"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_px8n5")
+}

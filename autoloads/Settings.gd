@@ -22,8 +22,8 @@ var screen_sizes : Dictionary = {
 
 var languages : Array = ["en", "ru"]
 
-func _ready() -> void:
-	toggle_fullscreen(ScreenStates.FULLSCREEN)
+#func _ready() -> void:
+	#toggle_fullscreen(ScreenStates.WINDOWED)
 
 func set_screen_resolution(default_resolution : Vector2, new_resolution : Vector2):
 		DisplayServer.window_set_size(new_resolution)
