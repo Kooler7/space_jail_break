@@ -6,7 +6,6 @@ extends VBoxContainer
 var resolution_buttons : Array
 
 
-
 func _ready() -> void:
 	resolution_buttons = resolutions_button_group.get_buttons()
 	resolution_buttons.sort()

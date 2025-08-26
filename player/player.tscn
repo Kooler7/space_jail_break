@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://biu2qf2hc50xs"]
+
+[ext_resource type="Texture2D" uid="uid://1jxjgykvth0e" path="res://assets/test_jpgs/player_figure.png" id="1_py6j1"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_qgkk4"]
+
+[sub_resource type="Gradient" id="Gradient_5km63"]
+colors = PackedColorArray(0.298039, 0.321569, 0.368627, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aewkg"]
+gradient = SubResource("Gradient_5km63")
+width = 306
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_qgkk4")
+
+[node name="Person" type="Sprite2D" parent="."]
+position = Vector2(450.313, 663.438)
+scale = Vector2(1.73002, 1.54329)
+texture = ExtResource("1_py6j1")
+
+[node name="TextBubble" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(50, 50)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 489.0
+offset_top = 701.0
+offset_right = 1857.0
+offset_bottom = 1043.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_aewkg")
