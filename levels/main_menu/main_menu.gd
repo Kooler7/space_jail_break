@@ -21,7 +21,7 @@ var current_cp : CameraPositions = CameraPositions.MAIN
 
 func _ready() -> void:
 	Settings.camera = camera
-	Settings.check_screen_resolution()
+	#Settings.check_screen_resolution()
 	version.text = "Ver. " + ProjectSettings.get_setting("application/config/version")
 
 

@@ -4,39 +4,26 @@ extends Node
 @onready var window : Window = get_window()
 
 
-
-#func _ready() -> void:
-	#ProjectSettings.internationalization/locale/test = "en"
-
 enum ScreenStates {
 	WINDOWED,
 	FULLSCREEN
 }
-var current_screen_state : ScreenStates = ScreenStates.WINDOWED
+var current_screen_state : ScreenStates
 
 var camera : Camera2D
 var full_screen : bool = false
-var screen_resolution : int = 0
-var screen_sizes : Array = [
-	Vector2(854, 480),
-	Vector2(1280, 720),
-	Vector2(1366, 768),
-	Vector2(1920, 1080)
-	]
+var current_screen_resolution : String = "Default"
+var screen_sizes : Dictionary = {
+	"854x480" : Vector2(854, 480),
+	"1280x720" : Vector2(1280, 720),
+	"1366x768" : Vector2(1366, 768),
+	"Default" : Vector2(1920, 1080)
+	}
 
 var languages : Array = ["en", "ru"]
 
-func check_screen_resolution() -> void:
-	match  screen_resolution:
-		0:
-			set_screen_resolution(screen_sizes[3], screen_sizes[0])
-		1:
-			set_screen_resolution(screen_sizes[3], screen_sizes[1])
-		2:
-			set_screen_resolution(screen_sizes[3], screen_sizes[2])
-		3:
-			set_screen_resolution(screen_sizes[3], screen_sizes[3])
-
+func _ready() -> void:
+	toggle_fullscreen(ScreenStates.FULLSCREEN)
 
 func set_screen_resolution(default_resolution : Vector2, new_resolution : Vector2):
 		DisplayServer.window_set_size(new_resolution)
@@ -45,11 +32,13 @@ func set_screen_resolution(default_resolution : Vector2, new_resolution : Vector
 		camera.zoom.y = 1/window.content_scale_factor
 
 
+
 func toggle_fullscreen(new_state) -> void:
 	match new_state:
 		ScreenStates.WINDOWED:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			current_screen_state = ScreenStates.WINDOWED
+			set_screen_resolution(screen_sizes["Default"], screen_sizes[current_screen_resolution])
 		ScreenStates.FULLSCREEN:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 			current_screen_state = ScreenStates.FULLSCREEN
