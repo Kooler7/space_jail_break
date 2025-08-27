@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dagge1otmga1i"]
+
+[ext_resource type="ButtonGroup" uid="uid://n7nrwvq5qpl4" path="res://resources/button_groups/dialogue_option_buttons_group.tres" id="1_5obwu"]
+
+[node name="Leave" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+toggle_mode = true
+button_group = ExtResource("1_5obwu")
+text = "Уйти"

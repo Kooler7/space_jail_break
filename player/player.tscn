@@ -170,7 +170,6 @@ visible_characters = 0
 visible_ratio = 0.0
 
 [node name="Buttons" type="VBoxContainer" parent="GUI"]
-visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -184,18 +183,6 @@ offset_bottom = -72.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/separation = 15
-
-[node name="Button" type="Button" parent="GUI/Buttons"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Button"
-alignment = 0
-
-[node name="Button2" type="Button" parent="GUI/Buttons"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "button2"
-alignment = 0
 
 [node name="Explaner" type="Label" parent="GUI"]
 modulate = Color(1, 1, 1, 0)
