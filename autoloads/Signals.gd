@@ -1,8 +1,15 @@
 extends Node
 
-signal test_npc_mouse_entered
-signal test_npc_mouse_clicked
-signal test_npc_mouse_exited
+signal game_object_mouse_entered
+signal game_object_mouse_exited
+
+signal npc_mouse_clicked
+signal puzzle_mouse_clicked
+signal object_mouse_clicked
+
+signal dialogue_box_clicked
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
