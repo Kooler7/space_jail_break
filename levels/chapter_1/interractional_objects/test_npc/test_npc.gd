@@ -2,46 +2,61 @@ extends Sprite2D
 
 enum NpcActionsStates {
 	IDLE,
-	TALKING
+	TALKING,
+	EXPLANING
 }
 var current_action_state : NpcActionsStates = NpcActionsStates.IDLE
 
-var trasfered_data : Dictionary
+var npc_data : Dictionary = {
+	"name" : "TestNPC"
+}
 var current_dialogue_line : String
 var current_dialogue_key : int = 0
 
-var dialogue : Dictionary = {
-	0 : "Это ты, Змей? Что-то мне, кореш, не фортануло...",
-	1 : [
+var npc_dialogue : Dictionary = {
+	1 : "Это ты, Змей? Что-то мне, кореш, не фортануло...",
+	2 : [
 		"res://levels/chapter_1/dialogues/options/how_to_help.tscn",
-		"res://levels/chapter_1/dialogues/options/leave.tscn"	
+		"res://levels/chapter_1/dialogues/options/leave.tscn"
 	],
-	2 : "Дай мне обезбола. Не то я окочурюсь от болевого шока."
+	3 : "Дай мне обезбола. Не то я окочурюсь от болевого шока."
 }
 
-#func _ready() -> void:
-	#Signals.dialogue_box_clicked.connect()
+@onready var detection_area : Area2D = $Area2D
+@onready var collision : CollisionShape2D = $Area2D/CollisionShape2D
+
+func _ready() -> void:
+	Signals.dialogue_completed.connect(check_npc_actions_states.bind(NpcActionsStates.IDLE))
+
+func check_npc_actions_states(new_state) -> void:
+	match new_state:
+		NpcActionsStates.IDLE:
+			if current_action_state == NpcActionsStates.EXPLANING:
+				Signals.emit_signal("game_object_became_idle", npc_data)
+				current_action_state = NpcActionsStates.IDLE
+			elif current_action_state == NpcActionsStates.TALKING:
+				current_action_state = NpcActionsStates.IDLE
+				Signals.emit_signal("game_object_became_idle", npc_data)
+				detection_area.input_pickable = true
+		NpcActionsStates.TALKING:
+			if current_action_state == NpcActionsStates.EXPLANING:
+				Signals.emit_signal("npc_became_talk", npc_dialogue)
+				current_action_state = NpcActionsStates.TALKING
+		NpcActionsStates.EXPLANING:
+			if current_action_state == NpcActionsStates.IDLE:
+				Signals.emit_signal("game_object_became_explane", npc_data)
+				current_action_state = NpcActionsStates.EXPLANING
 
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		dialogue_parsing()
-		
-
-
+		detection_area.input_pickable = false
+		check_npc_actions_states(NpcActionsStates.TALKING)
 
 func _on_area_2d_mouse_entered() -> void:
-	if current_action_state == NpcActionsStates.IDLE:
-		trasfered_data = {"name" : name}
-		Signals.emit_signal("game_object_mouse_entered", trasfered_data)
-
+	check_npc_actions_states(NpcActionsStates.EXPLANING)
 
 func _on_area_2d_mouse_exited() -> void:
-	Signals.emit_signal("game_object_mouse_exited", trasfered_data)
-
-func dialogue_parsing() -> void:
-	if typeof(dialogue[current_dialogue_key]) == 4:
-		trasfered_data = {"dialogue_text" : dialogue[current_dialogue_key]}
-		Signals.emit_signal("npc_mouse_clicked", trasfered_data)
-	elif typeof(dialogue[current_dialogue_key]) == 28:
-		pass
+	if current_action_state != NpcActionsStates.TALKING:
+		check_npc_actions_states(NpcActionsStates.IDLE)
+	

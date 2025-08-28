@@ -1,21 +1,11 @@
 extends Node
 
-signal game_object_mouse_entered
-signal game_object_mouse_exited
+signal game_object_became_explane
+signal game_object_became_idle
 
-signal npc_mouse_clicked
+signal npc_became_talk
 signal puzzle_mouse_clicked
 signal object_mouse_clicked
-
 signal dialogue_box_clicked
 
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+signal dialogue_completed
