@@ -3,9 +3,13 @@ extends Sprite2D
 enum NpcActionsStates {
 	IDLE,
 	TALKING,
-	EXPLANING
+	EXPLANING,
+	INTERRACTING
 }
 var current_action_state : NpcActionsStates = NpcActionsStates.IDLE
+
+var is_alive : bool = true
+
 
 var npc_data : Dictionary = {
 	"name" : "TestNPC"
@@ -14,12 +18,13 @@ var current_dialogue_line : String
 var current_dialogue_key : int = 0
 
 var npc_dialogue : Dictionary = {
-	1 : "Это ты, Змей? Что-то мне, кореш, не фортануло...",
-	2 : [
+	1 : "Player:Да уж, чуваку досталось... Все портроха наружу, блин.",
+	2 : "Npc:Это ты, Змей? Что-то мне, кореш, не фортануло... Вовремя ты отлить встал...",
+	3 : [
 		"res://levels/chapter_1/dialogues/options/how_to_help.tscn",
 		"res://levels/chapter_1/dialogues/options/leave.tscn"
 	],
-	3 : "Дай мне обезбола. Не то я окочурюсь от болевого шока."
+	4 : "Npc:Найди мне обезбола, а то чего-то совсем кисло..."
 }
 
 @onready var detection_area : Area2D = $Area2D
