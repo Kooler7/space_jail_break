@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ck6aujxjx6esg" path="res://assets/test_jpgs/0c62615055ff1900688ad42c72b30b55.jpeg" id="1_qcbl5"]
 [ext_resource type="Script" path="res://levels/chapter_1/chapter_1.gd" id="1_w0bky"]
 [ext_resource type="Texture2D" uid="uid://d1vssgmmudfeh" path="res://assets/test_jpgs/4.jpg" id="2_28jgj"]
-[ext_resource type="PackedScene" uid="uid://by2mx1gcr8qln" path="res://levels/chapter_1/interractional_objects/test_npc/test_npc.tscn" id="2_je5bi"]
+[ext_resource type="PackedScene" uid="uid://btyyhjrcfby12" path="res://levels/chapter_1/interractional_objects/buddy_npc/buddy_scene/buddy_scene.tscn" id="3_m7vco"]
 [ext_resource type="Texture2D" uid="uid://b3cr7rx3tw3xm" path="res://assets/test_jpgs/9bfe57644761a34c1444cb0dd4e79094.jpg" id="3_qonix"]
 [ext_resource type="PackedScene" uid="uid://biu2qf2hc50xs" path="res://player/player.tscn" id="5_1knwh"]
 
@@ -12,12 +12,11 @@ script = ExtResource("1_w0bky")
 
 [node name="NpcsPool" type="Node" parent="."]
 
-[node name="TestNPC" parent="NpcsPool" instance=ExtResource("2_je5bi")]
-position = Vector2(1530, 303)
-
 [node name="SellFront" type="Sprite2D" parent="."]
 texture = ExtResource("1_qcbl5")
 centered = false
+
+[node name="BuddyScene" parent="SellFront" instance=ExtResource("3_m7vco")]
 
 [node name="Label2" type="Label" parent="SellFront"]
 anchors_preset = 5

@@ -14,8 +14,8 @@ var is_alive : bool = true
 var npc_data : Dictionary = {
 	"name" : "TestNPC"
 }
-var current_dialogue_line : String
-var current_dialogue_key : int = 0
+#var current_dialogue_line : String
+#var current_dialogue_key : int = 0
 
 var npc_dialogue : Dictionary = {
 	1 : "Player:Да уж, чуваку досталось... Все портроха наружу, блин.",

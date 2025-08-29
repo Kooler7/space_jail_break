@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://btyyhjrcfby12"]
+
+[ext_resource type="Script" path="res://levels/chapter_1/interractional_objects/buddy_npc/buddy_scene/buddy_scene.gd" id="1_kpc1a"]
+[ext_resource type="Texture2D" uid="uid://d2ysg1juli1ph" path="res://icon.svg" id="1_mvd33"]
+[ext_resource type="PackedScene" uid="uid://cypgw84v1ipeb" path="res://levels/chapter_1/interractional_objects/buddy_npc/buddy_nodes/buddy_alive_node/buddy_alive_node.tscn" id="2_wljmr"]
+[ext_resource type="PackedScene" uid="uid://0q02y30luv84" path="res://GUI/explaner/explaner.tscn" id="3_u4gta"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_to1ut"]
+size = Vector2(129, 129)
+
+[node name="BuddyScene" type="Node2D"]
+script = ExtResource("1_kpc1a")
+buddy_alive = ExtResource("2_wljmr")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(1554, 313)
+texture = ExtResource("1_mvd33")
+
+[node name="MouseDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseDetector"]
+position = Vector2(1554.5, 313.5)
+shape = SubResource("RectangleShape2D_to1ut")
+
+[node name="Explaner" parent="." instance=ExtResource("3_u4gta")]
+
+[connection signal="input_event" from="MouseDetector" to="." method="_on_mouse_detector_input_event"]
+[connection signal="mouse_entered" from="MouseDetector" to="." method="_on_mouse_detector_mouse_entered"]
+[connection signal="mouse_exited" from="MouseDetector" to="." method="_on_mouse_detector_mouse_exited"]

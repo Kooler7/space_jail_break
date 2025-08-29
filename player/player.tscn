@@ -1,154 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://biu2qf2hc50xs"]
+[gd_scene load_steps=5 format=3 uid="uid://biu2qf2hc50xs"]
 
 [ext_resource type="Texture2D" uid="uid://1jxjgykvth0e" path="res://assets/test_jpgs/player_figure.png" id="1_py6j1"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_qgkk4"]
-[ext_resource type="Script" path="res://player/GUI/gui.gd" id="3_li55m"]
-
-[sub_resource type="Animation" id="Animation_4qvpf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Explaner:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DialogueBox/Text:visible_ratio")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("DialogueBox:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Person:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_lbihn"]
-resource_name = "bubble_popup"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DialogueBox:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_xkosn"]
-resource_name = "explaner_popup"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Explaner:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_rt32c"]
-resource_name = "text_typing"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DialogueBox/Text:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
-[sub_resource type="Animation" id="Animation_4uk2x"]
-resource_name = "avatar_popup"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Person:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_px8n5"]
-_data = {
-"RESET": SubResource("Animation_4qvpf"),
-"avatar_popup": SubResource("Animation_4uk2x"),
-"bubble_popup": SubResource("Animation_lbihn"),
-"explaner_popup": SubResource("Animation_xkosn"),
-"text_typing": SubResource("Animation_rt32c")
-}
-
-[sub_resource type="Gradient" id="Gradient_k3xyb"]
-colors = PackedColorArray(0.298039, 0.321569, 0.368627, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_aewkg"]
-gradient = SubResource("Gradient_k3xyb")
-width = 306
+[ext_resource type="Script" path="res://GUI/gui.gd" id="3_li55m"]
+[ext_resource type="PackedScene" uid="uid://cxc4yjg2275a" path="res://GUI/dialogue_manager/dialogue_manager.tscn" id="4_soc86"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_qgkk4")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../GUI")
-libraries = {
-"": SubResource("AnimationLibrary_px8n5")
-}
-
-[node name="Person" type="Sprite2D" parent="."]
+[node name="Avatar" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(450.313, 663.438)
 scale = Vector2(1.73002, 1.54329)
 texture = ExtResource("1_py6j1")
+
+[node name="GameObject" type="Node2D" parent="."]
 
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3
@@ -162,74 +28,4 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("3_li55m")
 
-[node name="DialogueBox" type="TextureRect" parent="GUI"]
-modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1440.0
-offset_top = -400.0
-offset_right = -72.0
-offset_bottom = -58.0
-grow_horizontal = 0
-grow_vertical = 0
-mouse_filter = 2
-texture = SubResource("GradientTexture1D_aewkg")
-
-[node name="Text" type="Label" parent="GUI/DialogueBox"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1344.0
-offset_top = -318.0
-offset_right = -16.0
-offset_bottom = 2.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "Testing text Testing text Testing text Testing text Testing text Testing text Testing text"
-visible_characters = 0
-visible_ratio = 0.0
-
-[node name="Buttons" type="VBoxContainer" parent="GUI"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1416.0
-offset_top = -376.0
-offset_right = -96.0
-offset_bottom = -72.0
-grow_horizontal = 0
-grow_vertical = 0
-mouse_filter = 2
-theme_override_constants/separation = 15
-
-[node name="Explaner" type="Label" parent="GUI"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 56.0
-offset_top = -144.0
-offset_right = 424.0
-offset_bottom = -60.0
-grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "Test text"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[connection signal="gui_input" from="GUI/DialogueBox" to="GUI" method="_on_dialogue_box_gui_input"]
+[node name="DialogueManager" parent="." instance=ExtResource("4_soc86")]

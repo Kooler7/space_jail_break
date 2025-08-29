@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://0q02y30luv84"]
+
+[ext_resource type="Script" path="res://GUI/explaner/explaner.gd" id="1_3jmha"]
+
+[node name="Explaner" type="Label"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 936.0
+offset_right = 448.0
+offset_bottom = 1024.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Кореш"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_3jmha")
