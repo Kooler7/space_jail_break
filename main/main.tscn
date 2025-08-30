@@ -9,8 +9,13 @@ script = ExtResource("1_byjwn")
 
 [node name="LevelVeiwer" type="Node" parent="."]
 
+[node name="BlackScreen" parent="." instance=ExtResource("2_3k1hh")]
+
 [node name="LoadingScreen" parent="." instance=ExtResource("2_il76t")]
 visible = false
 
-[node name="BlackScreen" parent="." instance=ExtResource("2_3k1hh")]
-mouse_filter = 2
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0

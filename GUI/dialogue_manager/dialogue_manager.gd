@@ -1,13 +1,15 @@
 #dialogue_manager.gd
-extends Node
+extends Node2D
 
 
 var current_dialogue : Dictionary = {}
 var current_line_number : int = 1
 
 @onready var dialogue_box : TextureRect = $DialogueBox
+@onready var mouse_stop_area : Control = $MouseStopArea
 
 func _ready() -> void:
+	mouse_stop_area.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	Signals.dialogue_box_clicked.connect(on_dialogue_box_clicked)
 	Signals.leave_option_clicked.connect(on_leave_option_clicked)
 	Signals.new_line_requested.connect(parse_dialogue)
@@ -15,6 +17,7 @@ func _ready() -> void:
 func on_leave_option_clicked() -> void:
 	current_line_number = 1
 	dialogue_box.dialogue_box_popout()
+	mouse_stop_area.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	Signals.emit_signal("dialogue_completed")
 
 
@@ -29,11 +32,13 @@ func on_dialogue_box_clicked() -> void:
 		#присвоение номера строки "по умолчанию"
 		current_line_number = 1
 		dialogue_box.dialogue_box_popout()
+		mouse_stop_area.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		Signals.emit_signal("dialogue_completed")
 
 	pass
 
 func parse_dialogue(line_number : int = current_line_number) -> void:
+	mouse_stop_area.mouse_filter = Control.MOUSE_FILTER_STOP
 	if dialogue_box.modulate != dialogue_box.FINISH_MODULATE:
 		dialogue_box.dialogue_box_popin()
 	var data = current_dialogue[current_line_number]

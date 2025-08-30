@@ -1,0 +1,16 @@
+Описание классов
+	character_avatar_class.gd
+		Функция popin() - анимация появления узла через свойство modulate
+		Функция popout() - анимация исчезновения узла через свойство modulate
+	
+
+Описание скриптов
+	settings.gd
+		set_screen_resolution(default_resolution : Vector2, new_resolution : Vector2) - 
+			Установка необходимого разрешения экрана
+		toggle_fullscreen(new_state) - Включение\выключение полноэкранного режима
+		set_language(language) - Установка языка
+	
+	black_screen.gd
+		check_state (new_bs_state : BlackScreenStates) - Проигрывание анимации
+			 возникновения вперед\назад в соответствии с текущим состоянием

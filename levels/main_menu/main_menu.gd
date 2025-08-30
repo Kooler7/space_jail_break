@@ -4,7 +4,7 @@ extends Node2D
 
 
 @onready var version : Label = $MainBG/VersionNumber
-@onready var camera : Camera2D = $Camera2D
+@onready var camera : Camera2D = Settings.camera
 
   
 var cam_coordinates : Array = [
@@ -20,7 +20,7 @@ var current_cp : CameraPositions = CameraPositions.MAIN
 
 
 func _ready() -> void:
-	Settings.camera = camera
+	#Settings.camera = camera
 	#Settings.check_screen_resolution()
 	version.text = "Ver. " + ProjectSettings.get_setting("application/config/version")
 
@@ -41,3 +41,8 @@ func _on_back_btn_pressed() -> void:
 
 func _on_settings_btn_pressed() -> void:
 	check_camera_position(CameraPositions.SETTINGS)
+
+
+func _on_start_btn_pressed() -> void:
+	Globals.main.loading_level_path = "res://levels/chapter_1/chapter_1.tscn"
+	Globals.main.start_loading()

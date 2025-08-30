@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://biu2qf2hc50xs"]
+[gd_scene load_steps=4 format=3 uid="uid://biu2qf2hc50xs"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_qgkk4"]
 [ext_resource type="PackedScene" uid="uid://cc0mtyajbcmst" path="res://player/player_avatar/player_avatar.tscn" id="2_6wjm5"]
-[ext_resource type="Script" path="res://GUI/gui.gd" id="3_li55m"]
 [ext_resource type="PackedScene" uid="uid://cxc4yjg2275a" path="res://GUI/dialogue_manager/dialogue_manager.tscn" id="4_soc86"]
 
 [node name="Player" type="Node2D"]
@@ -11,17 +10,5 @@ script = ExtResource("1_qgkk4")
 [node name="PlayerAvatar" parent="." instance=ExtResource("2_6wjm5")]
 
 [node name="GameObject" type="Node2D" parent="."]
-
-[node name="GUI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1920.0
-offset_bottom = 1080.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("3_li55m")
 
 [node name="DialogueManager" parent="." instance=ExtResource("4_soc86")]

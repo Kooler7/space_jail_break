@@ -1,6 +1,4 @@
 #loading_screen.gd
-class_name LoadingScreen
-
 extends Control
 
 
