@@ -34,7 +34,8 @@ func on_dialogue_box_clicked() -> void:
 	pass
 
 func parse_dialogue(line_number : int = current_line_number) -> void:
-	dialogue_box.dialogue_box_popin()
+	if dialogue_box.modulate != dialogue_box.FINISH_MODULATE:
+		dialogue_box.dialogue_box_popin()
 	var data = current_dialogue[current_line_number]
 	#Если значение словаря String, печать текста
 	if typeof(data) == 4:

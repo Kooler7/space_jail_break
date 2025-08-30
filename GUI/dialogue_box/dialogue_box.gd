@@ -22,20 +22,20 @@ func _ready() -> void:
 
 
 func dialogue_box_popin() -> void:
-	modulate = START_MODULATE
 	var modulate_tween = create_tween()
 	modulate_tween.tween_property(self, "modulate", FINISH_MODULATE, MODULATION_TIME)
 	modulate_tween.play()
 	await modulate_tween.finished
+	modulate = FINISH_MODULATE
 	return
 
 
 func dialogue_box_popout() -> void:
-	modulate = FINISH_MODULATE
 	var modulate_tween = create_tween()
 	modulate_tween.tween_property(self, "modulate", START_MODULATE, MODULATION_TIME)
 	modulate_tween.play()
 	await modulate_tween.finished
+	modulate = START_MODULATE
 	return
 
 

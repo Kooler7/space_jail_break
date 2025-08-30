@@ -15,6 +15,9 @@ var current_buddy_node_path : String = "res://levels/chapter_1/interractional_ob
 @onready var explaner : Label = $Explaner
 @onready var mouse_detector : Area2D = $MouseDetector
 
+func _ready() -> void:
+	Signals.dialogue_completed.connect(toggle_pickable)
+
 func check_buddy_states(new_state) -> void:
 	match new_state:
 		BuddyStates.ALIVE:
@@ -30,7 +33,8 @@ func toggle_pickable() -> void:
 	if mouse_detector.input_pickable:
 		mouse_detector.input_pickable = false
 	elif !mouse_detector.input_pickable:
-		mouse_detector.input_pickable = false
+		mouse_detector.input_pickable = true
+
 
 func _on_mouse_detector_mouse_entered() -> void:
 	explaner.explaner_popin()

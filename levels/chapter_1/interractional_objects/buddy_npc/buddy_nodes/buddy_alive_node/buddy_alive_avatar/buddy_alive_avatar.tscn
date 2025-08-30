@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://c28luwww7ukvi"]
+
+[ext_resource type="Texture2D" uid="uid://d2ysg1juli1ph" path="res://icon.svg" id="1_1ygwl"]
+[ext_resource type="Script" path="res://levels/chapter_1/interractional_objects/buddy_npc/buddy_nodes/buddy_alive_node/buddy_alive_avatar/buddy_alive_avatar.gd" id="2_fqxs5"]
+
+[node name="BuddyAliveAvatar" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(528, 576)
+scale = Vector2(4.125, 3.875)
+texture = ExtResource("1_1ygwl")
+script = ExtResource("2_fqxs5")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -54.303
+offset_top = -57.0323
+offset_right = 54.697
+offset_bottom = -29.0323
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "BuddyAlive"
+horizontal_alignment = 1
+vertical_alignment = 1
