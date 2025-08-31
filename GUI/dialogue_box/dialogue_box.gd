@@ -93,12 +93,14 @@ func on_option_pressed(option: Button) -> void:
 		#Выключение перехвата событий мыши
 		mouse_filter = MOUSE_FILTER_IGNORE
 		#Посылка сигнала
-		Signals.emit_signal("leave_option_clicked")
+		Globals.dialogue_manager.on_leave_option_clicked()
+		#Signals.emit_signal("leave_option_clicked")
 	else:
 		#Присвоение имени нажатой кнопки в переменную
 		var name : String = option.name
 		#№Преобразование имени в цифру и отправка вместе с сигналом
-		Signals.emit_signal("new_line_requested", int(name))
+		#Signals.emit_signal("new_line_requested", int(name))
+		Globals.dialogue_manager.parse_dialogue(int(name))
 	#Удаление всех кнопок опций диалога
 	var option_buttons = options_pool.get_children()
 	for button in option_buttons:
@@ -107,4 +109,5 @@ func on_option_pressed(option: Button) -> void:
 ##Перехват клика по диалоговому окну
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		Signals.emit_signal("dialogue_box_clicked")
+		#Signals.emit_signal("dialogue_box_clicked")
+		Globals.dialogue_manager.on_dialogue_box_clicked()

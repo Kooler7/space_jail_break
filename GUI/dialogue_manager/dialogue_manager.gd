@@ -1,4 +1,5 @@
 #dialogue_manager.gd
+class_name DialogueManager
 extends Node2D
 
 
@@ -9,16 +10,20 @@ var current_line_number : int = 1
 @onready var mouse_stop_area : Control = $MouseStopArea
 
 func _ready() -> void:
+	Globals.dialogue_manager = self
 	mouse_stop_area.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	Signals.dialogue_box_clicked.connect(on_dialogue_box_clicked)
-	Signals.leave_option_clicked.connect(on_leave_option_clicked)
-	Signals.new_line_requested.connect(parse_dialogue)
+	#Signals.dialogue_box_clicked.connect(on_dialogue_box_clicked)
+	#Signals.leave_option_clicked.connect(on_leave_option_clicked)
+	#Signals.new_line_requested.connect(parse_dialogue)
 
 func on_leave_option_clicked() -> void:
 	current_line_number = 1
 	dialogue_box.dialogue_box_popout()
 	mouse_stop_area.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	Signals.emit_signal("dialogue_completed")
+	#Signals.emit_signal("dialogue_completed")
+	Globals.current_npc.toggle_pickable()
+	Globals.current_npc = null
+	Globals.player.on_dialogue_completed()
 
 
 ##Обработка сигнала "dialogue_box_clicked"
@@ -33,7 +38,9 @@ func on_dialogue_box_clicked() -> void:
 		current_line_number = 1
 		dialogue_box.dialogue_box_popout()
 		mouse_stop_area.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		Signals.emit_signal("dialogue_completed")
+		#Signals.emit_signal("dialogue_completed")
+		Globals.current_npc.toggle_pickable()
+		Globals.player.on_dialogue_completed()
 
 	pass
 
@@ -57,7 +64,9 @@ func parse_dialogue(line_number : int = current_line_number) -> void:
 func parse_line(line : String) -> String:
 	var line_info = line.split(":")
 	if line_info[0] == "Player":
-		Signals.emit_signal("player_avatar_called")
+		Globals.player.on_player_avatar_called()
+		#Signals.emit_signal("player_avatar_called")
 	elif line_info[0] == "Npc":
-		Signals.emit_signal("npc_avatar_called")
+		Globals.player.on_npc_avatar_called()
+		#Signals.emit_signal("npc_avatar_called")
 	return line_info[1]
