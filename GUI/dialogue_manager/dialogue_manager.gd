@@ -3,6 +3,9 @@ class_name DialogueManager
 extends Node2D
 
 
+
+
+
 var current_dialogue : Dictionary = {}
 var current_line_number : int = 1
 

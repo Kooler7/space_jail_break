@@ -3,31 +3,18 @@ class_name Player
 
 extends Node2D
 
-#enum PlayerStates {
-	#EXPLANING,
-	#TALKING,
-	#INTERRACTING,
-	#IDLE
-#}
-#var current_player_state : PlayerStates = PlayerStates.IDLE
+
 var current_game_object : Node2D
 
 
 @onready var avatar : Sprite2D = $PlayerAvatar
 @onready var dialogue_manager : Node = $DialogueManager
 @onready var game_object_holder : Node2D = $GameObject
-#@onready var camera : Camera2D = $Camera2D
+
 
 
 func _ready() -> void:
 	Globals.player = self
-	#Settings.camera = camera
-	#Signals.game_object_clicked.connect(on_game_object_clicked)
-	#Signals.dialogue_completed.connect(on_dialogue_completed)
-	#Signals.player_avatar_called.connect(on_player_avatar_called)
-	#Signals.npc_avatar_called.connect(on_npc_avatar_called)
-
-
 
 
 func on_player_avatar_called() -> void:

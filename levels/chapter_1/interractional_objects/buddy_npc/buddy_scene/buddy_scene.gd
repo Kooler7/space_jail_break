@@ -23,10 +23,8 @@ func check_buddy_states(new_state) -> void:
 			Globals.player.on_game_object_clicked(buddy_alive)
 			current_buddy_state = BuddyStates.ALIVE
 		BuddyStates.DEAD_WITH_EYE:
-			#Signals.emit_signal("game_object_clicked", current_buddy_node_path)
 			pass
 		BuddyStates.DEAD_NO_EYE:
-			#Signals.emit_signal("game_object_clicked", current_buddy_node_path)
 			pass
 
 func toggle_pickable() -> void:

@@ -1,11 +1,26 @@
 extends Node2D
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
+@onready var camera : Camera2D = Settings.camera
 
+  
+var cam_coordinates : Array = [
+	Vector2(0, 0),
+	Vector2(1920, 1080)
+]
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+enum CameraPositions {
+	SELL_FRONT,
+	SELL_BACK,
+	SELL_RIGHT
+}
+var current_cp : CameraPositions = CameraPositions.SELL_FRONT
+
+func check_camera_position(new_position) -> void:
+	match new_position:
+		CameraPositions.SELL_FRONT:
+			camera.position = cam_coordinates[CameraPositions.SELL_FRONT]
+			current_cp = CameraPositions.SELL_FRONT
+		CameraPositions.SELL_BACK:
+			camera.position = cam_coordinates[CameraPositions.SELL_BACK]
+			current_cp = CameraPositions.SELL_BACK

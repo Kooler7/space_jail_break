@@ -7,11 +7,13 @@
 script = ExtResource("1_cx7qi")
 
 [node name="MouseStopArea" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0.521569)
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
 
 [node name="DialogueBox" parent="." instance=ExtResource("2_7wpax")]
 offset_left = 480.0
