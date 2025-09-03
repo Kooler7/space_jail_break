@@ -1,100 +1,115 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0oxpwdga5piw"]
+[gd_scene load_steps=22 format=3 uid="uid://b0oxpwdga5piw"]
 
 [ext_resource type="Script" path="res://levels/main_menu/main_menu.gd" id="1_2parm"]
+[ext_resource type="Texture2D" uid="uid://chjf8xbx7d6p7" path="res://assets/main_menu/images/sell.png" id="3_12bmi"]
+[ext_resource type="Texture2D" uid="uid://8qt4hy7wc2wd" path="res://assets/main_menu/images/pillar.png" id="4_q7sss"]
 [ext_resource type="PackedScene" uid="uid://jxetxyhxh1jb" path="res://levels/main_menu/mm_elements/resolution_switcher/resolution_switcher.tscn" id="5_5paug"]
 [ext_resource type="PackedScene" uid="uid://yf161wg7gtxq" path="res://levels/main_menu/mm_elements/full_screen_switcher/full_screen_switcher.tscn" id="5_katyy"]
+[ext_resource type="Texture2D" uid="uid://ce1an7rnvqi0q" path="res://assets/main_menu/images/mm_resume_btn_idle_ru.png" id="5_lcrkm"]
+[ext_resource type="ButtonGroup" uid="uid://ggj7inn2b7yk" path="res://resources/button_groups/main_screen_buttons.tres" id="5_t2mnk"]
+[ext_resource type="Texture2D" uid="uid://dtcu1bsdab1sx" path="res://assets/main_menu/images/mm_resume_btn_pressed_ru.png" id="6_qv702"]
 [ext_resource type="PackedScene" uid="uid://46jf0xuiuh50" path="res://levels/main_menu/mm_elements/language_switcher/language_switcher.tscn" id="6_w83mj"]
+[ext_resource type="BitMap" uid="uid://dd3w8psph3aqi" path="res://assets/main_menu/images/mm_btn_mask.png" id="7_3i0jr"]
+[ext_resource type="Texture2D" uid="uid://cgvcuie1pqxhc" path="res://assets/main_menu/images/mm_start_btn_idle_ru.png" id="8_cs7rj"]
+[ext_resource type="Texture2D" uid="uid://d2hk3yr0ccm45" path="res://assets/main_menu/images/mm_start_btn_pressed_ru.png" id="9_j28vf"]
+[ext_resource type="Texture2D" uid="uid://bv7g6m6symjtx" path="res://assets/main_menu/images/mm_settings_btn_idle_ru.png" id="10_05jwj"]
+[ext_resource type="Texture2D" uid="uid://c44rc7hror0wa" path="res://assets/main_menu/images/mm_settings_btn_pressed_ru.png" id="11_u1nbq"]
+[ext_resource type="Texture2D" uid="uid://cf0c8ywst8gxx" path="res://assets/main_menu/images/mm_exit_btn_idle_ru.png" id="12_bfd7g"]
+[ext_resource type="Texture2D" uid="uid://dle2fy8e5bsqp" path="res://assets/main_menu/images/mm_exit_btn_perssed_ru.png" id="13_suaa6"]
 [ext_resource type="Texture2D" uid="uid://tganohsm144f" path="res://assets/test_jpgs/i.jpg" id="14_8xqg0"]
+[ext_resource type="Texture2D" uid="uid://c2l14p64ltkq3" path="res://assets/main_menu/images/mm_call_btn_idle_ru.png" id="14_o4tcq"]
+[ext_resource type="Texture2D" uid="uid://blv3viywg4er5" path="res://assets/main_menu/images/mm_call_btn_pressed_ru.png" id="15_7ddbu"]
 [ext_resource type="Texture2D" uid="uid://do45kq617gvt" path="res://assets/test_jpgs/meglepett-macska.jpg" id="15_xr1ws"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_6i8l5"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_2parm")
+main_screen_buttons_group = ExtResource("5_t2mnk")
 
-[node name="MainBG" type="Sprite2D" parent="."]
+[node name="MainScreen" type="Node2D" parent="."]
+
+[node name="MainBG" type="Sprite2D" parent="MainScreen"]
 texture = ExtResource("15_xr1ws")
 centered = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainBG"]
+[node name="Sell" type="Sprite2D" parent="MainScreen"]
+texture = ExtResource("3_12bmi")
+centered = false
+
+[node name="Pillar" type="Sprite2D" parent="MainScreen"]
+texture = ExtResource("4_q7sss")
+centered = false
+
+[node name="MainScreenButtons" type="VBoxContainer" parent="MainScreen"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -161.0
-offset_top = -137.5
-offset_right = 161.0
-offset_bottom = 137.5
+offset_left = 1414.0
+offset_top = 105.0
+offset_right = 1840.0
+offset_bottom = 646.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 7
 
-[node name="ResumeBtn" type="Button" parent="MainBG/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+[node name="MainMenuResumeBtn" type="TextureButton" parent="MainScreen/MainScreenButtons"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
-theme_override_font_sizes/font_size = 30
-text = "RESUME_BTN"
+toggle_mode = true
+button_group = ExtResource("5_t2mnk")
+texture_normal = ExtResource("5_lcrkm")
+texture_pressed = ExtResource("6_qv702")
+texture_click_mask = ExtResource("7_3i0jr")
 
-[node name="StartBtn" type="Button" parent="MainBG/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+[node name="MainMenuStartBtn" type="TextureButton" parent="MainScreen/MainScreenButtons"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
-theme_override_font_sizes/font_size = 30
-text = "START_BTN"
+toggle_mode = true
+button_group = ExtResource("5_t2mnk")
+texture_normal = ExtResource("8_cs7rj")
+texture_pressed = ExtResource("9_j28vf")
+texture_click_mask = ExtResource("7_3i0jr")
 
-[node name="SettingsBtn" type="Button" parent="MainBG/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+[node name="MainMenuSettingsBtn" type="TextureButton" parent="MainScreen/MainScreenButtons"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
-theme_override_font_sizes/font_size = 30
-text = "SETTINGS_BTN"
+toggle_mode = true
+button_group = ExtResource("5_t2mnk")
+texture_normal = ExtResource("10_05jwj")
+texture_pressed = ExtResource("11_u1nbq")
+texture_click_mask = ExtResource("7_3i0jr")
 
-[node name="QuitBtn" type="Button" parent="MainBG/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+[node name="MainMenuExitBtn" type="TextureButton" parent="MainScreen/MainScreenButtons"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
-theme_override_font_sizes/font_size = 30
-text = "QUIT_BTN"
+toggle_mode = true
+button_group = ExtResource("5_t2mnk")
+texture_normal = ExtResource("12_bfd7g")
+texture_pressed = ExtResource("13_suaa6")
+texture_click_mask = ExtResource("7_3i0jr")
 
-[node name="VersionNumber" type="Label" parent="MainBG"]
+[node name="MainMenuCallBtn" type="TextureButton" parent="."]
+offset_left = 1418.0
+offset_top = 856.0
+offset_right = 1844.0
+offset_bottom = 986.0
+texture_normal = ExtResource("14_o4tcq")
+texture_pressed = ExtResource("15_7ddbu")
+texture_click_mask = ExtResource("7_3i0jr")
+
+[node name="VersionNumber" type="Label" parent="."]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -42.0
+offset_left = 1880.0
+offset_top = 1038.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
-
-[node name="Label2" type="Label" parent="MainBG"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -260.0
-offset_top = 91.0
-offset_right = 260.0
-offset_bottom = 180.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 50
-text = "Побег из Нью-Йорка"
-
-[node name="Label" type="Label" parent="MainBG"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -129.5
-offset_right = 129.5
-offset_bottom = 69.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0.996078, 0, 1)
-theme_override_font_sizes/font_size = 50
-text = "MainMenu"
 
 [node name="SettingsBG" type="Sprite2D" parent="."]
 position = Vector2(1920, 1080)
@@ -151,6 +166,4 @@ theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
 theme_override_font_sizes/font_size = 30
 text = "BACK_BTN"
 
-[connection signal="pressed" from="MainBG/VBoxContainer/StartBtn" to="." method="_on_start_btn_pressed"]
-[connection signal="pressed" from="MainBG/VBoxContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
 [connection signal="pressed" from="SettingsBG/VBoxContainer2/BackBtn" to="." method="_on_back_btn_pressed"]

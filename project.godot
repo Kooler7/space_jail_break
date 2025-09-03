@@ -32,9 +32,9 @@ window/stretch/aspect="expand"
 
 [internationalization]
 
+locale/translation_remaps={}
 locale/translations=PackedStringArray("res://assets/test_localisations/Translations.en.translation", "res://assets/test_localisations/Translations.ru.translation")
-locale/test="en"
-locale/fallback="ru"
+locale/locale_filter_mode=0
 
 [rendering]
 
