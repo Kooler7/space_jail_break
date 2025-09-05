@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dke4iqvvh6qfu"
+path="res://.godot/imported/radio_btn_mask.png-e236988e3be271b00459f91f54957ba7.res"
+
+[deps]
+
+source_file="res://assets/main_menu/images/radio_btn_mask.png"
+dest_files=["res://.godot/imported/radio_btn_mask.png-e236988e3be271b00459f91f54957ba7.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

@@ -22,8 +22,8 @@ var screen_sizes : Dictionary = {
 
 var languages : Array = ["en", "ru"]
 
-#func _ready() -> void:
-	#camera = Globals.camera
+func _ready() -> void:
+	set_language(languages[0])
 
 ##Установка необходимого разрешения экрана
 func set_screen_resolution(default_resolution : Vector2, new_resolution : Vector2) -> void:

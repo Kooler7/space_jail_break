@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dq8bfobidedxl"
-path="res://.godot/imported/channels4_profile.png-a5657d27d86d99de3e8d41ea6b51c4ad.ctex"
+uid="uid://djlhrqbqnq8bg"
+path="res://.godot/imported/settings_close_btn_idle_ru.png-b8951403ba7f5807527e523232e2696d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://service_assets/channels4_profile.png"
-dest_files=["res://.godot/imported/channels4_profile.png-a5657d27d86d99de3e8d41ea6b51c4ad.ctex"]
+source_file="res://assets/main_menu/images/settings_close_btn_idle_ru.png"
+dest_files=["res://.godot/imported/settings_close_btn_idle_ru.png-b8951403ba7f5807527e523232e2696d.ctex"]
 
 [params]
 

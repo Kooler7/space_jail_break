@@ -1,44 +1,92 @@
-[gd_scene load_steps=3 format=3 uid="uid://jxetxyhxh1jb"]
+[gd_scene load_steps=13 format=3 uid="uid://jxetxyhxh1jb"]
 
 [ext_resource type="ButtonGroup" uid="uid://cmu5nux3eosp6" path="res://resources/button_groups/screen_resolution_buttons.tres" id="1_7n7rt"]
 [ext_resource type="Script" path="res://levels/main_menu/mm_elements/resolution_switcher/resolution_switcher.gd" id="1_uqmia"]
+[ext_resource type="FontFile" uid="uid://mwgjapxxw13i" path="res://assets/fonts/HUMakingfilm/HUMakingfilm Bold.otf" id="3_fanyc"]
+[ext_resource type="Texture2D" uid="uid://mpma1fbnctm2" path="res://assets/main_menu/images/resolution_1_btn_idle.png" id="3_gr65r"]
+[ext_resource type="Texture2D" uid="uid://c7kno16st6o0q" path="res://assets/main_menu/images/resolution_1_btn_pressed.png" id="4_r4yov"]
+[ext_resource type="BitMap" uid="uid://dke4iqvvh6qfu" path="res://assets/main_menu/images/radio_btn_mask.png" id="5_k6k2i"]
+[ext_resource type="Texture2D" uid="uid://bmsogcrd0gg37" path="res://assets/main_menu/images/resolution_2_btn_idle.png" id="6_xmg6v"]
+[ext_resource type="Texture2D" uid="uid://r87ngj20uia6" path="res://assets/main_menu/images/resolution_2_btn_pressed.png" id="7_vvrsk"]
+[ext_resource type="Texture2D" uid="uid://dj537qo162aac" path="res://assets/main_menu/images/resolution_3_btn_idle.png" id="8_td4jw"]
+[ext_resource type="Texture2D" uid="uid://cjv75o0x0sahv" path="res://assets/main_menu/images/resolution_3_btn_pressed.png" id="9_a20qy"]
+[ext_resource type="Texture2D" uid="uid://v0ftxstg56s" path="res://assets/main_menu/images/resolution_4_btn_idle.png" id="10_dp76j"]
+[ext_resource type="Texture2D" uid="uid://bolnarj27buvh" path="res://assets/main_menu/images/resolution_4_btn_pressed.png" id="11_ar11w"]
 
 [node name="ResolutionSwitcher" type="VBoxContainer"]
+offset_right = 599.0
+offset_bottom = 91.0
+theme_override_constants/separation = 13
+alignment = 1
 script = ExtResource("1_uqmia")
 resolutions_button_group = ExtResource("1_7n7rt")
 
-[node name="Resolution" type="Label" parent="."]
+[node name="Labels" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0.980392, 1)
-theme_override_font_sizes/font_size = 40
-text = "RESOLUTION_TXT"
-horizontal_alignment = 1
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="854x480" type="Label" parent="Labels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.109804, 0.109804, 0.109804, 1)
+theme_override_fonts/font = ExtResource("3_fanyc")
+theme_override_font_sizes/font_size = 22
+text = "854x480"
+
+[node name="1280x720" type="Label" parent="Labels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.109804, 0.109804, 0.109804, 1)
+theme_override_fonts/font = ExtResource("3_fanyc")
+theme_override_font_sizes/font_size = 22
+text = "1280x720"
+
+[node name="1366x768" type="Label" parent="Labels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.109804, 0.109804, 0.109804, 1)
+theme_override_fonts/font = ExtResource("3_fanyc")
+theme_override_font_sizes/font_size = 22
+text = "1366x768"
+
+[node name="1920x1080" type="Label" parent="Labels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.109804, 0.109804, 0.109804, 1)
+theme_override_fonts/font = ExtResource("3_fanyc")
+theme_override_font_sizes/font_size = 22
+text = "1920x1080"
 
 [node name="Buttons" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 76
+alignment = 1
 
-[node name="854x480" type="CheckBox" parent="Buttons"]
+[node name="854x480" type="TextureButton" parent="Buttons"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-button_pressed = true
+toggle_mode = true
 button_group = ExtResource("1_7n7rt")
-text = "854x480"
+texture_normal = ExtResource("3_gr65r")
+texture_pressed = ExtResource("4_r4yov")
+texture_click_mask = ExtResource("5_k6k2i")
 
-[node name="1280x720" type="CheckBox" parent="Buttons"]
+[node name="1280x720" type="TextureButton" parent="Buttons"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+toggle_mode = true
 button_group = ExtResource("1_7n7rt")
-text = "1280x720"
+texture_normal = ExtResource("6_xmg6v")
+texture_pressed = ExtResource("7_vvrsk")
+texture_click_mask = ExtResource("5_k6k2i")
 
-[node name="1366x768" type="CheckBox" parent="Buttons"]
+[node name="1366x768" type="TextureButton" parent="Buttons"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+toggle_mode = true
 button_group = ExtResource("1_7n7rt")
-text = "1366x768"
+texture_normal = ExtResource("8_td4jw")
+texture_pressed = ExtResource("9_a20qy")
+texture_click_mask = ExtResource("5_k6k2i")
 
-[node name="Default" type="CheckBox" parent="Buttons"]
+[node name="Default" type="TextureButton" parent="Buttons"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+toggle_mode = true
 button_group = ExtResource("1_7n7rt")
-text = "1920x1080"
+texture_normal = ExtResource("10_dp76j")
+texture_pressed = ExtResource("11_ar11w")
+texture_click_mask = ExtResource("5_k6k2i")

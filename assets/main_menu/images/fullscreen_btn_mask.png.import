@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dhqn88psye76i"
+path="res://.godot/imported/fullscreen_btn_mask.png-47ecd0c1244e9bf82ddc50bd7d9f5789.res"
+
+[deps]
+
+source_file="res://assets/main_menu/images/fullscreen_btn_mask.png"
+dest_files=["res://.godot/imported/fullscreen_btn_mask.png-47ecd0c1244e9bf82ddc50bd7d9f5789.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

@@ -32,9 +32,23 @@ window/stretch/aspect="expand"
 
 [internationalization]
 
-locale/translation_remaps={}
+locale/translation_remaps={
+"res://assets/main_menu/images/mm_call_btn_idle_ru.png": PackedStringArray("res://assets/main_menu/images/mm_call_btn_idle_en.png:en", "res://assets/main_menu/images/mm_call_btn_idle_ru.png:ru"),
+"res://assets/main_menu/images/mm_call_btn_pressed_ru.png": PackedStringArray("res://assets/main_menu/images/mm_call_btn_pressed_en.png:en", "res://assets/main_menu/images/mm_call_btn_pressed_ru.png:ru"),
+"res://assets/main_menu/images/mm_exit_btn_idle_ru.png": PackedStringArray("res://assets/main_menu/images/mm_exit_btn_idle_en.png:en", "res://assets/main_menu/images/mm_exit_btn_idle_ru.png:ru"),
+"res://assets/main_menu/images/mm_exit_btn_perssed_ru.png": PackedStringArray("res://assets/main_menu/images/mm_exit_btn_perssed_en.png:en", "res://assets/main_menu/images/mm_exit_btn_perssed_ru.png:ru"),
+"res://assets/main_menu/images/mm_resume_btn_idle_ru.png": PackedStringArray("res://assets/main_menu/images/mm_resume_btn_idle_en.png:en", "res://assets/main_menu/images/mm_resume_btn_idle_ru.png:ru"),
+"res://assets/main_menu/images/mm_resume_btn_pressed_ru.png": PackedStringArray("res://assets/main_menu/images/mm_resume_btn_pressed_en.png:en", "res://assets/main_menu/images/mm_resume_btn_pressed_ru.png:ru"),
+"res://assets/main_menu/images/mm_settings_btn_idle_ru.png": PackedStringArray("res://assets/main_menu/images/mm_settings_btn_idle_en.png:en", "res://assets/main_menu/images/mm_settings_btn_idle_ru.png:ru"),
+"res://assets/main_menu/images/mm_settings_btn_pressed_ru.png": PackedStringArray("res://assets/main_menu/images/mm_settings_btn_pressed_en.png:en", "res://assets/main_menu/images/mm_settings_btn_pressed_ru.png:ru"),
+"res://assets/main_menu/images/mm_start_btn_idle_ru.png": PackedStringArray("res://assets/main_menu/images/mm_start_btn_idle_en.png:en", "res://assets/main_menu/images/mm_start_btn_idle_ru.png:ru"),
+"res://assets/main_menu/images/mm_start_btn_pressed_ru.png": PackedStringArray("res://assets/main_menu/images/mm_start_btn_pressed_en.png:en", "res://assets/main_menu/images/mm_start_btn_pressed_ru.png:ru"),
+"res://assets/main_menu/images/settings_close_btn_idle_ru.png": PackedStringArray("res://assets/main_menu/images/settings_close_btn_idle_en.png:en", "res://assets/main_menu/images/settings_close_btn_idle_ru.png:ru"),
+"res://assets/main_menu/images/settings_close_btn_pressed_ru.png": PackedStringArray("res://assets/main_menu/images/settings_close_btn_pressed_en.png:en", "res://assets/main_menu/images/settings_close_btn_pressed_ru.png:ru")
+}
 locale/translations=PackedStringArray("res://assets/test_localisations/Translations.en.translation", "res://assets/test_localisations/Translations.ru.translation")
-locale/locale_filter_mode=0
+locale/locale_filter_mode=1
+locale/language_filter=["ru"]
 
 [rendering]
 

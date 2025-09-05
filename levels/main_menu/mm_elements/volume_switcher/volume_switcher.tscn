@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://crocd83q1bur3"]
+
+[ext_resource type="Texture2D" uid="uid://c5qqlctohdf1u" path="res://assets/main_menu/images/volume_1_btn_idle.png" id="1_7evg7"]
+[ext_resource type="Texture2D" uid="uid://cckwuyycupoep" path="res://assets/main_menu/images/volume_1_btn_pressed.png" id="2_4su5u"]
+[ext_resource type="Texture2D" uid="uid://ckevf5i8cj8ky" path="res://assets/main_menu/images/volume_bar_back.png" id="3_3adyq"]
+[ext_resource type="Texture2D" uid="uid://dtc6ujxf523ff" path="res://assets/main_menu/images/volume_2_btn_idle.png" id="3_ll4a4"]
+[ext_resource type="Texture2D" uid="uid://d0hgwg8aniqu1" path="res://assets/main_menu/images/volume_2_btn_pressed.png" id="4_4bpp2"]
+[ext_resource type="Texture2D" uid="uid://bh8o4l8f8fu42" path="res://assets/main_menu/images/volume_bar_volume.png" id="4_ead8f"]
+
+[node name="VolumeSwitcher" type="HBoxContainer"]
+offset_right = 64.0
+offset_bottom = 64.0
+alignment = 1
+
+[node name="MinusVolume" type="TextureButton" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("1_7evg7")
+texture_pressed = ExtResource("2_4su5u")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+value = 50.0
+texture_under = ExtResource("3_3adyq")
+texture_progress = ExtResource("4_ead8f")
+
+[node name="PlusVolume" type="TextureButton" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("3_ll4a4")
+texture_pressed = ExtResource("4_4bpp2")

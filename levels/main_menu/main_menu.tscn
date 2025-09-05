@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b0oxpwdga5piw"]
+[gd_scene load_steps=26 format=3 uid="uid://b0oxpwdga5piw"]
 
 [ext_resource type="Script" path="res://levels/main_menu/main_menu.gd" id="1_2parm"]
 [ext_resource type="Texture2D" uid="uid://chjf8xbx7d6p7" path="res://assets/main_menu/images/sell.png" id="3_12bmi"]
@@ -16,10 +16,14 @@
 [ext_resource type="Texture2D" uid="uid://c44rc7hror0wa" path="res://assets/main_menu/images/mm_settings_btn_pressed_ru.png" id="11_u1nbq"]
 [ext_resource type="Texture2D" uid="uid://cf0c8ywst8gxx" path="res://assets/main_menu/images/mm_exit_btn_idle_ru.png" id="12_bfd7g"]
 [ext_resource type="Texture2D" uid="uid://dle2fy8e5bsqp" path="res://assets/main_menu/images/mm_exit_btn_perssed_ru.png" id="13_suaa6"]
-[ext_resource type="Texture2D" uid="uid://tganohsm144f" path="res://assets/test_jpgs/i.jpg" id="14_8xqg0"]
 [ext_resource type="Texture2D" uid="uid://c2l14p64ltkq3" path="res://assets/main_menu/images/mm_call_btn_idle_ru.png" id="14_o4tcq"]
 [ext_resource type="Texture2D" uid="uid://blv3viywg4er5" path="res://assets/main_menu/images/mm_call_btn_pressed_ru.png" id="15_7ddbu"]
 [ext_resource type="Texture2D" uid="uid://do45kq617gvt" path="res://assets/test_jpgs/meglepett-macska.jpg" id="15_xr1ws"]
+[ext_resource type="Texture2D" uid="uid://cdnsxxqj1eogc" path="res://assets/main_menu/images/Settings_Main_Menu.png" id="17_kgiqp"]
+[ext_resource type="FontFile" uid="uid://mwgjapxxw13i" path="res://assets/fonts/HUMakingfilm/HUMakingfilm Bold.otf" id="18_77efc"]
+[ext_resource type="PackedScene" uid="uid://crocd83q1bur3" path="res://levels/main_menu/mm_elements/volume_switcher/volume_switcher.tscn" id="22_vakl6"]
+[ext_resource type="Texture2D" uid="uid://djlhrqbqnq8bg" path="res://assets/main_menu/images/settings_close_btn_idle_ru.png" id="23_3xs8f"]
+[ext_resource type="Texture2D" uid="uid://bm75462v7555w" path="res://assets/main_menu/images/settings_close_btn_pressed_ru.png" id="24_6tuk6"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_6i8l5"]
 
@@ -87,7 +91,7 @@ texture_normal = ExtResource("12_bfd7g")
 texture_pressed = ExtResource("13_suaa6")
 texture_click_mask = ExtResource("7_3i0jr")
 
-[node name="MainMenuCallBtn" type="TextureButton" parent="."]
+[node name="MainMenuCallBtn" type="TextureButton" parent="MainScreen"]
 offset_left = 1418.0
 offset_top = 856.0
 offset_right = 1844.0
@@ -96,7 +100,7 @@ texture_normal = ExtResource("14_o4tcq")
 texture_pressed = ExtResource("15_7ddbu")
 texture_click_mask = ExtResource("7_3i0jr")
 
-[node name="VersionNumber" type="Label" parent="."]
+[node name="VersionNumber" type="Label" parent="MainScreen"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -111,59 +115,124 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 
-[node name="SettingsBG" type="Sprite2D" parent="."]
+[node name="SettingsScreen" type="Node2D" parent="."]
 position = Vector2(1920, 1080)
-texture = ExtResource("14_8xqg0")
-centered = false
 
-[node name="Label3" type="Label" parent="SettingsBG"]
+[node name="SettingsBG" type="Sprite2D" parent="SettingsScreen"]
+texture = ExtResource("17_kgiqp")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Resolution" type="Label" parent="SettingsScreen/SettingsBG"]
+auto_translate_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -129.5
-offset_right = 129.5
-offset_bottom = 69.0
+offset_left = -166.0
+offset_top = 138.0
+offset_right = 153.0
+offset_bottom = 189.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0.996078, 0, 1)
-theme_override_font_sizes/font_size = 50
-text = "MainMenuSettings"
+theme_override_colors/font_color = Color(0.11, 0.11, 0.11, 1)
+theme_override_fonts/font = ExtResource("18_77efc")
+theme_override_font_sizes/font_size = 30
+text = "RESOLUTION_TXT"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="SettingsBG"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -209.0
-offset_top = -137.0
-offset_right = 208.0
-offset_bottom = 138.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 20
-
-[node name="ResolutionSwitcher" parent="SettingsBG/VBoxContainer2" instance=ExtResource("5_5paug")]
-layout_mode = 2
+[node name="ResolutionSwitcher" parent="SettingsScreen/SettingsBG" instance=ExtResource("5_5paug")]
+offset_left = 664.0
+offset_top = 209.0
+offset_right = 1236.0
+offset_bottom = 318.0
 resolutions_button_group = SubResource("ButtonGroup_6i8l5")
 
-[node name="FullScreenSwitcher" parent="SettingsBG/VBoxContainer2" instance=ExtResource("5_katyy")]
-layout_mode = 2
-
-[node name="LanguageSwitcher" parent="SettingsBG/VBoxContainer2" instance=ExtResource("6_w83mj")]
-layout_mode = 2
-
-[node name="SaveSettingsBtn" type="Button" parent="SettingsBG/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
+[node name="FullScreen" type="Label" parent="SettingsScreen/SettingsBG"]
+auto_translate_mode = 1
+offset_left = 683.0
+offset_top = 361.0
+offset_right = 1022.0
+offset_bottom = 412.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.109804, 0.109804, 0.109804, 1)
+theme_override_fonts/font = ExtResource("18_77efc")
 theme_override_font_sizes/font_size = 30
-text = "SAVE_BTN"
+text = "FULLSCREEN_TXT"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="BackBtn" type="Button" parent="SettingsBG/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.999979, 0.803286, 0.77048, 1)
+[node name="FullScreenSwitcher" parent="SettingsScreen/SettingsBG" instance=ExtResource("5_katyy")]
+offset_left = 1045.0
+offset_top = 334.0
+offset_right = 1205.0
+offset_bottom = 434.0
+
+[node name="Languages" type="Label" parent="SettingsScreen/SettingsBG"]
+auto_translate_mode = 1
+offset_left = 781.0
+offset_top = 481.0
+offset_right = 1120.0
+offset_bottom = 532.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.109804, 0.109804, 0.109804, 1)
+theme_override_fonts/font = ExtResource("18_77efc")
 theme_override_font_sizes/font_size = 30
-text = "BACK_BTN"
+text = "LANGUAGES_TXT"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[connection signal="pressed" from="SettingsBG/VBoxContainer2/BackBtn" to="." method="_on_back_btn_pressed"]
+[node name="English" type="Label" parent="SettingsScreen/SettingsBG"]
+auto_translate_mode = 1
+offset_left = 776.0
+offset_top = 545.0
+offset_right = 928.0
+offset_bottom = 577.0
+theme_override_colors/font_color = Color(0.109804, 0.109804, 0.109804, 1)
+theme_override_fonts/font = ExtResource("18_77efc")
+theme_override_font_sizes/font_size = 22
+text = "ENGLISH_TXT"
+
+[node name="Russian" type="Label" parent="SettingsScreen/SettingsBG"]
+auto_translate_mode = 1
+offset_left = 981.0
+offset_top = 544.0
+offset_right = 1133.0
+offset_bottom = 576.0
+theme_override_colors/font_color = Color(0.109804, 0.109804, 0.109804, 1)
+theme_override_fonts/font = ExtResource("18_77efc")
+theme_override_font_sizes/font_size = 22
+text = "RUSSIAN_TXT"
+
+[node name="LanguageSwitcher" parent="SettingsScreen/SettingsBG" instance=ExtResource("6_w83mj")]
+offset_left = 821.0
+offset_top = 609.0
+offset_right = 1029.0
+offset_bottom = 673.0
+
+[node name="Volume" type="Label" parent="SettingsScreen/SettingsBG"]
+auto_translate_mode = 1
+offset_left = 780.0
+offset_top = 723.0
+offset_right = 1119.0
+offset_bottom = 774.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.109804, 0.109804, 0.109804, 1)
+theme_override_fonts/font = ExtResource("18_77efc")
+theme_override_font_sizes/font_size = 30
+text = "GLOBAL_VOLUME_TXT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VolumeSwitcher" parent="SettingsScreen/SettingsBG" instance=ExtResource("22_vakl6")]
+offset_left = 690.0
+offset_top = 782.0
+offset_right = 1206.0
+offset_bottom = 882.0
+
+[node name="CloseSettings" type="TextureButton" parent="SettingsScreen/SettingsBG"]
+offset_left = 763.0
+offset_top = 917.0
+offset_right = 1153.0
+offset_bottom = 1032.0
+texture_normal = ExtResource("23_3xs8f")
+texture_pressed = ExtResource("24_6tuk6")

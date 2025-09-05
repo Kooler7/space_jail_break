@@ -16,7 +16,7 @@ func _ready() -> void:
 	
 	
 
-func on_button(button : CheckBox):
+func on_button(button : TextureButton):
 	Settings.set_screen_resolution(Settings.screen_sizes["Default"], Settings.screen_sizes[button.name])
 	Settings.current_screen_resolution = button.name
 	

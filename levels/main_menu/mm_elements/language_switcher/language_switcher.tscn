@@ -1,37 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://46jf0xuiuh50"]
+[gd_scene load_steps=7 format=3 uid="uid://46jf0xuiuh50"]
 
 [ext_resource type="Script" path="res://levels/main_menu/mm_elements/language_switcher/language_switcher.gd" id="1_5h2fc"]
 [ext_resource type="ButtonGroup" uid="uid://bwscf2wp2wyjb" path="res://resources/button_groups/languages_buttons.tres" id="2_yeb0o"]
+[ext_resource type="Texture2D" uid="uid://beiboik6g1njw" path="res://assets/main_menu/images/language_1_btn_idle.png" id="3_7k1l6"]
+[ext_resource type="Texture2D" uid="uid://b6n0jytb5gbx4" path="res://assets/main_menu/images/language_1_btn_pressed.png" id="4_yijyg"]
+[ext_resource type="Texture2D" uid="uid://c211ltmxpg8fu" path="res://assets/main_menu/images/language_2_btn_idle.png" id="5_jorhk"]
+[ext_resource type="Texture2D" uid="uid://clqsghu7nj7uv" path="res://assets/main_menu/images/language_2_btn_pressed.png" id="6_dhkf2"]
 
-[node name="LanguageSwitcher" type="VBoxContainer"]
+[node name="LanguageSwitcher" type="HBoxContainer"]
+offset_right = 151.0
+offset_bottom = 64.0
+theme_override_constants/separation = 140
+alignment = 1
 script = ExtResource("1_5h2fc")
 
-[node name="Language" type="Label" parent="."]
+[node name="English" type="TextureButton" parent="."]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.713726, 1, 1)
-theme_override_font_sizes/font_size = 30
-text = "LANGUAGES_TXT"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-theme_override_constants/separation = 30
-
-[node name="English" type="CheckBox" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 20
+toggle_mode = true
 button_group = ExtResource("2_yeb0o")
-text = "ENGLISH_BTN"
+texture_normal = ExtResource("3_7k1l6")
+texture_pressed = ExtResource("4_yijyg")
 
-[node name="Russian" type="CheckBox" parent="HBoxContainer"]
+[node name="Russian" type="TextureButton" parent="."]
 layout_mode = 2
-size_flags_horizontal = 8
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 20
+toggle_mode = true
 button_group = ExtResource("2_yeb0o")
-text = "RUSSIAN_BTN"
+texture_normal = ExtResource("5_jorhk")
+texture_pressed = ExtResource("6_dhkf2")
 
-[connection signal="toggled" from="HBoxContainer/English" to="." method="_on_english_toggled"]
-[connection signal="toggled" from="HBoxContainer/Russian" to="." method="_on_russian_toggled"]
+[connection signal="toggled" from="English" to="." method="_on_english_toggled"]
+[connection signal="toggled" from="Russian" to="." method="_on_russian_toggled"]

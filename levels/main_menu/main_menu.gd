@@ -3,8 +3,13 @@ extends Node2D
 
 
 @export var main_screen_buttons_group : ButtonGroup
-@onready var version : Label = $VersionNumber
-@onready var accept_button : TextureButton = $MainMenuCallBtn
+
+
+@onready var version : Label = $MainScreen/VersionNumber
+@onready var accept_button : TextureButton = $MainScreen/MainMenuCallBtn
+@onready var camera : Camera2D = Settings.camera
+@onready var close_settings : TextureButton = $SettingsScreen/SettingsBG/CloseSettings
+
 
 var buttons_actions : Dictionary = {
 	"MainMenuResumeBtn" : "on_resume_btn_pressed",
@@ -13,9 +18,7 @@ var buttons_actions : Dictionary = {
 	"MainMenuExitBtn" : "on_exit_button_pressed"
 }
 var current_button_name : String =""
-@onready var camera : Camera2D = Settings.camera
 
-  
 var cam_coordinates : Array = [
 	Vector2(0, 0),
 	Vector2(1920, 1080)
@@ -26,6 +29,7 @@ enum CameraPositions {
 	SETTINGS
 }
 var current_cp : CameraPositions = CameraPositions.MAIN
+
 var main_screen_buttons : Array
 
 
@@ -37,7 +41,7 @@ func _ready() -> void:
 		button.pressed.connect(on_main_screen_button_pressed.bind(button))
 	
 	accept_button.pressed.connect(on_accept_button_pressed)
-	
+	close_settings.pressed.connect(on_back_btn_pressed)
 	version.text = "Ver. " + ProjectSettings.get_setting("application/config/version")
 
 
@@ -47,7 +51,10 @@ func on_main_screen_button_pressed(button : TextureButton)-> void:
 
 
 func on_accept_button_pressed() ->void:
-	call(buttons_actions[current_button_name])
+	if current_button_name:
+		call(buttons_actions[current_button_name])
+	else :
+		print("Дежурный")
 
 
 
@@ -61,7 +68,7 @@ func check_camera_position(new_position) -> void:
 			current_cp = CameraPositions.SETTINGS
 
 
-func _on_back_btn_pressed() -> void:
+func on_back_btn_pressed() -> void:
 	check_camera_position(CameraPositions.MAIN)
 
 

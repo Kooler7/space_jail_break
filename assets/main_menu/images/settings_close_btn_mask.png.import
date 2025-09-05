@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://cwfdyqevahckj"
+path="res://.godot/imported/settings_close_btn_mask.png-cf00a26b8a142b798cd03aaa56bea925.res"
+
+[deps]
+
+source_file="res://assets/main_menu/images/settings_close_btn_mask.png"
+dest_files=["res://.godot/imported/settings_close_btn_mask.png-cf00a26b8a142b798cd03aaa56bea925.res"]
+
+[params]
+
+create_from=0
+threshold=0.5
