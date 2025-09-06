@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b04s1c7plaaq"]
+
+[ext_resource type="Script" path="res://levels/summary/summary_constructors/intro_constructor/intro_constructor.gd" id="1_5joh0"]
+
+[node name="IntroConstructor" type="Node"]
+script = ExtResource("1_5joh0")

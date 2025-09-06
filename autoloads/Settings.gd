@@ -20,10 +20,14 @@ var screen_sizes : Dictionary = {
 	"Default" : Vector2(1920, 1080)
 	}
 
-var languages : Array = ["en", "ru"]
+var current_language : String = "English"
+var languages : Dictionary = {
+	"English" : "en",
+	"Russian" : "ru"
+}
 
 func _ready() -> void:
-	set_language(languages[0])
+	set_language(current_language)
 
 ##Установка необходимого разрешения экрана
 func set_screen_resolution(default_resolution : Vector2, new_resolution : Vector2) -> void:

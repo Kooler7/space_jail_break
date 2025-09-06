@@ -1,6 +1,9 @@
 #main_menu.gd
 extends Node2D
 
+const SELL_END_POSITION = Vector2(-1000, 0)
+const SELL_SPEED = 0.2
+
 
 @export var main_screen_buttons_group : ButtonGroup
 
@@ -9,6 +12,8 @@ extends Node2D
 @onready var accept_button : TextureButton = $MainScreen/MainMenuCallBtn
 @onready var camera : Camera2D = Settings.camera
 @onready var close_settings : TextureButton = $SettingsScreen/SettingsBG/CloseSettings
+@onready var sell : Sprite2D = $MainScreen/Sell
+@onready var buttons_shield : Control = $MainScreen/ButtonsShield
 
 
 var buttons_actions : Dictionary = {
@@ -17,7 +22,7 @@ var buttons_actions : Dictionary = {
 	"MainMenuSettingsBtn" : "on_settings_btn_pressed",
 	"MainMenuExitBtn" : "on_exit_button_pressed"
 }
-var current_button_name : String =""
+var current_button_name : String = ""
 
 var cam_coordinates : Array = [
 	Vector2(0, 0),
@@ -32,16 +37,25 @@ var current_cp : CameraPositions = CameraPositions.MAIN
 
 var main_screen_buttons : Array
 
-
+var is_buttons_blocked : bool = false
 
 func _ready() -> void:
+	#Отключение блокировки кнопок
+	buttons_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
+	#Присоединение сигналов кнопок меню
 	main_screen_buttons = main_screen_buttons_group.get_buttons()
 	main_screen_buttons.sort()
 	for button in main_screen_buttons:
 		button.pressed.connect(on_main_screen_button_pressed.bind(button))
 	
+	#Присоединение сигнала кнопки подтверждения действия
 	accept_button.pressed.connect(on_accept_button_pressed)
+	
+	#Присоединение сигнала кнопки закрытия настройки
 	close_settings.pressed.connect(on_back_btn_pressed)
+	
+	#Отображение версии
 	version.text = "Ver. " + ProjectSettings.get_setting("application/config/version")
 
 
@@ -49,18 +63,22 @@ func _ready() -> void:
 func on_main_screen_button_pressed(button : TextureButton)-> void:
 	current_button_name = button.name
 
-
+#Подтверждени нажатия кнопки меню
 func on_accept_button_pressed() ->void:
 	if current_button_name:
 		call(buttons_actions[current_button_name])
+		buttons_shield.mouse_filter = Control.MOUSE_FILTER_STOP
 	else :
-		print("Дежурный")
+		buttons_shield.mouse_filter = Control.MOUSE_FILTER_STOP
+		await print("Дежурный")
+		buttons_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
 
 func check_camera_position(new_position) -> void:
 	match new_position:
 		CameraPositions.MAIN:
+			buttons_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			camera.position = cam_coordinates[CameraPositions.MAIN]
 			current_cp = CameraPositions.MAIN
 		CameraPositions.SETTINGS:
@@ -71,16 +89,28 @@ func check_camera_position(new_position) -> void:
 func on_back_btn_pressed() -> void:
 	check_camera_position(CameraPositions.MAIN)
 
-
+#Действия при подтверждении нажатия кнопки "Настройка"
 func on_settings_btn_pressed() -> void:
 	check_camera_position(CameraPositions.SETTINGS)
 
+#Действия при подтверждении нажатия кнопки "Старт"
 func on_start_btn_pressed() -> void:
+	await slide_sell()
 	Globals.main.loading_level_path = "res://levels/chapter_1/chapter_1.tscn"
 	Globals.main.start_loading()
 
+#Анимация открытия камеры
+func slide_sell() -> void:
+	var sell_tween : Tween = create_tween()
+	sell_tween.tween_property(sell, "position", SELL_END_POSITION, SELL_SPEED)
+	sell_tween.play()
+	await sell_tween.finished
+	return
+
+#Действия при подтверждении нажатия кнопки "Продолжить"
 func on_resume_btn_pressed() -> void:
 	print("Отказано!")
 
+#Действия при подтверждении нажатия кнопки "Выход"
 func  on_exit_button_pressed() -> void:
 	get_tree().quit()

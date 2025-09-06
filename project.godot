@@ -43,8 +43,10 @@ locale/translation_remaps={
 "res://assets/main_menu/images/mm_settings_btn_pressed_ru.png": PackedStringArray("res://assets/main_menu/images/mm_settings_btn_pressed_en.png:en", "res://assets/main_menu/images/mm_settings_btn_pressed_ru.png:ru"),
 "res://assets/main_menu/images/mm_start_btn_idle_ru.png": PackedStringArray("res://assets/main_menu/images/mm_start_btn_idle_en.png:en", "res://assets/main_menu/images/mm_start_btn_idle_ru.png:ru"),
 "res://assets/main_menu/images/mm_start_btn_pressed_ru.png": PackedStringArray("res://assets/main_menu/images/mm_start_btn_pressed_en.png:en", "res://assets/main_menu/images/mm_start_btn_pressed_ru.png:ru"),
+"res://assets/main_menu/images/operative_unit_table_ru.png": PackedStringArray("res://assets/main_menu/images/operative_unit_table_en.png:en", "res://assets/main_menu/images/operative_unit_table_ru.png:ru"),
 "res://assets/main_menu/images/settings_close_btn_idle_ru.png": PackedStringArray("res://assets/main_menu/images/settings_close_btn_idle_en.png:en", "res://assets/main_menu/images/settings_close_btn_idle_ru.png:ru"),
-"res://assets/main_menu/images/settings_close_btn_pressed_ru.png": PackedStringArray("res://assets/main_menu/images/settings_close_btn_pressed_en.png:en", "res://assets/main_menu/images/settings_close_btn_pressed_ru.png:ru")
+"res://assets/main_menu/images/settings_close_btn_pressed_ru.png": PackedStringArray("res://assets/main_menu/images/settings_close_btn_pressed_en.png:en", "res://assets/main_menu/images/settings_close_btn_pressed_ru.png:ru"),
+"res://assets/main_menu/images/title_ru.png": PackedStringArray("res://assets/main_menu/images/title_en.png:en", "res://assets/main_menu/images/title_ru.png:ru")
 }
 locale/translations=PackedStringArray("res://assets/test_localisations/Translations.en.translation", "res://assets/test_localisations/Translations.ru.translation")
 locale/locale_filter_mode=1

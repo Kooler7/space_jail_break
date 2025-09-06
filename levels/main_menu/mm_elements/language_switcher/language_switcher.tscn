@@ -13,6 +13,7 @@ offset_bottom = 64.0
 theme_override_constants/separation = 140
 alignment = 1
 script = ExtResource("1_5h2fc")
+languages_buttons_group = ExtResource("2_yeb0o")
 
 [node name="English" type="TextureButton" parent="."]
 layout_mode = 2
@@ -27,6 +28,3 @@ toggle_mode = true
 button_group = ExtResource("2_yeb0o")
 texture_normal = ExtResource("5_jorhk")
 texture_pressed = ExtResource("6_dhkf2")
-
-[connection signal="toggled" from="English" to="." method="_on_english_toggled"]
-[connection signal="toggled" from="Russian" to="." method="_on_russian_toggled"]

@@ -3,7 +3,7 @@ class_name Main
 
 extends Node
 
-var loading_level_path = "res://levels/main_menu/main_menu.tscn"
+var loading_level_path : String = ""
 var loading_status : int
 var loading_progress : Array[float]
 var is_loading_starting : bool = false
@@ -19,7 +19,8 @@ var is_loading_starting : bool = false
 func _ready() -> void:
 	Settings.camera = $Camera2D
 	Globals.main = self
-	start_loading()
+	Globals.story_manager.parse_story_node()
+	#start_loading()
 
 
 
@@ -63,7 +64,7 @@ func remove_existing_level() -> void:
 
 
 func inctance_level() -> void:
-	var new_level : Node = ResourceLoader.load_threaded_get(loading_level_path).instantiate()
+	var new_level : Node2D = ResourceLoader.load_threaded_get(loading_level_path).instantiate()
 	level_viewer.add_child(new_level)
 	loading_screen.hide()
 	await black_screen.popout()
