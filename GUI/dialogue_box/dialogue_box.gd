@@ -4,7 +4,7 @@ extends TextureRect
 
 const START_MODULATE : Color = Color(1, 1, 1, 0)
 const FINISH_MODULATE : Color = Color(1, 1, 1, 1)
-const MODULATION_TIME : int = 0.1
+const MODULATION_TIME : float = 0.1
 const START_RATIO : int = 0
 const FINISH_RATIO : int = 1
 const LETTER_SPEED : float = 0.02
@@ -96,9 +96,9 @@ func on_option_pressed(option: Button) -> void:
 		Globals.dialogue_manager.on_leave_option_clicked()
 	else:
 		#Присвоение имени нажатой кнопки в переменную
-		var name : String = option.name
+		var pressed_name : String = option.name
 		#№Преобразование имени в цифру и отправка в DialogueManager
-		Globals.dialogue_manager.parse_dialogue(int(name))
+		Globals.dialogue_manager.parse_dialogue(int(pressed_name))
 	#Удаление всех кнопок опций диалога
 	var option_buttons = options_pool.get_children()
 	for button in option_buttons:

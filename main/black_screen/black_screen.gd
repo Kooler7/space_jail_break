@@ -1,18 +1,23 @@
 #black_screen.gd
-extends Sprite2D
+extends Node2D
 
 const START_MODULATE : Color = Color(1, 1, 1, 0)
 const FINISH_MODULATE : Color = Color(1, 1, 1, 1)
 const MODULATION_SPEED : float = 1
 
-
+@onready var wire : Sprite2D = $Wire
 
 func _ready() -> void:
 	modulate = START_MODULATE
-	#mouse_filter = MOUSE_FILTER_IGNORE
+
+func _process(delta: float) -> void:
+	if modulate != START_MODULATE:
+		wire.rotate(0.017)
+		if wire.rotation_degrees >= 360:
+			wire.rotation_degrees = 0
+		
 
 func popin() -> void:
-	#mouse_filter = MOUSE_FILTER_STOP
 	#Создание Tween
 	var modulate_tween = create_tween()
 	#Запуск Tween
@@ -31,5 +36,13 @@ func popout() -> void:
 	modulate_tween.play()
 	await modulate_tween.finished
 	modulate = START_MODULATE
-	#mouse_filter = MOUSE_FILTER_IGNORE
 	return
+
+
+#func rotate_wire() -> void:
+	#var rotate_tween = create_tween()
+	#rotate_tween.tween_property(wire, "rotation_degrees", 359, 2)
+	#rotate_tween.play()
+	#await rotate_tween.finished
+	#wire.rotation_degrees = 0
+	#rotate_wire()

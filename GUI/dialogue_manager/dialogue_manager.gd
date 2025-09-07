@@ -56,7 +56,7 @@ func parse_dialogue(line_number : int = current_line_number) -> void:
 	if typeof(data) == 4:
 		#Обработка строки словаря для отделения текста от служебной информации и
 		#передача текста в печать 
-		await dialogue_box.text_typing(await parse_line(data))
+		dialogue_box.text_typing(parse_line(data))
 		current_line_number = current_line_number + 1
 	#Если значение словаря Array, визуализация кнопок с опциями
 	elif typeof(data) == 28:

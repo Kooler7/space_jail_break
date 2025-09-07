@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ci6tdegb17mxy"]
+
+[node name="SummaryRejectBtn" type="Button"]
+offset_right = 603.0
+offset_bottom = 141.0
+text = "ОТКАЗАТЬ"

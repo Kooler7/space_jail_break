@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b2atd0ak21ok7"]
+
+[node name="SummaryAcceptBtn" type="Button"]
+offset_right = 603.0
+offset_bottom = 141.0
+text = "ПОДТВЕРДИТЬ"

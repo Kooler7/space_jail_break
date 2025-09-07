@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpdximhkffkiu"]
+
+[ext_resource type="PackedScene" uid="uid://dymf2puti5its" path="res://classes/summary_constructor_class/summary_constructor.tscn" id="1_jmqvp"]
+[ext_resource type="Script" path="res://levels/summary/summary_constructors/dead_costructor/dead_constructor.gd" id="2_v1qjb"]
+
+[node name="DeadConstructor" instance=ExtResource("1_jmqvp")]
+script = ExtResource("2_v1qjb")
+buttons_paths = {
+"AcceptBtn": "res://levels/summary/summary_items/summary_accept_btn/summary_accept_btn.tscn",
+"RejectBtn": "res://levels/summary/summary_items/summary_reject_btn/summary_reject_btn.tscn"
+}
+button_markers = [NodePath("AcceptBtnPosition"), NodePath("RejectBtnPosition")]
+
+[node name="AcceptBtnPosition" type="Marker2D" parent="." index="1"]
+position = Vector2(363, 776)
+gizmo_extents = 50.0
+
+[node name="RejectBtnPosition" type="Marker2D" parent="." index="2"]
+position = Vector2(1126, 791)
+gizmo_extents = 50.0

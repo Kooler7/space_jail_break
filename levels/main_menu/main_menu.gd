@@ -59,22 +59,28 @@ func _ready() -> void:
 	version.text = "Ver. " + ProjectSettings.get_setting("application/config/version")
 
 
-
+##Присваивание нажатой кнопки в переменную
 func on_main_screen_button_pressed(button : TextureButton)-> void:
 	current_button_name = button.name
 
-#Подтверждени нажатия кнопки меню
+##Подтверждени нажатия кнопки меню при нажатии кнопки вызова
 func on_accept_button_pressed() ->void:
+	#Если нажата какая-либо кнопка
 	if current_button_name:
+		#Вызов функции соответствующей имени нажатой кнопки из переменной
 		call(buttons_actions[current_button_name])
+		#Включение блокировки кнопок
 		buttons_shield.mouse_filter = Control.MOUSE_FILTER_STOP
+	#Если нет нажатой кнопки
 	else :
+		#Включение блокировки кнопок
 		buttons_shield.mouse_filter = Control.MOUSE_FILTER_STOP
-		await print("Дежурный")
+		print("Дежурный")
+		#Отключение блокировки кнопок
 		buttons_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
-
+##Контроль положения камеры при изменении состояния
 func check_camera_position(new_position) -> void:
 	match new_position:
 		CameraPositions.MAIN:
@@ -85,21 +91,21 @@ func check_camera_position(new_position) -> void:
 			camera.position = cam_coordinates[CameraPositions.SETTINGS]
 			current_cp = CameraPositions.SETTINGS
 
-
+##Действия при нажатии кнопки закрытия настроек
 func on_back_btn_pressed() -> void:
 	check_camera_position(CameraPositions.MAIN)
 
-#Действия при подтверждении нажатия кнопки "Настройка"
+##Действия при подтверждении нажатия кнопки "Настройка"
 func on_settings_btn_pressed() -> void:
 	check_camera_position(CameraPositions.SETTINGS)
 
-#Действия при подтверждении нажатия кнопки "Старт"
+##Действия при подтверждении нажатия кнопки "Старт"
 func on_start_btn_pressed() -> void:
 	await slide_sell()
-	Globals.main.loading_level_path = "res://levels/chapter_1/chapter_1.tscn"
-	Globals.main.start_loading()
+	Globals.story_manager.change_story_node("SummaryIntro")
 
-#Анимация открытия камеры
+
+##Анимация открытия камеры
 func slide_sell() -> void:
 	var sell_tween : Tween = create_tween()
 	sell_tween.tween_property(sell, "position", SELL_END_POSITION, SELL_SPEED)
@@ -107,10 +113,10 @@ func slide_sell() -> void:
 	await sell_tween.finished
 	return
 
-#Действия при подтверждении нажатия кнопки "Продолжить"
+##Действия при подтверждении нажатия кнопки "Продолжить"
 func on_resume_btn_pressed() -> void:
 	print("Отказано!")
 
-#Действия при подтверждении нажатия кнопки "Выход"
+##Действия при подтверждении нажатия кнопки "Выход"
 func  on_exit_button_pressed() -> void:
 	get_tree().quit()

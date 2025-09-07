@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dymf2puti5its"]
+
+[ext_resource type="Script" path="res://classes/summary_constructor_class/summary_constructor.gd" id="1_xmj7c"]
+
+[node name="SummaryConstructor" type="Node"]
+script = ExtResource("1_xmj7c")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 387.0
+offset_top = 174.0
+offset_right = 1444.0
+offset_bottom = 717.0
+theme_override_font_sizes/font_size = 50
+text = "Гор Врайман поступил  и т.д."
+autowrap_mode = 2
+
+[node name="Buttons" type="Node" parent="."]

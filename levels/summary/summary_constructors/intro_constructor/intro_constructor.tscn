@@ -1,6 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://b04s1c7plaaq"]
+[gd_scene load_steps=3 format=3 uid="uid://bqi60osa22tar"]
 
-[ext_resource type="Script" path="res://levels/summary/summary_constructors/intro_constructor/intro_constructor.gd" id="1_5joh0"]
+[ext_resource type="PackedScene" uid="uid://dymf2puti5its" path="res://classes/summary_constructor_class/summary_constructor.tscn" id="1_jonxa"]
+[ext_resource type="Script" path="res://levels/summary/summary_constructors/intro_constructor/intro_constructor.gd" id="2_tt82m"]
 
-[node name="IntroConstructor" type="Node"]
-script = ExtResource("1_5joh0")
+[node name="IntroConstructor" instance=ExtResource("1_jonxa")]
+script = ExtResource("2_tt82m")
+buttons_paths = {
+"AcceptBtn": "res://levels/summary/summary_items/summary_accept_btn/summary_accept_btn.tscn",
+"RejectBtn": "res://levels/summary/summary_items/summary_reject_btn/summary_reject_btn.tscn"
+}
+button_markers = [NodePath("AcceptBtnPosition"), NodePath("RejectBtnPosition")]
+summary_text = "Заключенный Гор Врайманн. Поступил 29 января 25 года Э.Н.О."
+
+[node name="AcceptBtnPosition" type="Marker2D" parent="." index="1"]
+position = Vector2(348, 576)
+gizmo_extents = 50.0
+
+[node name="RejectBtnPosition" type="Marker2D" parent="." index="2"]
+position = Vector2(1138, 485)
+gizmo_extents = 50.0
+
+[node name="MouseShield" type="Control" parent="." index="4"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 176.0
+offset_top = 254.0
+offset_right = 1479.0
+offset_bottom = 815.0
