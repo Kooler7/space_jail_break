@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://jxetxyhxh1jb"]
+[gd_scene load_steps=14 format=3 uid="uid://jxetxyhxh1jb"]
 
 [ext_resource type="ButtonGroup" uid="uid://cmu5nux3eosp6" path="res://resources/button_groups/screen_resolution_buttons.tres" id="1_7n7rt"]
 [ext_resource type="Script" path="res://levels/main_menu/mm_elements/resolution_switcher/resolution_switcher.gd" id="1_uqmia"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cjv75o0x0sahv" path="res://assets/main_menu/images/resolution_3_btn_pressed.png" id="9_a20qy"]
 [ext_resource type="Texture2D" uid="uid://v0ftxstg56s" path="res://assets/main_menu/images/resolution_4_btn_idle.png" id="10_dp76j"]
 [ext_resource type="Texture2D" uid="uid://bolnarj27buvh" path="res://assets/main_menu/images/resolution_4_btn_pressed.png" id="11_ar11w"]
+[ext_resource type="AudioStream" uid="uid://faf16aicvxq6" path="res://assets/main_menu/audio/button_click.ogg" id="13_5vxtu"]
 
 [node name="ResolutionSwitcher" type="VBoxContainer"]
 offset_right = 599.0
@@ -90,3 +91,7 @@ button_group = ExtResource("1_7n7rt")
 texture_normal = ExtResource("10_dp76j")
 texture_pressed = ExtResource("11_ar11w")
 texture_click_mask = ExtResource("5_k6k2i")
+
+[node name="ButtonClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_5vxtu")
+bus = &"BtnClick_Bus"

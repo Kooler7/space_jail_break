@@ -3,6 +3,8 @@ extends HBoxContainer
 
 @export var languages_buttons_group : ButtonGroup
 
+@onready var button_click : AudioStreamPlayer2D = $ButtonClick
+
 var languages_buttons : Array
 
 func _ready() -> void:
@@ -15,4 +17,5 @@ func _ready() -> void:
 
 
 func on_button_toggled(toggled_on : bool, button : TextureButton) -> void:
+	button_click.play()
 	Settings.set_language(Settings.languages[button.name])

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://yf161wg7gtxq"]
+[gd_scene load_steps=6 format=3 uid="uid://yf161wg7gtxq"]
 
 [ext_resource type="Script" path="res://levels/main_menu/mm_elements/full_screen_switcher/full_screen_switcher.gd" id="1_2fexg"]
 [ext_resource type="Texture2D" uid="uid://bddq6n6dtkhf5" path="res://assets/main_menu/images/fullscreen_btn_off.png" id="2_ejbb5"]
 [ext_resource type="Texture2D" uid="uid://bqyi1h1ejiusv" path="res://assets/main_menu/images/fullscreen_btn_on.png" id="3_lmrxv"]
 [ext_resource type="BitMap" uid="uid://dhqn88psye76i" path="res://assets/main_menu/images/fullscreen_btn_mask.png" id="4_u7adl"]
+[ext_resource type="AudioStream" uid="uid://faf16aicvxq6" path="res://assets/main_menu/audio/button_click.ogg" id="5_o0jm4"]
 
 [node name="FullScreenSwitcher" type="HBoxContainer"]
 offset_right = 160.0
@@ -18,5 +19,9 @@ toggle_mode = true
 texture_normal = ExtResource("2_ejbb5")
 texture_pressed = ExtResource("3_lmrxv")
 texture_click_mask = ExtResource("4_u7adl")
+
+[node name="ButtonClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_o0jm4")
+bus = &"BtnClick_Bus"
 
 [connection signal="toggled" from="TextureButton" to="." method="_on_texture_button_toggled"]

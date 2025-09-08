@@ -1,16 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://crocd83q1bur3"]
+[gd_scene load_steps=9 format=3 uid="uid://crocd83q1bur3"]
 
 [ext_resource type="Texture2D" uid="uid://c5qqlctohdf1u" path="res://assets/main_menu/images/volume_1_btn_idle.png" id="1_7evg7"]
+[ext_resource type="Script" path="res://levels/main_menu/mm_elements/volume_switcher/volume_switcher.gd" id="1_xymkr"]
 [ext_resource type="Texture2D" uid="uid://cckwuyycupoep" path="res://assets/main_menu/images/volume_1_btn_pressed.png" id="2_4su5u"]
 [ext_resource type="Texture2D" uid="uid://ckevf5i8cj8ky" path="res://assets/main_menu/images/volume_bar_back.png" id="3_3adyq"]
 [ext_resource type="Texture2D" uid="uid://dtc6ujxf523ff" path="res://assets/main_menu/images/volume_2_btn_idle.png" id="3_ll4a4"]
 [ext_resource type="Texture2D" uid="uid://d0hgwg8aniqu1" path="res://assets/main_menu/images/volume_2_btn_pressed.png" id="4_4bpp2"]
 [ext_resource type="Texture2D" uid="uid://bh8o4l8f8fu42" path="res://assets/main_menu/images/volume_bar_volume.png" id="4_ead8f"]
+[ext_resource type="AudioStream" uid="uid://faf16aicvxq6" path="res://assets/main_menu/audio/button_click.ogg" id="8_gk0md"]
 
 [node name="VolumeSwitcher" type="HBoxContainer"]
 offset_right = 64.0
 offset_bottom = 64.0
 alignment = 1
+script = ExtResource("1_xymkr")
 
 [node name="MinusVolume" type="TextureButton" parent="."]
 layout_mode = 2
@@ -29,3 +32,10 @@ layout_mode = 2
 size_flags_vertical = 4
 texture_normal = ExtResource("3_ll4a4")
 texture_pressed = ExtResource("4_4bpp2")
+
+[node name="ButtonClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_gk0md")
+bus = &"BtnClick_Bus"
+
+[connection signal="button_down" from="MinusVolume" to="." method="_on_minus_volume_button_down"]
+[connection signal="button_down" from="PlusVolume" to="." method="_on_plus_volume_button_down"]

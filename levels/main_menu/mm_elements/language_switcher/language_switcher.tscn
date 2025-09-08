@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://46jf0xuiuh50"]
+[gd_scene load_steps=8 format=3 uid="uid://46jf0xuiuh50"]
 
 [ext_resource type="Script" path="res://levels/main_menu/mm_elements/language_switcher/language_switcher.gd" id="1_5h2fc"]
 [ext_resource type="ButtonGroup" uid="uid://bwscf2wp2wyjb" path="res://resources/button_groups/languages_buttons.tres" id="2_yeb0o"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b6n0jytb5gbx4" path="res://assets/main_menu/images/language_1_btn_pressed.png" id="4_yijyg"]
 [ext_resource type="Texture2D" uid="uid://c211ltmxpg8fu" path="res://assets/main_menu/images/language_2_btn_idle.png" id="5_jorhk"]
 [ext_resource type="Texture2D" uid="uid://clqsghu7nj7uv" path="res://assets/main_menu/images/language_2_btn_pressed.png" id="6_dhkf2"]
+[ext_resource type="AudioStream" uid="uid://faf16aicvxq6" path="res://assets/main_menu/audio/button_click.ogg" id="7_parg2"]
 
 [node name="LanguageSwitcher" type="HBoxContainer"]
 offset_right = 151.0
@@ -28,3 +29,7 @@ toggle_mode = true
 button_group = ExtResource("2_yeb0o")
 texture_normal = ExtResource("5_jorhk")
 texture_pressed = ExtResource("6_dhkf2")
+
+[node name="ButtonClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_parg2")
+bus = &"BtnClick_Bus"
