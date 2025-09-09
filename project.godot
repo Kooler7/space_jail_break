@@ -34,7 +34,11 @@ window/stretch/aspect="expand"
 
 locale/translation_remaps={
 "res://assets/main_menu/audio/accepted_sound_ru.ogg": PackedStringArray("res://assets/main_menu/audio/accepted_sound_en.ogg:en", "res://assets/main_menu/audio/accepted_sound_ru.ogg:ru"),
+"res://assets/main_menu/audio/agenda_1_ru.ogg": PackedStringArray("res://assets/main_menu/audio/agenda_1_en.ogg:en", "res://assets/main_menu/audio/agenda_1_ru.ogg:ru"),
+"res://assets/main_menu/audio/agenda_2_ru.ogg": PackedStringArray("res://assets/main_menu/audio/agenda_2_en.ogg:en", "res://assets/main_menu/audio/agenda_2_ru.ogg:ru"),
+"res://assets/main_menu/audio/agenda_3_ru.ogg": PackedStringArray("res://assets/main_menu/audio/agenda_3_en.ogg:en", "res://assets/main_menu/audio/agenda_3_ru.ogg:ru"),
 "res://assets/main_menu/audio/denied_sound_ru.ogg": PackedStringArray("res://assets/main_menu/audio/denied_sound_en.ogg:en", "res://assets/main_menu/audio/denied_sound_ru.ogg:ru"),
+"res://assets/main_menu/audio/guard_and_prisoner_ru.ogg": PackedStringArray("res://assets/main_menu/audio/guard_and_prisoner_en.ogg:en", "res://assets/main_menu/audio/guard_and_prisoner_ru.ogg:ru"),
 "res://assets/main_menu/images/mm_call_btn_idle_ru.png": PackedStringArray("res://assets/main_menu/images/mm_call_btn_idle_en.png:en", "res://assets/main_menu/images/mm_call_btn_idle_ru.png:ru"),
 "res://assets/main_menu/images/mm_call_btn_pressed_ru.png": PackedStringArray("res://assets/main_menu/images/mm_call_btn_pressed_en.png:en", "res://assets/main_menu/images/mm_call_btn_pressed_ru.png:ru"),
 "res://assets/main_menu/images/mm_exit_btn_idle_ru.png": PackedStringArray("res://assets/main_menu/images/mm_exit_btn_idle_en.png:en", "res://assets/main_menu/images/mm_exit_btn_idle_ru.png:ru"),

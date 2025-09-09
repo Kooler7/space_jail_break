@@ -6,10 +6,14 @@ const SELL_SPEED = 0.5
 
 
 @export var main_screen_buttons_group : ButtonGroup
+
+
 @export var accepted_stream : AudioStreamOggVorbis
 @export var denied_stream : AudioStreamOggVorbis
-@export var prison_activities : Array
 
+#Проигрыватели звуков
+@export var agenda_players : Array
+@export var prison_activities_piayers : Array
 
 
 @onready var version : Label = $MainScreen/VersionNumber
@@ -18,9 +22,13 @@ const SELL_SPEED = 0.5
 @onready var close_settings : TextureButton = $SettingsScreen/SettingsBG/CloseSettings
 @onready var sell : Sprite2D = $MainScreen/Sell
 @onready var buttons_shield : Control = $MainScreen/ButtonsShield
+
+#Проигрыватели звуков
 @onready var call_btn_speech : AudioStreamPlayer2D = $CallBtnSpeech
 @onready var button_click : AudioStreamPlayer2D = $ButtonClick
-@onready var prison_activity : AudioStreamPlayer2D = $PrisonActivity
+
+@onready var prison_activity_timer : Timer = $PrisonActivityTimer
+@onready var agenda_speech_timer : Timer = $AgendaSpeechTimer
 
 
 var buttons_actions : Dictionary = {
@@ -46,11 +54,14 @@ var main_screen_buttons : Array
 var is_buttons_blocked : bool = false
 var call_btn_speech_vol : float
 
+
+
 func _ready() -> void:
 	#Отключение блокировки кнопок
 	buttons_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
-	play_prison_activity(prison_activities[0])
+	choose_prison_activity(15)
+	choose_agenda(5)
 	
 	
 	#Присоединение сигналов кнопок меню
@@ -105,27 +116,17 @@ func check_camera_position(new_position) -> void:
 			current_cp = CameraPositions.SETTINGS
 
 
-func play_prison_activity(activity_stream_path : String):
-	var activity_stream : AudioStreamOggVorbis = AudioStreamOggVorbis.load_from_file(activity_stream_path )
-	prison_activity.stream = activity_stream
-	prison_activity.play()
-
-
-func play_call_response(new_stream : AudioStreamOggVorbis) -> void:
-	call_btn_speech.stream = new_stream
-	call_btn_speech.play()
-	await call_btn_speech.finished
-	return
-
 ##Действия при нажатии кнопки закрытия настроек
 func on_back_btn_pressed() -> void:
 	button_click.play()
 	check_camera_position(CameraPositions.MAIN)
 
+
 ##Действия при подтверждении нажатия кнопки "Настройка"
 func on_settings_btn_pressed() -> void:
 	await play_call_response(accepted_stream)
 	check_camera_position(CameraPositions.SETTINGS)
+
 
 ##Действия при подтверждении нажатия кнопки "Старт"
 func on_start_btn_pressed() -> void:
@@ -153,3 +154,51 @@ func on_resume_btn_pressed() -> void:
 func  on_exit_button_pressed() -> void:
 	await play_call_response(accepted_stream)
 	get_tree().quit()
+
+##Выбор проигрывателя агитации и запуск функции проигрывания
+func choose_agenda(wait_time : float) -> void:
+	agenda_speech_timer.wait_time = wait_time
+	agenda_speech_timer.start()
+	await  agenda_speech_timer.timeout
+	var play_or_not : int = randi_range(0, 1)
+	if play_or_not < 1:
+		choose_agenda(randf_range(5, 10))
+	elif play_or_not > 0:
+		await play_agenda(agenda_players[randi_range(0, 2)])
+		choose_agenda(randf_range(5, 10))
+
+##Выбор проигрывателя тюремной активности и запуск функции проигрывания
+func choose_prison_activity(wait_time : float) -> void:
+	prison_activity_timer.wait_time = wait_time
+	prison_activity_timer.start()
+	await prison_activity_timer.timeout
+	var play_or_not : int = randi_range(0, 1)
+	if play_or_not < 1:
+		choose_prison_activity(randf_range(15, 20))
+	elif play_or_not > 0:
+		await play_prison_activity(prison_activities_piayers[randi_range(0, 1)])
+		choose_prison_activity(randf_range(15, 20))
+
+
+##Проигрывание агитации
+func play_agenda(new_agenda : NodePath) -> void:
+	var agenda : AudioStreamPlayer2D = get_node(new_agenda)
+	agenda.play()
+	await agenda.finished
+	return
+
+
+##Проигрывание звуков тюремной активности
+func play_prison_activity(new_activity : NodePath) -> void:
+	var activity : AudioStreamPlayer2D = get_node(new_activity)
+	activity.play()
+	await activity.finished
+	return
+
+
+##Проигрывание голосового ответа на нажатие кнопки "Вызов"
+func play_call_response(new_stream : AudioStreamOggVorbis) -> void:
+	call_btn_speech.stream = new_stream
+	call_btn_speech.play()
+	await call_btn_speech.finished
+	return
