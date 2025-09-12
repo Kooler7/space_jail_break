@@ -12,3 +12,6 @@ script = ExtResource("1_qgkk4")
 [node name="GameObject" type="Node2D" parent="."]
 
 [node name="DialogueManager" parent="." instance=ExtResource("4_soc86")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0

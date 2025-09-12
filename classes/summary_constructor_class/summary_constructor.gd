@@ -8,10 +8,15 @@ extends Node
 	"AcceptBtn" : "",
 	"RejectBtn" : ""
 }
-
 @export var button_markers : Array
-@export_multiline var summary_text : String
+
+
 @onready var buttons_pool : Node = $Buttons
+@onready var mouse_shield : Control = $MouseShield
+@onready var label : Label = $Label
+
+var story_node_names : Array
+
 
 func buttons_loading() -> void:
 	for marker in button_markers:
@@ -21,9 +26,21 @@ func buttons_loading() -> void:
 		var temp_scene = load(buttons_paths[part_name])
 		var button = temp_scene.instantiate()
 		button.position = marker_node.position
+		button.rotation = marker_node.rotation
 		buttons_pool.add_child(button)
 
-func print_summary() -> void:
-	var label = get_child(0)
-	label.text = summary_text
-	
+
+func init_constructor() -> void:
+	for button in buttons_pool.get_children():
+		button.pressed.connect(on_button_pressed.bind(button, story_node_names))
+	mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+func on_button_pressed(button : TextureButton, names : Array) -> void:
+	mouse_shield.mouse_filter = Control.MOUSE_FILTER_STOP
+	if button.name == "SummaryAcceptBtn":
+		Globals.story_manager.change_story_node(names[1])
+	elif button.name == "SummaryRejectBtn":
+		Globals.story_manager.change_story_node(names[0])
+
+func print_summary(summary : String) -> void:
+	label.text = summary

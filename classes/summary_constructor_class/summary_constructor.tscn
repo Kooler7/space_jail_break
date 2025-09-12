@@ -4,14 +4,37 @@
 
 [node name="SummaryConstructor" type="Node"]
 script = ExtResource("1_xmj7c")
+buttons_paths = {
+"AcceptBtn": "res://levels/summary/summary_items/summary_accept_btn/summary_accept_btn.tscn",
+"RejectBtn": "res://levels/summary/summary_items/summary_reject_btn/summary_reject_btn.tscn"
+}
+
+[node name="Title" type="Label" parent="."]
+offset_left = 770.0
+offset_top = 151.0
+offset_right = 1194.0
+offset_bottom = 221.0
+rotation = -0.249582
+text = "ДОНЕСЕНИЕ"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label" type="Label" parent="."]
-offset_left = 387.0
-offset_top = 174.0
-offset_right = 1444.0
-offset_bottom = 717.0
+offset_left = 751.0
+offset_top = 278.0
+offset_right = 1280.0
+offset_bottom = 676.0
+rotation = -0.249582
 theme_override_font_sizes/font_size = 50
 text = "Гор Врайман поступил  и т.д."
 autowrap_mode = 2
 
 [node name="Buttons" type="Node" parent="."]
+
+[node name="MouseShield" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 323.0
+offset_top = 341.0
+offset_right = 1293.0
+offset_bottom = 935.0

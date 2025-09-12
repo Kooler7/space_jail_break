@@ -3,17 +3,22 @@ class_name Player
 
 extends Node2D
 
+var player_decisions : Dictionary = {
+	"Help_Dinia" : false,
+}
 
 var current_game_object : Node2D
-
+var is_game_started : bool = false
 
 @onready var avatar : Sprite2D = $PlayerAvatar
 @onready var dialogue_manager : Node = $DialogueManager
 @onready var game_object_holder : Node2D = $GameObject
+@onready var camera : Camera2D = $Camera2D
 
 
 
 func _ready() -> void:
+	Settings.camera = camera
 	Globals.player = self
 
 

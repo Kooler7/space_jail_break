@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfahlpf0s8x42"]
+[gd_scene load_steps=6 format=3 uid="uid://dfahlpf0s8x42"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_byjwn"]
 [ext_resource type="PackedScene" uid="uid://dpgf7tgds0nna" path="res://main/black_screen/black_screen.tscn" id="2_3k1hh"]
 [ext_resource type="Script" path="res://main/story_manager/story_manager.gd" id="4_5svnp"]
 [ext_resource type="Script" path="res://classes/story_node_class/story_node_class.gd" id="5_5xyb0"]
+[ext_resource type="PackedScene" uid="uid://biu2qf2hc50xs" path="res://player/player.tscn" id="5_6wbq5"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_byjwn")
@@ -12,8 +13,7 @@ script = ExtResource("1_byjwn")
 
 [node name="BlackScreen" parent="." instance=ExtResource("2_3k1hh")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
+[node name="Player" parent="." instance=ExtResource("5_6wbq5")]
 
 [node name="StoryManager" type="Node" parent="."]
 script = ExtResource("4_5svnp")
@@ -25,20 +25,3 @@ chapter_path = "res://levels/main_menu/main_menu.tscn"
 [node name="SummaryIntro" type="Node" parent="StoryManager"]
 script = ExtResource("5_5xyb0")
 chapter_path = "res://levels/summary/summary.tscn"
-chapter_constructor_path = "res://levels/summary/summary_constructors/intro_constructor/intro_constructor.tscn"
-
-[node name="Chapter_1" type="Node" parent="StoryManager/SummaryIntro"]
-script = ExtResource("5_5xyb0")
-chapter_path = "res://levels/chapter_1/chapter_1.tscn"
-
-[node name="Summary_Help_Dinya" type="Node" parent="StoryManager/SummaryIntro/Chapter_1"]
-script = ExtResource("5_5xyb0")
-
-[node name="Chapter_2" type="Node" parent="StoryManager/SummaryIntro/Chapter_1/Summary_Help_Dinya"]
-script = ExtResource("5_5xyb0")
-
-[node name="Summary_Leave_Dinya" type="Node" parent="StoryManager/SummaryIntro/Chapter_1"]
-script = ExtResource("5_5xyb0")
-
-[node name="Chapter_2" type="Node" parent="StoryManager/SummaryIntro/Chapter_1/Summary_Leave_Dinya"]
-script = ExtResource("5_5xyb0")

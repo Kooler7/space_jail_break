@@ -24,6 +24,7 @@ const SELL_SPEED = 0.5
 @onready var buttons_shield : Control = $MainScreen/ButtonsShield
 
 #Проигрыватели звуков
+@onready var door_opening : AudioStreamPlayer2D = $DoorOpening
 @onready var call_btn_speech : AudioStreamPlayer2D = $CallBtnSpeech
 @onready var button_click : AudioStreamPlayer2D = $ButtonClick
 
@@ -60,8 +61,9 @@ func _ready() -> void:
 	#Отключение блокировки кнопок
 	buttons_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
-	choose_prison_activity(15)
-	choose_agenda(5)
+	choose_prison_activity(5)
+	choose_agenda(2)
+	rising_sounds()
 	
 	
 	#Присоединение сигналов кнопок меню
@@ -140,6 +142,8 @@ func slide_sell() -> void:
 	var sell_tween : Tween = create_tween()
 	sell_tween.tween_property(sell, "position", SELL_END_POSITION, SELL_SPEED)
 	sell_tween.play()
+	door_opening.play()
+	fading_sounds()
 	await sell_tween.finished
 	return
 
@@ -176,7 +180,7 @@ func choose_prison_activity(wait_time : float) -> void:
 	if play_or_not < 1:
 		choose_prison_activity(randf_range(15, 20))
 	elif play_or_not > 0:
-		await play_prison_activity(prison_activities_piayers[randi_range(0, 1)])
+		await play_prison_activity(prison_activities_piayers[randi_range(0, 2)])
 		choose_prison_activity(randf_range(15, 20))
 
 
@@ -202,3 +206,31 @@ func play_call_response(new_stream : AudioStreamOggVorbis) -> void:
 	call_btn_speech.play()
 	await call_btn_speech.finished
 	return
+
+##Выключение громкости шин кроме Master
+func fading_sounds() -> void:
+	var buses = AudioServer.bus_count
+	for bus in buses:
+		var current_bus_name = AudioServer.get_bus_name(bus)
+		if current_bus_name != "Master":
+			var current_bus_int = AudioServer.get_bus_index(current_bus_name)
+			AudioServer.set_bus_volume_db(current_bus_int, -80)
+
+##Включение всех шин кроме Master
+func rising_sounds() -> void:
+	var buses = AudioServer.bus_count
+	for bus in buses:
+		var current_bus_name = AudioServer.get_bus_name(bus)
+		match current_bus_name:
+			"CallBtn_Bus":
+				var current_bus_int = AudioServer.get_bus_index(current_bus_name)
+				AudioServer.set_bus_volume_db(current_bus_int, 0)
+			"Objects_Bus":
+				var current_bus_int = AudioServer.get_bus_index(current_bus_name)
+				AudioServer.set_bus_volume_db(current_bus_int, -5)
+			"PrisonActivity_Bus":
+				var current_bus_int = AudioServer.get_bus_index(current_bus_name)
+				AudioServer.set_bus_volume_db(current_bus_int, -10)
+			"Agenda_Bus":
+				var current_bus_int = AudioServer.get_bus_index(current_bus_name)
+				AudioServer.set_bus_volume_db(current_bus_int, -10.5)

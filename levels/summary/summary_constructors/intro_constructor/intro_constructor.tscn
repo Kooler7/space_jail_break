@@ -1,29 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqi60osa22tar"]
+[gd_scene load_steps=4 format=3 uid="uid://bqi60osa22tar"]
 
 [ext_resource type="PackedScene" uid="uid://dymf2puti5its" path="res://classes/summary_constructor_class/summary_constructor.tscn" id="1_jonxa"]
 [ext_resource type="Script" path="res://levels/summary/summary_constructors/intro_constructor/intro_constructor.gd" id="2_tt82m"]
+[ext_resource type="FontFile" uid="uid://dxfwsk3ajcqa5" path="res://assets/fonts/Arturito Slab/arturito.ttf" id="3_sbqqm"]
 
 [node name="IntroConstructor" instance=ExtResource("1_jonxa")]
 script = ExtResource("2_tt82m")
-buttons_paths = {
-"AcceptBtn": "res://levels/summary/summary_items/summary_accept_btn/summary_accept_btn.tscn",
-"RejectBtn": "res://levels/summary/summary_items/summary_reject_btn/summary_reject_btn.tscn"
-}
 button_markers = [NodePath("AcceptBtnPosition"), NodePath("RejectBtnPosition")]
-summary_text = "Заключенный Гор Врайманн. Поступил 29 января 25 года Э.Н.О."
+
+[node name="Title" parent="." index="0"]
+theme_override_colors/font_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
+theme_override_fonts/font = ExtResource("3_sbqqm")
+theme_override_font_sizes/font_size = 40
+text = "REPORT"
 
 [node name="AcceptBtnPosition" type="Marker2D" parent="." index="1"]
-position = Vector2(348, 576)
+position = Vector2(881, 788)
+rotation = -0.249582
 gizmo_extents = 50.0
 
 [node name="RejectBtnPosition" type="Marker2D" parent="." index="2"]
-position = Vector2(1138, 485)
+position = Vector2(1175, 692)
+rotation = -0.249582
 gizmo_extents = 50.0
 
-[node name="MouseShield" type="Control" parent="." index="4"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 176.0
-offset_top = 254.0
-offset_right = 1479.0
-offset_bottom = 815.0
+[node name="Label" parent="." index="3"]
+theme_override_colors/font_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+theme_override_fonts/font = ExtResource("3_sbqqm")
+theme_override_font_sizes/font_size = 20
+
+[node name="MouseShield" parent="." index="5"]
+offset_left = 807.0
+offset_top = 692.0
+offset_right = 1436.0
+offset_bottom = 1022.0
+rotation = -0.23911
+metadata/_edit_lock_ = true

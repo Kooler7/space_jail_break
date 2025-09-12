@@ -39,6 +39,7 @@ locale/translation_remaps={
 "res://assets/main_menu/audio/agenda_3_ru.ogg": PackedStringArray("res://assets/main_menu/audio/agenda_3_en.ogg:en", "res://assets/main_menu/audio/agenda_3_ru.ogg:ru"),
 "res://assets/main_menu/audio/denied_sound_ru.ogg": PackedStringArray("res://assets/main_menu/audio/denied_sound_en.ogg:en", "res://assets/main_menu/audio/denied_sound_ru.ogg:ru"),
 "res://assets/main_menu/audio/guard_and_prisoner_ru.ogg": PackedStringArray("res://assets/main_menu/audio/guard_and_prisoner_en.ogg:en", "res://assets/main_menu/audio/guard_and_prisoner_ru.ogg:ru"),
+"res://assets/main_menu/audio/we_will_die_ru.ogg": PackedStringArray("res://assets/main_menu/audio/we_will_die_en.ogg:en", "res://assets/main_menu/audio/we_will_die_ru.ogg:ru"),
 "res://assets/main_menu/images/mm_call_btn_idle_ru.png": PackedStringArray("res://assets/main_menu/images/mm_call_btn_idle_en.png:en", "res://assets/main_menu/images/mm_call_btn_idle_ru.png:ru"),
 "res://assets/main_menu/images/mm_call_btn_pressed_ru.png": PackedStringArray("res://assets/main_menu/images/mm_call_btn_pressed_en.png:en", "res://assets/main_menu/images/mm_call_btn_pressed_ru.png:ru"),
 "res://assets/main_menu/images/mm_exit_btn_idle_ru.png": PackedStringArray("res://assets/main_menu/images/mm_exit_btn_idle_en.png:en", "res://assets/main_menu/images/mm_exit_btn_idle_ru.png:ru"),
@@ -52,7 +53,13 @@ locale/translation_remaps={
 "res://assets/main_menu/images/operative_unit_table_ru.png": PackedStringArray("res://assets/main_menu/images/operative_unit_table_en.png:en", "res://assets/main_menu/images/operative_unit_table_ru.png:ru"),
 "res://assets/main_menu/images/settings_close_btn_idle_ru.png": PackedStringArray("res://assets/main_menu/images/settings_close_btn_idle_en.png:en", "res://assets/main_menu/images/settings_close_btn_idle_ru.png:ru"),
 "res://assets/main_menu/images/settings_close_btn_pressed_ru.png": PackedStringArray("res://assets/main_menu/images/settings_close_btn_pressed_en.png:en", "res://assets/main_menu/images/settings_close_btn_pressed_ru.png:ru"),
-"res://assets/main_menu/images/title_ru.png": PackedStringArray("res://assets/main_menu/images/title_en.png:en", "res://assets/main_menu/images/title_ru.png:ru")
+"res://assets/main_menu/images/title_ru.png": PackedStringArray("res://assets/main_menu/images/title_en.png:en", "res://assets/main_menu/images/title_ru.png:ru"),
+"res://assets/summary/accept_btn_hover_ru.png": PackedStringArray("res://assets/summary/accept_btn_hover_en.png:en", "res://assets/summary/accept_btn_hover_ru.png:ru"),
+"res://assets/summary/accept_btn_idle_ru.png": PackedStringArray("res://assets/summary/accept_btn_idle_en.png:en", "res://assets/summary/accept_btn_idle_ru.png:ru"),
+"res://assets/summary/accept_btn_pressed_ru.png": PackedStringArray("res://assets/summary/accept_btn_pressed_en.png:en", "res://assets/summary/accept_btn_pressed_ru.png:ru"),
+"res://assets/summary/deny_btn_hover_ru.png": PackedStringArray("res://assets/summary/deny_btn_hover_en.png:en", "res://assets/summary/deny_btn_hover_ru.png:ru"),
+"res://assets/summary/deny_btn_idle_ru.png": PackedStringArray("res://assets/summary/deny_btn_idle_en.png:en", "res://assets/summary/deny_btn_idle_ru.png:ru"),
+"res://assets/summary/deny_btn_pressed_ru.png": PackedStringArray("res://assets/summary/deny_btn_pressed_en.png:en", "res://assets/summary/deny_btn_pressed_ru.png:ru")
 }
 locale/translations=PackedStringArray("res://assets/test_localisations/Translations.en.translation", "res://assets/test_localisations/Translations.ru.translation")
 locale/locale_filter_mode=1

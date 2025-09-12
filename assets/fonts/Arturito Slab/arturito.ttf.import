@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://mwgjapxxw13i"
-path="res://.godot/imported/HUMakingfilm Bold.otf-539785bb76a3104c71239e1a4085b4ec.fontdata"
+uid="uid://dxfwsk3ajcqa5"
+path="res://.godot/imported/arturito.ttf-987c5b062e83501b0b74976953705fe7.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/HUMakingfilm/HUMakingfilm Bold.otf"
-dest_files=["res://.godot/imported/HUMakingfilm Bold.otf-539785bb76a3104c71239e1a4085b4ec.fontdata"]
+source_file="res://assets/fonts/Arturito Slab/arturito.ttf"
+dest_files=["res://.godot/imported/arturito.ttf-987c5b062e83501b0b74976953705fe7.fontdata"]
 
 [params]
 

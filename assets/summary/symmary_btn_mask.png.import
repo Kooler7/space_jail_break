@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://movxg3rb8j54"
+path="res://.godot/imported/symmary_btn_mask.png-07b7ffe300498f60cf9d9ed5ef0c5640.res"
+
+[deps]
+
+source_file="res://assets/summary/symmary_btn_mask.png"
+dest_files=["res://.godot/imported/symmary_btn_mask.png-07b7ffe300498f60cf9d9ed5ef0c5640.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

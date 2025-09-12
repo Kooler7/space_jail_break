@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b0oxpwdga5piw"]
+[gd_scene load_steps=39 format=3 uid="uid://b0oxpwdga5piw"]
 
 [ext_resource type="Script" path="res://levels/main_menu/main_menu.gd" id="1_2parm"]
 [ext_resource type="Texture2D" uid="uid://chjf8xbx7d6p7" path="res://assets/main_menu/images/sell.png" id="3_12bmi"]
@@ -30,10 +30,12 @@
 [ext_resource type="Texture2D" uid="uid://c2l14p64ltkq3" path="res://assets/main_menu/images/mm_call_btn_idle_ru.png" id="14_o4tcq"]
 [ext_resource type="Texture2D" uid="uid://blv3viywg4er5" path="res://assets/main_menu/images/mm_call_btn_pressed_ru.png" id="15_7ddbu"]
 [ext_resource type="Texture2D" uid="uid://cdnsxxqj1eogc" path="res://assets/main_menu/images/Settings_Main_Menu.png" id="17_kgiqp"]
-[ext_resource type="FontFile" uid="uid://mwgjapxxw13i" path="res://assets/fonts/HUMakingfilm/HUMakingfilm Bold.otf" id="18_77efc"]
 [ext_resource type="PackedScene" uid="uid://crocd83q1bur3" path="res://levels/main_menu/mm_elements/volume_switcher/volume_switcher.tscn" id="22_vakl6"]
+[ext_resource type="FontFile" uid="uid://dxfwsk3ajcqa5" path="res://assets/fonts/Arturito Slab/arturito.ttf" id="22_w4pss"]
 [ext_resource type="Texture2D" uid="uid://djlhrqbqnq8bg" path="res://assets/main_menu/images/settings_close_btn_idle_ru.png" id="23_3xs8f"]
 [ext_resource type="Texture2D" uid="uid://bm75462v7555w" path="res://assets/main_menu/images/settings_close_btn_pressed_ru.png" id="24_6tuk6"]
+[ext_resource type="AudioStream" uid="uid://sw1qitwr88hb" path="res://assets/main_menu/audio/we_will_die_ru.ogg" id="34_gyoxc"]
+[ext_resource type="AudioStream" uid="uid://p8x6h21vnk61" path="res://assets/main_menu/audio/door_opening.ogg" id="36_bsjtv"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_6i8l5"]
 
@@ -45,7 +47,7 @@ main_screen_buttons_group = ExtResource("5_t2mnk")
 accepted_stream = ExtResource("3_at6ut")
 denied_stream = ExtResource("4_xr86l")
 agenda_players = [NodePath("AgendaAudioPlayers/Agenda_1"), NodePath("AgendaAudioPlayers/Agenda_2"), NodePath("AgendaAudioPlayers/Agenda_3")]
-prison_activities_piayers = [NodePath("PrisonActivitiesPlayers/GuardAndPrisoner"), NodePath("PrisonActivitiesPlayers/FarCry")]
+prison_activities_piayers = [NodePath("PrisonActivitiesPlayers/GuardAndPrisoner"), NodePath("PrisonActivitiesPlayers/FarCry"), NodePath("PrisonActivitiesPlayers/WeWillDie")]
 
 [node name="MainScreen" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -170,8 +172,8 @@ offset_right = 153.0
 offset_bottom = 189.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.11, 0.11, 0.11, 1)
-theme_override_fonts/font = ExtResource("18_77efc")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("22_w4pss")
+theme_override_font_sizes/font_size = 35
 text = "RESOLUTION_TXT"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -185,14 +187,14 @@ resolutions_button_group = SubResource("ButtonGroup_6i8l5")
 
 [node name="FullScreen" type="Label" parent="SettingsScreen/SettingsBG"]
 auto_translate_mode = 1
-offset_left = 683.0
+offset_left = 682.0
 offset_top = 361.0
-offset_right = 1022.0
+offset_right = 1021.0
 offset_bottom = 412.0
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.109804, 0.109804, 0.109804, 1)
-theme_override_fonts/font = ExtResource("18_77efc")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("22_w4pss")
+theme_override_font_sizes/font_size = 35
 text = "FULLSCREEN_TXT"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -211,32 +213,32 @@ offset_right = 1120.0
 offset_bottom = 532.0
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.109804, 0.109804, 0.109804, 1)
-theme_override_fonts/font = ExtResource("18_77efc")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("22_w4pss")
+theme_override_font_sizes/font_size = 35
 text = "LANGUAGES_TXT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="English" type="Label" parent="SettingsScreen/SettingsBG"]
 auto_translate_mode = 1
-offset_left = 776.0
-offset_top = 545.0
-offset_right = 928.0
-offset_bottom = 577.0
+offset_left = 773.0
+offset_top = 543.0
+offset_right = 934.0
+offset_bottom = 576.0
 theme_override_colors/font_color = Color(0.109804, 0.109804, 0.109804, 1)
-theme_override_fonts/font = ExtResource("18_77efc")
-theme_override_font_sizes/font_size = 22
+theme_override_fonts/font = ExtResource("22_w4pss")
+theme_override_font_sizes/font_size = 25
 text = "ENGLISH_TXT"
 
 [node name="Russian" type="Label" parent="SettingsScreen/SettingsBG"]
 auto_translate_mode = 1
-offset_left = 981.0
-offset_top = 544.0
-offset_right = 1133.0
+offset_left = 974.0
+offset_top = 543.0
+offset_right = 1138.0
 offset_bottom = 576.0
 theme_override_colors/font_color = Color(0.109804, 0.109804, 0.109804, 1)
-theme_override_fonts/font = ExtResource("18_77efc")
-theme_override_font_sizes/font_size = 22
+theme_override_fonts/font = ExtResource("22_w4pss")
+theme_override_font_sizes/font_size = 25
 text = "RUSSIAN_TXT"
 
 [node name="LanguageSwitcher" parent="SettingsScreen/SettingsBG" instance=ExtResource("6_w83mj")]
@@ -248,14 +250,14 @@ languages_buttons_group = SubResource("ButtonGroup_j7406")
 
 [node name="Volume" type="Label" parent="SettingsScreen/SettingsBG"]
 auto_translate_mode = 1
-offset_left = 780.0
-offset_top = 723.0
-offset_right = 1119.0
-offset_bottom = 774.0
+offset_left = 761.0
+offset_top = 724.0
+offset_right = 1131.0
+offset_bottom = 775.0
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.109804, 0.109804, 0.109804, 1)
-theme_override_fonts/font = ExtResource("18_77efc")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("22_w4pss")
+theme_override_font_sizes/font_size = 35
 text = "GLOBAL_VOLUME_TXT"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -308,12 +310,22 @@ max_distance = 6000.0
 attenuation = 0.125
 bus = &"PrisonActivity_Bus"
 
+[node name="WeWillDie" type="AudioStreamPlayer2D" parent="PrisonActivitiesPlayers"]
+stream = ExtResource("34_gyoxc")
+max_distance = 6000.0
+attenuation = 0.0179484
+bus = &"PrisonActivity_Bus"
+
 [node name="CallBtnSpeech" type="AudioStreamPlayer2D" parent="."]
 bus = &"CallBtn_Bus"
 
 [node name="ButtonClick" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_syoo2")
-bus = &"BtnClick_Bus"
+bus = &"Objects_Bus"
+
+[node name="DoorOpening" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("36_bsjtv")
+bus = &"Objects_Bus"
 
 [node name="PrisonActivityTimer" type="Timer" parent="."]
 wait_time = 15.0

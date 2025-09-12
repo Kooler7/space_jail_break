@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://cpdximhkffkiu"]
 
-[ext_resource type="PackedScene" uid="uid://dymf2puti5its" path="res://classes/summary_constructor_class/summary_constructor.tscn" id="1_jmqvp"]
-[ext_resource type="Script" path="res://levels/summary/summary_constructors/dead_costructor/dead_constructor.gd" id="2_v1qjb"]
+[ext_resource type="PackedScene" uid="uid://dymf2puti5its" path="res://classes/summary_constructor_class/summary_constructor.tscn" id="1_pwlni"]
+[ext_resource type="Script" path="res://levels/summary/summary_constructors/chapter_1_summary_constructor/chapter_1_summary_constructor.gd" id="2_hhm8q"]
 
-[node name="DeadConstructor" instance=ExtResource("1_jmqvp")]
-script = ExtResource("2_v1qjb")
+[node name="Chapter1SummaryConstructor" instance=ExtResource("1_pwlni")]
+script = ExtResource("2_hhm8q")
 buttons_paths = {
 "AcceptBtn": "res://levels/summary/summary_items/summary_accept_btn/summary_accept_btn.tscn",
 "RejectBtn": "res://levels/summary/summary_items/summary_reject_btn/summary_reject_btn.tscn"
