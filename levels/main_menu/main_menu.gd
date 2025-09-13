@@ -53,7 +53,7 @@ var cam_coordinates : Array = [
 	Vector2(1920, 1080)
 ]
 
-
+#Нумерованный список позиций камеры
 enum CameraPositions {
 	MAIN,
 	SETTINGS
@@ -63,7 +63,6 @@ var current_cp : CameraPositions = CameraPositions.MAIN
 #Массив для кнопок главного меню
 var main_screen_buttons : Array
 
-#var call_btn_speech_vol : float
 
 
 

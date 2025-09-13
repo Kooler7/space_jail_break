@@ -1,8 +1,9 @@
 #resolution_switcher.gd
 extends VBoxContainer
 
+#Переменная для хранения ресрса Группа Кнопок
 @export var resolutions_button_group : ButtonGroup
-
+#Проигрыватель звука щелчка кнопки
 @onready var button_click : AudioStreamPlayer2D = $ButtonClick
 
 var resolution_buttons : Array
