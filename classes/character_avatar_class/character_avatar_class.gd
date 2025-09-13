@@ -4,11 +4,13 @@ class_name ChacrterAvatarClass
 
 extends Sprite2D
 
+#Константы для анимации появления и исчезания аватара
 const START_MODULATE : Color = Color(1, 1, 1, 0)
 const FINISH_MODULATE : Color = Color(1, 1, 1, 1)
 const MODULATION_SPEED : float = 0.1
 
 
+#Функция появления аватара
 func popin() -> void:
 	#Создание Tween
 	var modulate_tween = create_tween()
@@ -19,7 +21,7 @@ func popin() -> void:
 	modulate = FINISH_MODULATE
 	return
 
-
+#Функция исчезания аватара
 func popout() -> void:
 	#Создание Tween
 	var modulate_tween = create_tween()

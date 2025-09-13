@@ -1,26 +1,31 @@
 #main_menu.gd
 extends Node2D
 
+#Константы для анимации открытия клетки
 const SELL_END_POSITION = Vector2(-1000, 0)
 const SELL_SPEED = 0.5
 
 
 @export var main_screen_buttons_group : ButtonGroup
 
-
+#Переменные для файлов голоса вызова
 @export var accepted_stream : AudioStreamOggVorbis
 @export var denied_stream : AudioStreamOggVorbis
 
 #Проигрыватели звуков
 @export var agenda_players : Array
 @export var prison_activities_piayers : Array
-
-
+#Версия игры
 @onready var version : Label = $MainScreen/VersionNumber
+#Кнопка вызова
 @onready var accept_button : TextureButton = $MainScreen/MainMenuCallBtn
+#Камера игрока
 @onready var camera : Camera2D = Settings.camera
+#Кнопка закрытия настроек
 @onready var close_settings : TextureButton = $SettingsScreen/SettingsBG/CloseSettings
+#Спрайт клетки
 @onready var sell : Sprite2D = $MainScreen/Sell
+#Защита кнопок от нажатия
 @onready var buttons_shield : Control = $MainScreen/ButtonsShield
 
 #Проигрыватели звуков
@@ -28,10 +33,12 @@ const SELL_SPEED = 0.5
 @onready var call_btn_speech : AudioStreamPlayer2D = $CallBtnSpeech
 @onready var button_click : AudioStreamPlayer2D = $ButtonClick
 
+#Таймеры для рандомизации проигрывания звуков
 @onready var prison_activity_timer : Timer = $PrisonActivityTimer
 @onready var agenda_speech_timer : Timer = $AgendaSpeechTimer
 
 
+#Словарь функций, срабатывающих при нажатии той или иной кнопки
 var buttons_actions : Dictionary = {
 	"MainMenuResumeBtn" : "on_resume_btn_pressed",
 	"MainMenuStartBtn" : "on_start_btn_pressed",
@@ -40,10 +47,12 @@ var buttons_actions : Dictionary = {
 }
 var current_button_name : String = ""
 
+#Координаты для позиционирования камеры
 var cam_coordinates : Array = [
 	Vector2(0, 0),
 	Vector2(1920, 1080)
 ]
+
 
 enum CameraPositions {
 	MAIN,
@@ -51,9 +60,10 @@ enum CameraPositions {
 }
 var current_cp : CameraPositions = CameraPositions.MAIN
 
+#Массив для кнопок главного меню
 var main_screen_buttons : Array
-var is_buttons_blocked : bool = false
-var call_btn_speech_vol : float
+
+#var call_btn_speech_vol : float
 
 
 
