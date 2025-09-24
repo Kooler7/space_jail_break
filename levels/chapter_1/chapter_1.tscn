@@ -1,29 +1,36 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhlra330lktl8"]
+[gd_scene load_steps=8 format=3 uid="uid://bhlra330lktl8"]
 
-[ext_resource type="Texture2D" uid="uid://ck6aujxjx6esg" path="res://assets/test_jpgs/0c62615055ff1900688ad42c72b30b55.jpeg" id="1_qcbl5"]
 [ext_resource type="Script" path="res://levels/chapter_1/chapter_1.gd" id="1_w0bky"]
 [ext_resource type="Texture2D" uid="uid://d1vssgmmudfeh" path="res://assets/test_jpgs/4.jpg" id="2_28jgj"]
+[ext_resource type="Texture2D" uid="uid://nb0buqwxyh3u" path="res://assets/chapter_1/images/chapter_1_background_1.png" id="2_wsnqg"]
+[ext_resource type="PackedScene" uid="uid://dae7r6p4xbkbe" path="res://levels/chapter_1/background_objects/electric_sparks/electric_sparks.tscn" id="3_lk4rd"]
 [ext_resource type="PackedScene" uid="uid://btyyhjrcfby12" path="res://levels/chapter_1/interractional_objects/buddy_npc/buddy_scene/buddy_scene.tscn" id="3_m7vco"]
-[ext_resource type="Texture2D" uid="uid://b3cr7rx3tw3xm" path="res://assets/test_jpgs/9bfe57644761a34c1444cb0dd4e79094.jpg" id="3_qonix"]
 [ext_resource type="Texture2D" uid="uid://d2ysg1juli1ph" path="res://icon.svg" id="4_hnwdd"]
-[ext_resource type="PackedScene" uid="uid://biu2qf2hc50xs" path="res://player/player.tscn" id="5_1knwh"]
-[ext_resource type="Texture2D" uid="uid://bgluf67p3y27t" path="res://assets/test_jpgs/H1yXQ0nlwK70YZepjOws81TCdf-CQLseK9Ot3YMoHHsfU3099f4np3YHCg4kPPfBAJ9awSO6.jpg" id="6_75akm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2uhcf"]
 size = Vector2(128, 1080)
 
 [node name="Chapter1" type="Node2D"]
 script = ExtResource("1_w0bky")
+metadata/_edit_lock_ = true
 
 [node name="NpcsPool" type="Node" parent="."]
 
-[node name="SellFront" type="Sprite2D" parent="."]
-texture = ExtResource("1_qcbl5")
+[node name="CellFront" type="Sprite2D" parent="."]
+texture = ExtResource("2_wsnqg")
 centered = false
+metadata/_edit_lock_ = true
 
-[node name="BuddyScene" parent="SellFront" instance=ExtResource("3_m7vco")]
+[node name="ElectricSparks" parent="CellFront" instance=ExtResource("3_lk4rd")]
+position = Vector2(912, 280)
 
-[node name="Label2" type="Label" parent="SellFront"]
+[node name="BuddyScene" parent="CellFront" instance=ExtResource("3_m7vco")]
+metadata/_edit_lock_ = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CellFront"]
+position = Vector2(992, 128)
+
+[node name="Label2" type="Label" parent="CellFront"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -36,24 +43,25 @@ theme_override_font_sizes/font_size = 50
 text = "SellFront"
 horizontal_alignment = 1
 
-[node name="TurnRight" type="Node2D" parent="SellFront"]
+[node name="TurnRight" type="Node2D" parent="CellFront"]
+visible = false
 
-[node name="Sprite2D" type="Sprite2D" parent="SellFront/TurnRight"]
+[node name="Sprite2D" type="Sprite2D" parent="CellFront/TurnRight"]
 position = Vector2(1848, 544)
 texture = ExtResource("4_hnwdd")
 
-[node name="Area2D" type="Area2D" parent="SellFront/TurnRight"]
+[node name="Area2D" type="Area2D" parent="CellFront/TurnRight"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SellFront/TurnRight/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CellFront/TurnRight/Area2D"]
 position = Vector2(1856, 540)
 shape = SubResource("RectangleShape2D_2uhcf")
 
-[node name="SellBack" type="Sprite2D" parent="."]
+[node name="CellBack" type="Sprite2D" parent="."]
 position = Vector2(1920, 1080)
 texture = ExtResource("2_28jgj")
 centered = false
 
-[node name="Label2" type="Label" parent="SellBack"]
+[node name="Label2" type="Label" parent="CellBack"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -65,41 +73,3 @@ theme_override_colors/font_color = Color(0, 0.996078, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "SellBack"
 horizontal_alignment = 1
-
-[node name="LeaveSellFriend" type="Sprite2D" parent="."]
-position = Vector2(3840, 0)
-texture = ExtResource("3_qonix")
-centered = false
-
-[node name="Label2" type="Label" parent="LeaveSellFriend"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -129.5
-offset_right = 129.5
-offset_bottom = 69.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0.996078, 0, 1)
-theme_override_font_sizes/font_size = 50
-text = "LeaveSellFriend"
-horizontal_alignment = 1
-
-[node name="LeaveSellAlone" type="Sprite2D" parent="."]
-position = Vector2(-1920, 1080)
-texture = ExtResource("6_75akm")
-centered = false
-
-[node name="Label2" type="Label" parent="LeaveSellAlone"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -129.5
-offset_right = 129.5
-offset_bottom = 69.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0.996078, 0, 1)
-theme_override_font_sizes/font_size = 50
-text = "LeaveSellAlone"
-horizontal_alignment = 1
-
-[node name="Player" parent="." instance=ExtResource("5_1knwh")]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://dae7r6p4xbkbe"]
+
+[ext_resource type="Texture2D" uid="uid://cl1dhkvt8gi4x" path="res://assets/chapter_1/images/84bb7a8217c270655f10a7bcb3729c1d.jpg" id="1_1pvyw"]
+[ext_resource type="Script" path="res://levels/chapter_1/background_objects/electric_sparks/electric_sparks.gd" id="1_65yqb"]
+[ext_resource type="Texture2D" uid="uid://cplq3r8hbw4vu" path="res://assets/chapter_1/images/spark.png" id="2_gegvo"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0gtiv"]
+lifetime_randomness = 0.96
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 17.47
+angle_min = 1.07288e-05
+angle_max = 360.0
+spread = 180.0
+initial_velocity_max = 328.46
+radial_velocity_min = 7.99998
+radial_velocity_max = 9.99998
+gravity = Vector3(0, 98, 0)
+scale_min = 0.4
+scale_max = 0.6
+hue_variation_min = -0.05
+hue_variation_max = 0.02
+turbulence_noise_strength = 2.5
+
+[node name="ElectricSparks" type="Node2D"]
+script = ExtResource("1_65yqb")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+scale = Vector2(0.637991, 0.637991)
+color = Color(1, 0.735, 0.7, 1)
+texture = ExtResource("1_1pvyw")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_0gtiv")
+texture = ExtResource("2_gegvo")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.11
+randomness = 1.0
+trail_enabled = true
+
+[node name="EmissionTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.5
