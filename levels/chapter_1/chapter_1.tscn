@@ -1,11 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhlra330lktl8"]
+[gd_scene load_steps=14 format=3 uid="uid://bhlra330lktl8"]
 
 [ext_resource type="Script" path="res://levels/chapter_1/chapter_1.gd" id="1_w0bky"]
-[ext_resource type="Texture2D" uid="uid://d1vssgmmudfeh" path="res://assets/test_jpgs/4.jpg" id="2_28jgj"]
 [ext_resource type="Texture2D" uid="uid://nb0buqwxyh3u" path="res://assets/chapter_1/images/chapter_1_background_1.png" id="2_wsnqg"]
 [ext_resource type="PackedScene" uid="uid://dae7r6p4xbkbe" path="res://levels/chapter_1/background_objects/electric_sparks/electric_sparks.tscn" id="3_lk4rd"]
 [ext_resource type="PackedScene" uid="uid://btyyhjrcfby12" path="res://levels/chapter_1/interractional_objects/buddy_npc/buddy_scene/buddy_scene.tscn" id="3_m7vco"]
 [ext_resource type="Texture2D" uid="uid://d2ysg1juli1ph" path="res://icon.svg" id="4_hnwdd"]
+[ext_resource type="Texture2D" uid="uid://mdstm3oqhw1e" path="res://assets/chapter_1/images/steam_cloud.png" id="5_ffxug"]
+[ext_resource type="Texture2D" uid="uid://35ekkvcpssm5" path="res://assets/chapter_1/images/chapter_1_background_2.png" id="7_5rhcn"]
+[ext_resource type="AudioStream" uid="uid://c5oafwf6wbpc8" path="res://assets/chapter_1/audio/steam.ogg" id="8_nxk2c"]
+[ext_resource type="PackedScene" uid="uid://b12cnvigggsh7" path="res://levels/chapter_1/interractional_objects/cell_door/cell_door.tscn" id="8_v6ys1"]
+[ext_resource type="Texture2D" uid="uid://podhonapc5fq" path="res://assets/chapter_1/images/chapter_1_background_2_Part.png" id="9_24pmb"]
+[ext_resource type="PackedScene" uid="uid://biu2qf2hc50xs" path="res://player/player.tscn" id="10_gg1xe"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gxvl6"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 31.41
+angle_min = 1.07288e-05
+angle_max = 154.3
+spread = 110.941
+initial_velocity_max = 83.33
+gravity = Vector3(0, -100, 0)
+scale_min = 0.8
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2uhcf"]
 size = Vector2(128, 1080)
@@ -17,36 +33,40 @@ metadata/_edit_lock_ = true
 [node name="NpcsPool" type="Node" parent="."]
 
 [node name="CellFront" type="Sprite2D" parent="."]
+scale = Vector2(1.00415, 1.00737)
 texture = ExtResource("2_wsnqg")
 centered = false
-metadata/_edit_lock_ = true
 
 [node name="ElectricSparks" parent="CellFront" instance=ExtResource("3_lk4rd")]
-position = Vector2(912, 280)
+position = Vector2(887, 260)
+rotation = 0.645772
+metadata/_edit_lock_ = true
 
 [node name="BuddyScene" parent="CellFront" instance=ExtResource("3_m7vco")]
 metadata/_edit_lock_ = true
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="CellFront"]
+[node name="Steam_1" type="GPUParticles2D" parent="CellFront"]
+modulate = Color(1, 1, 1, 0.317647)
 position = Vector2(992, 128)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_gxvl6")
+texture = ExtResource("5_ffxug")
+lifetime = 2.0
+metadata/_edit_lock_ = true
 
-[node name="Label2" type="Label" parent="CellFront"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -129.5
-offset_right = 129.5
-offset_bottom = 69.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0.996078, 0, 1)
-theme_override_font_sizes/font_size = 50
-text = "SellFront"
-horizontal_alignment = 1
+[node name="Steam_2" type="GPUParticles2D" parent="CellFront"]
+modulate = Color(1, 1, 1, 0.317647)
+position = Vector2(1632, 432)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_gxvl6")
+texture = ExtResource("5_ffxug")
+lifetime = 2.0
+metadata/_edit_lock_ = true
 
 [node name="TurnRight" type="Node2D" parent="CellFront"]
-visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="CellFront/TurnRight"]
+visible = false
 position = Vector2(1848, 544)
 texture = ExtResource("4_hnwdd")
 
@@ -58,18 +78,25 @@ shape = SubResource("RectangleShape2D_2uhcf")
 
 [node name="CellBack" type="Sprite2D" parent="."]
 position = Vector2(1920, 1080)
-texture = ExtResource("2_28jgj")
+texture = ExtResource("7_5rhcn")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="CellDoor" parent="CellBack" instance=ExtResource("8_v6ys1")]
+position = Vector2(960, 540)
+
+[node name="Left_Wall" type="Sprite2D" parent="CellBack"]
+texture = ExtResource("9_24pmb")
 centered = false
 
-[node name="Label2" type="Label" parent="CellBack"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -129.5
-offset_right = 129.5
-offset_bottom = 69.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0.996078, 0, 1)
-theme_override_font_sizes/font_size = 50
-text = "SellBack"
-horizontal_alignment = 1
+[node name="Player" parent="." instance=ExtResource("10_gg1xe")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_nxk2c")
+max_distance = 4000.0
+bus = &"PrisonActivity_Bus"
+parameters/looping = true
+
+[connection signal="input_event" from="CellFront/TurnRight/Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="CellFront/TurnRight/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CellFront/TurnRight/Area2D" to="." method="_on_area_2d_mouse_exited"]

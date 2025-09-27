@@ -18,10 +18,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Signals="*res://autoloads/Signals.gd"
 SaveLoad="*res://autoloads/Save_load.gd"
 Globals="*res://autoloads/Globals.gd"
 Settings="*res://autoloads/Settings.gd"
+DialogueManager="*res://autoloads/DialogueManager.gd"
 
 [display]
 

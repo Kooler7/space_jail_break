@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dae7r6p4xbkbe"]
+[gd_scene load_steps=10 format=3 uid="uid://dae7r6p4xbkbe"]
 
-[ext_resource type="Texture2D" uid="uid://cl1dhkvt8gi4x" path="res://assets/chapter_1/images/84bb7a8217c270655f10a7bcb3729c1d.jpg" id="1_1pvyw"]
 [ext_resource type="Script" path="res://levels/chapter_1/background_objects/electric_sparks/electric_sparks.gd" id="1_65yqb"]
 [ext_resource type="Texture2D" uid="uid://cplq3r8hbw4vu" path="res://assets/chapter_1/images/spark.png" id="2_gegvo"]
+[ext_resource type="Texture2D" uid="uid://mkqklnk6r4wb" path="res://assets/chapter_1/images/spark_light_on.png" id="2_wbcqi"]
+[ext_resource type="Texture2D" uid="uid://bfvrmkakw4b8d" path="res://assets/chapter_1/images/connector.png" id="4_oq6sj"]
+[ext_resource type="AudioStream" uid="uid://brjsr0ornqbv2" path="res://assets/chapter_1/audio/electic_sparks.ogg" id="5_arkmi"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0gtiv"]
 lifetime_randomness = 0.96
@@ -22,14 +24,55 @@ hue_variation_min = -0.05
 hue_variation_max = 0.02
 turbulence_noise_strength = 2.5
 
+[sub_resource type="Animation" id="Animation_ej4vh"]
+resource_name = "flash_light"
+length = 0.93
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333, 0.666667, 0.8, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [2.0, 0.0, 2.0, 0.0, 1.0, 0.0, 2.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4h8w7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5xrew"]
+_data = {
+"RESET": SubResource("Animation_4h8w7"),
+"flash_light": SubResource("Animation_ej4vh")
+}
+
 [node name="ElectricSparks" type="Node2D"]
 script = ExtResource("1_65yqb")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_oq6sj")
+
+[node name="Light" type="PointLight2D" parent="."]
 visible = false
 scale = Vector2(0.637991, 0.637991)
 color = Color(1, 0.735, 0.7, 1)
-texture = ExtResource("1_1pvyw")
+texture = ExtResource("2_wbcqi")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
@@ -47,3 +90,13 @@ wait_time = 3.0
 
 [node name="FlashTimer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5xrew")
+}
+autoplay = "flash_light"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_arkmi")
+bus = &"PrisonActivity_Bus"

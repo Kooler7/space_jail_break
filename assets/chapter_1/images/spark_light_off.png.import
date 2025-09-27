@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddxk5ddca24dj"
-path="res://.godot/imported/ies_file-thumb.jpg-08cdfb720c04b16f57b570403bf49215.ctex"
+uid="uid://bu3idkeeskbcd"
+path="res://.godot/imported/spark_light_off.png-29ab81cdd834ca5a786e7163dee2e22a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/chapter_1/images/ies_file-thumb.jpg"
-dest_files=["res://.godot/imported/ies_file-thumb.jpg-08cdfb720c04b16f57b570403bf49215.ctex"]
+source_file="res://assets/chapter_1/images/spark_light_off.png"
+dest_files=["res://.godot/imported/spark_light_off.png-29ab81cdd834ca5a786e7163dee2e22a.ctex"]
 
 [params]
 

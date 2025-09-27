@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxd212urjjof"
-path="res://.godot/imported/5e7f0133566bb9f8c71a97b10bb7b479.jpg-11db914ca65324f67cbeeafe4e8b1654.ctex"
+uid="uid://pyaca1ajgada"
+path="res://.godot/imported/Paper_6.png-adea87e743b3dccc8533432763603e5e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/chapter_1/images/5e7f0133566bb9f8c71a97b10bb7b479.jpg"
-dest_files=["res://.godot/imported/5e7f0133566bb9f8c71a97b10bb7b479.jpg-11db914ca65324f67cbeeafe4e8b1654.ctex"]
+source_file="res://assets/ui/images/paper_anim/Paper_6.png"
+dest_files=["res://.godot/imported/Paper_6.png-adea87e743b3dccc8533432763603e5e.ctex"]
 
 [params]
 

@@ -1,5 +1,5 @@
 #dialogue_manager.gd
-class_name DialogueManager
+#class_name DialogueManager
 extends Node2D
 
 
@@ -13,11 +13,9 @@ var current_line_number : int = 1
 @onready var mouse_stop_area : Control = $MouseStopArea
 
 func _ready() -> void:
-	Globals.dialogue_manager = self
+	#Globals.dialogue_manager = self
 	mouse_stop_area.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	#Signals.dialogue_box_clicked.connect(on_dialogue_box_clicked)
-	#Signals.leave_option_clicked.connect(on_leave_option_clicked)
-	#Signals.new_line_requested.connect(parse_dialogue)
+
 
 func on_leave_option_clicked() -> void:
 	current_line_number = 1
@@ -45,7 +43,7 @@ func on_dialogue_box_clicked() -> void:
 		Globals.current_npc.toggle_pickable()
 		Globals.player.on_dialogue_completed()
 
-	pass
+
 
 func parse_dialogue(line_number : int = current_line_number) -> void:
 	mouse_stop_area.mouse_filter = Control.MOUSE_FILTER_STOP

@@ -130,14 +130,6 @@ texture_normal = ExtResource("14_o4tcq")
 texture_pressed = ExtResource("15_7ddbu")
 texture_click_mask = ExtResource("7_3i0jr")
 
-[node name="ButtonsShield" type="Control" parent="MainScreen"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1399.0
-offset_top = 69.0
-offset_right = 1845.0
-offset_bottom = 1017.0
-
 [node name="VersionNumber" type="Label" parent="MainScreen"]
 anchors_preset = 3
 anchor_left = 1.0

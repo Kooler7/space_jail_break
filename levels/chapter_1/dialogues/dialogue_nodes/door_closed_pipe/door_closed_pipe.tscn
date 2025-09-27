@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://w4dm8a0upear"]
+
+[ext_resource type="Script" path="res://levels/chapter_1/dialogues/dialogue_nodes/door_closed_pipe/door_closed_pipe.gd" id="1_75rtg"]
+
+[node name="DoorClosedPipe" type="Node"]
+script = ExtResource("1_75rtg")

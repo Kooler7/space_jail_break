@@ -1,20 +1,59 @@
-[gd_scene load_steps=2 format=3 uid="uid://0q02y30luv84"]
+[gd_scene load_steps=10 format=3 uid="uid://0q02y30luv84"]
 
 [ext_resource type="Script" path="res://GUI/explaner/explaner.gd" id="1_3jmha"]
+[ext_resource type="Texture2D" uid="uid://6xj8f5t66yco" path="res://assets/ui/images/paper_anim/Paper_1.png" id="2_tqg31"]
+[ext_resource type="Texture2D" uid="uid://x10r5bmj5bf8" path="res://assets/ui/images/paper_anim/Paper_2.png" id="3_8lscy"]
+[ext_resource type="Texture2D" uid="uid://611xweeiutnf" path="res://assets/ui/images/paper_anim/Paper_3.png" id="4_ykehm"]
+[ext_resource type="Texture2D" uid="uid://b0urnyj8ile8n" path="res://assets/ui/images/paper_anim/Paper_4.png" id="5_app87"]
+[ext_resource type="Texture2D" uid="uid://bv44a181b5e30" path="res://assets/ui/images/paper_anim/Paper_5.png" id="6_4pqso"]
+[ext_resource type="Texture2D" uid="uid://pyaca1ajgada" path="res://assets/ui/images/paper_anim/Paper_6.png" id="7_wbyvr"]
+[ext_resource type="FontFile" uid="uid://dxfwsk3ajcqa5" path="res://assets/fonts/Arturito Slab/arturito.ttf" id="8_d80py"]
 
-[node name="Explaner" type="Label"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ym4t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_wbyvr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4pqso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_app87")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ykehm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8lscy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tqg31")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="Explaner" type="Node2D"]
 modulate = Color(1, 1, 1, 0)
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 64.0
-offset_top = 936.0
-offset_right = 448.0
-offset_bottom = 1024.0
-grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "Кореш"
+script = ExtResource("1_3jmha")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_5ym4t")
+frame_progress = 1.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = -152.0
+offset_top = -40.0
+offset_right = 160.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.162066, 0.162066, 0.162066, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("8_d80py")
+theme_override_font_sizes/font_size = 30
+text = "Text"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("1_3jmha")

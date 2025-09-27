@@ -12,22 +12,28 @@ const MODULATION_SPEED : float = 0.1
 
 #Функция появления аватара
 func popin() -> void:
-	#Создание Tween
-	var modulate_tween = create_tween()
-	#Запуск Tween
-	modulate_tween.tween_property(self, "modulate", FINISH_MODULATE, MODULATION_SPEED)
-	modulate_tween.play()
-	await modulate_tween.finished
-	modulate = FINISH_MODULATE
-	return
+	if modulate != FINISH_MODULATE:
+		#Создание Tween
+		var modulate_tween = create_tween()
+		#Запуск Tween
+		modulate_tween.tween_property(self, "modulate", FINISH_MODULATE, MODULATION_SPEED)
+		modulate_tween.play()
+		await modulate_tween.finished
+		modulate = FINISH_MODULATE
+		return
+	elif modulate == FINISH_MODULATE:
+		return 
 
 #Функция исчезания аватара
 func popout() -> void:
-	#Создание Tween
-	var modulate_tween = create_tween()
-	#Запуск Tween
-	modulate_tween.tween_property(self, "modulate", START_MODULATE, MODULATION_SPEED)
-	modulate_tween.play()
-	await modulate_tween.finished
-	modulate = START_MODULATE
-	return
+	if modulate != START_MODULATE:
+		#Создание Tween
+		var modulate_tween = create_tween()
+		#Запуск Tween
+		modulate_tween.tween_property(self, "modulate", START_MODULATE, MODULATION_SPEED)
+		modulate_tween.play()
+		await modulate_tween.finished
+		modulate = START_MODULATE
+		return
+	elif modulate == START_MODULATE:
+		return 

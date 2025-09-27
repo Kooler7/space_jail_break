@@ -1,17 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://biu2qf2hc50xs"]
+[gd_scene load_steps=5 format=3 uid="uid://biu2qf2hc50xs"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_qgkk4"]
 [ext_resource type="PackedScene" uid="uid://cc0mtyajbcmst" path="res://player/player_avatar/player_avatar.tscn" id="2_6wjm5"]
-[ext_resource type="PackedScene" uid="uid://cxc4yjg2275a" path="res://GUI/dialogue_manager/dialogue_manager.tscn" id="4_soc86"]
+[ext_resource type="PackedScene" uid="uid://0q02y30luv84" path="res://GUI/explaner/explaner.tscn" id="2_kc20y"]
+[ext_resource type="PackedScene" uid="uid://chgdstjyij0dt" path="res://GUI/dialogue_box/dialogue_box.tscn" id="5_jghpy"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_qgkk4")
 
+[node name="MouseShield" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Explaner" parent="." instance=ExtResource("2_kc20y")]
+position = Vector2(249, 872)
+
 [node name="PlayerAvatar" parent="." instance=ExtResource("2_6wjm5")]
+metadata/_edit_lock_ = true
 
-[node name="GameObject" type="Node2D" parent="."]
-
-[node name="DialogueManager" parent="." instance=ExtResource("4_soc86")]
+[node name="DialogueBox" parent="." instance=ExtResource("5_jghpy")]
+offset_left = 492.0
+offset_top = 684.0
+offset_right = 1860.0
+offset_bottom = 1026.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
+metadata/_edit_lock_ = true

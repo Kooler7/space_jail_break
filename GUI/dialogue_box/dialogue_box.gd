@@ -27,10 +27,14 @@ func dialogue_box_popin() -> void:
 	modulate_tween.play()
 	await modulate_tween.finished
 	modulate = FINISH_MODULATE
+	#Включение перехвата событий мыши
+	mouse_filter = MOUSE_FILTER_STOP
 	return
 
 ##Убирание диалогового окна
 func dialogue_box_popout() -> void:
+	#Выключение перехвата событий мыши
+	mouse_filter = MOUSE_FILTER_IGNORE
 	#Создание Tween
 	var modulate_tween = create_tween()
 	#Запуск Tween
@@ -77,34 +81,17 @@ func fill_options(data : Array) -> void:
 		var option : PackedScene = load(item)
 		var child : Button = option.instantiate()
 		options_pool.add_child(child)
-		#Присоединение сигналов нажатия кнопки к функции
-		child.pressed.connect(on_option_pressed.bind(child))
-		#Выключение перехвата событий мыши
-		mouse_filter = MOUSE_FILTER_IGNORE
+	mouse_filter = MOUSE_FILTER_IGNORE
 	return
 
-
-##Реагирование на нажатие опции диалога
-func on_option_pressed(option: Button) -> void:
-	#Проверка имнеи нажатой кнопки
-	if option.name == "Leave":
-		#Запуск убирания диалогового окна
-		dialogue_box_popout()
-		#Выключение перехвата событий мыши
-		mouse_filter = MOUSE_FILTER_IGNORE
-		#Вызов соответствующего метода в DialogueManager
-		Globals.dialogue_manager.on_leave_option_clicked()
-	else:
-		#Присвоение имени нажатой кнопки в переменную
-		var pressed_name : String = option.name
-		#№Преобразование имени в цифру и отправка в DialogueManager
-		Globals.dialogue_manager.parse_dialogue(int(pressed_name))
-	#Удаление всех кнопок опций диалога
+##Удаление всех кнопок опций диалога
+func remove_options() -> void:
 	var option_buttons = options_pool.get_children()
 	for button in option_buttons:
 		button.queue_free()
 
+
 ##Перехват клика по диалоговому окну
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		Globals.dialogue_manager.on_dialogue_box_clicked()
+		DialogueManager.on_dialogue_box_clicked()

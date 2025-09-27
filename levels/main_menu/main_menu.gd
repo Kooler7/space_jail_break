@@ -25,8 +25,7 @@ const SELL_SPEED = 0.5
 @onready var close_settings : TextureButton = $SettingsScreen/SettingsBG/CloseSettings
 #Спрайт клетки
 @onready var sell : Sprite2D = $MainScreen/Sell
-#Защита кнопок от нажатия
-@onready var buttons_shield : Control = $MainScreen/ButtonsShield
+
 
 #Проигрыватели звуков
 @onready var door_opening : AudioStreamPlayer2D = $DoorOpening
@@ -54,11 +53,11 @@ var cam_coordinates : Array = [
 ]
 
 #Нумерованный список позиций камеры
-enum CameraPositions {
+enum PlayerPositions {
 	MAIN,
 	SETTINGS
 }
-var current_cp : CameraPositions = CameraPositions.MAIN
+var current_player_position : PlayerPositions = PlayerPositions.MAIN
 
 #Массив для кнопок главного меню
 var main_screen_buttons : Array
@@ -68,7 +67,7 @@ var main_screen_buttons : Array
 
 func _ready() -> void:
 	#Отключение блокировки кнопок
-	buttons_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 	choose_prison_activity(5)
 	choose_agenda(2)
@@ -104,39 +103,40 @@ func on_accept_button_pressed() ->void:
 		#Вызов функции соответствующей имени нажатой кнопки из переменной
 		call(buttons_actions[current_button_name])
 		#Включение блокировки кнопок
-		buttons_shield.mouse_filter = Control.MOUSE_FILTER_STOP
+		Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_STOP
 
 	#Если нет нажатой кнопки
 	else :
 		#Включение блокировки кнопок
-		buttons_shield.mouse_filter = Control.MOUSE_FILTER_STOP
+		Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_STOP
 		await play_call_response(denied_stream)
 		#Отключение блокировки кнопок
-		buttons_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
 ##Контроль положения камеры при изменении состояния
 func check_camera_position(new_position) -> void:
 	match new_position:
-		CameraPositions.MAIN:
-			buttons_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			camera.position = cam_coordinates[CameraPositions.MAIN]
-			current_cp = CameraPositions.MAIN
-		CameraPositions.SETTINGS:
-			camera.position = cam_coordinates[CameraPositions.SETTINGS]
-			current_cp = CameraPositions.SETTINGS
+		PlayerPositions.MAIN:
+			Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			Globals.player.position = cam_coordinates[PlayerPositions.MAIN]
+			current_player_position = PlayerPositions.MAIN
+		PlayerPositions.SETTINGS:
+			Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			Globals.player.position = cam_coordinates[PlayerPositions.SETTINGS]
+			current_player_position = PlayerPositions.SETTINGS
 
 
 ##Действия при нажатии кнопки закрытия настроек
 func on_back_btn_pressed() -> void:
 	button_click.play()
-	check_camera_position(CameraPositions.MAIN)
+	check_camera_position(PlayerPositions.MAIN)
 
 
 ##Действия при подтверждении нажатия кнопки "Настройка"
 func on_settings_btn_pressed() -> void:
 	await play_call_response(accepted_stream)
-	check_camera_position(CameraPositions.SETTINGS)
+	check_camera_position(PlayerPositions.SETTINGS)
 
 
 ##Действия при подтверждении нажатия кнопки "Старт"
@@ -160,7 +160,7 @@ func slide_sell() -> void:
 func on_resume_btn_pressed() -> void:
 	await play_call_response(denied_stream)
 	#Отключение блокировки кнопок
-	buttons_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
 ##Действия при подтверждении нажатия кнопки "Выход"
