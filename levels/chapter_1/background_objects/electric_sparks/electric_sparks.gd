@@ -34,12 +34,10 @@ func emit_sparks() -> void:
 
 func flash_light() -> void:
 	light.enabled = true
-	print(light.enabled)
 	flash_timer.start()
 	sparks_sound.play()
 	await flash_timer.timeout
 	light.enabled = false
-	print(light.enabled)
 	if sparks.emitting:
 		flash_light()
 	else:

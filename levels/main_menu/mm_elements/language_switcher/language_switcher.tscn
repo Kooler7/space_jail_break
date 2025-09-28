@@ -32,4 +32,3 @@ texture_pressed = ExtResource("6_dhkf2")
 
 [node name="ButtonClick" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_parg2")
-bus = &"BtnClick_Bus"

@@ -12,6 +12,6 @@ object_type = 1
 [node name="CollisionPosition" type="Marker2D" parent="." index="3"]
 position = Vector2(-544, 0)
 
-[node name="DoorClosedNoPipe" parent="." index="4" instance=ExtResource("3_cvvek")]
+[node name="DoorClosedPipe" parent="." index="4" instance=ExtResource("4_sfliy")]
 
-[node name="DoorClosedPipe" parent="." index="5" instance=ExtResource("4_sfliy")]
+[node name="DoorClosedNoPipe" parent="." index="5" instance=ExtResource("3_cvvek")]

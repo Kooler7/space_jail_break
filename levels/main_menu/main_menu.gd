@@ -16,15 +16,15 @@ const SELL_SPEED = 0.5
 @export var agenda_players : Array
 @export var prison_activities_piayers : Array
 #Версия игры
-@onready var version : Label = $MainScreen/VersionNumber
+@onready var version : Label = $Screen1/VersionNumber
 #Кнопка вызова
-@onready var accept_button : TextureButton = $MainScreen/MainMenuCallBtn
-#Камера игрока
-@onready var camera : Camera2D = Settings.camera
+@onready var accept_button : TextureButton = $Screen1/MainMenuCallBtn
+##Камера игрока
+#@onready var camera : Camera2D = Settings.camera
 #Кнопка закрытия настроек
-@onready var close_settings : TextureButton = $SettingsScreen/SettingsBG/CloseSettings
+@onready var close_settings : TextureButton = $Screen2/SettingsBG/CloseSettings
 #Спрайт клетки
-@onready var sell : Sprite2D = $MainScreen/Sell
+@onready var sell : Sprite2D = $Screen1/Sell
 
 
 #Проигрыватели звуков
@@ -53,11 +53,11 @@ var cam_coordinates : Array = [
 ]
 
 #Нумерованный список позиций камеры
-enum PlayerPositions {
-	MAIN,
-	SETTINGS
-}
-var current_player_position : PlayerPositions = PlayerPositions.MAIN
+#enum PlayerPositions {
+	#MAIN,
+	#SETTINGS
+#}
+#var current_player_position : PlayerPositions = PlayerPositions.MAIN
 
 #Массив для кнопок главного меню
 var main_screen_buttons : Array
@@ -66,12 +66,13 @@ var main_screen_buttons : Array
 
 
 func _ready() -> void:
+	print(TranslationServer.get_locale())
 	#Отключение блокировки кнопок
 	Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 	choose_prison_activity(5)
 	choose_agenda(2)
-	rising_sounds()
+
 	
 	
 	#Присоединение сигналов кнопок меню
@@ -114,29 +115,21 @@ func on_accept_button_pressed() ->void:
 		Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
-##Контроль положения камеры при изменении состояния
-func check_camera_position(new_position) -> void:
-	match new_position:
-		PlayerPositions.MAIN:
-			Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			Globals.player.position = cam_coordinates[PlayerPositions.MAIN]
-			current_player_position = PlayerPositions.MAIN
-		PlayerPositions.SETTINGS:
-			Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			Globals.player.position = cam_coordinates[PlayerPositions.SETTINGS]
-			current_player_position = PlayerPositions.SETTINGS
-
-
 ##Действия при нажатии кнопки закрытия настроек
 func on_back_btn_pressed() -> void:
 	button_click.play()
-	check_camera_position(PlayerPositions.MAIN)
+	Globals.player_movement.check_player_position(Globals.player_movement.PlayerPositions.SCREEN_1)
+	#Отключение блокировки кнопок
+	Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
 
 
 ##Действия при подтверждении нажатия кнопки "Настройка"
 func on_settings_btn_pressed() -> void:
 	await play_call_response(accepted_stream)
-	check_camera_position(PlayerPositions.SETTINGS)
+	Globals.player_movement.check_player_position(Globals.player_movement.PlayerPositions.SCREEN_2)
+	Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
 
 
 ##Действия при подтверждении нажатия кнопки "Старт"
@@ -152,7 +145,6 @@ func slide_sell() -> void:
 	sell_tween.tween_property(sell, "position", SELL_END_POSITION, SELL_SPEED)
 	sell_tween.play()
 	door_opening.play()
-	fading_sounds()
 	await sell_tween.finished
 	return
 
@@ -216,30 +208,30 @@ func play_call_response(new_stream : AudioStreamOggVorbis) -> void:
 	await call_btn_speech.finished
 	return
 
-##Выключение громкости шин кроме Master
-func fading_sounds() -> void:
-	var buses = AudioServer.bus_count
-	for bus in buses:
-		var current_bus_name = AudioServer.get_bus_name(bus)
-		if current_bus_name != "Master":
-			var current_bus_int = AudioServer.get_bus_index(current_bus_name)
-			AudioServer.set_bus_volume_db(current_bus_int, -80)
-
-##Включение всех шин кроме Master
-func rising_sounds() -> void:
-	var buses = AudioServer.bus_count
-	for bus in buses:
-		var current_bus_name = AudioServer.get_bus_name(bus)
-		match current_bus_name:
-			"CallBtn_Bus":
-				var current_bus_int = AudioServer.get_bus_index(current_bus_name)
-				AudioServer.set_bus_volume_db(current_bus_int, 0)
-			"Objects_Bus":
-				var current_bus_int = AudioServer.get_bus_index(current_bus_name)
-				AudioServer.set_bus_volume_db(current_bus_int, -5)
-			"PrisonActivity_Bus":
-				var current_bus_int = AudioServer.get_bus_index(current_bus_name)
-				AudioServer.set_bus_volume_db(current_bus_int, -10)
-			"Agenda_Bus":
-				var current_bus_int = AudioServer.get_bus_index(current_bus_name)
-				AudioServer.set_bus_volume_db(current_bus_int, -10.5)
+###Выключение громкости шин кроме Master
+#func fading_sounds() -> void:
+	#var buses = AudioServer.bus_count
+	#for bus in buses:
+		#var current_bus_name = AudioServer.get_bus_name(bus)
+		#if current_bus_name != "Master":
+			#var current_bus_int = AudioServer.get_bus_index(current_bus_name)
+			#AudioServer.set_bus_volume_db(current_bus_int, -80)
+#
+###Включение всех шин кроме Master
+#func rising_sounds() -> void:
+	#var buses = AudioServer.bus_count
+	#for bus in buses:
+		#var current_bus_name = AudioServer.get_bus_name(bus)
+		#match current_bus_name:
+			#"CallBtn_Bus":
+				#var current_bus_int = AudioServer.get_bus_index(current_bus_name)
+				#AudioServer.set_bus_volume_db(current_bus_int, 0)
+			#"Objects_Bus":
+				#var current_bus_int = AudioServer.get_bus_index(current_bus_name)
+				#AudioServer.set_bus_volume_db(current_bus_int, -5)
+			#"PrisonActivity_Bus":
+				#var current_bus_int = AudioServer.get_bus_index(current_bus_name)
+				#AudioServer.set_bus_volume_db(current_bus_int, -10)
+			#"Agenda_Bus":
+				#var current_bus_int = AudioServer.get_bus_index(current_bus_name)
+				#AudioServer.set_bus_volume_db(current_bus_int, -10.5)

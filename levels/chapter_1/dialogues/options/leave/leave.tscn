@@ -9,6 +9,7 @@ offset_bottom = 8.0
 toggle_mode = true
 button_group = ExtResource("1_5obwu")
 text = "Уйти"
+flat = true
 script = ExtResource("2_mq060")
 
 [connection signal="toggled" from="." to="." method="_on_toggled"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b0oxpwdga5piw"]
+[gd_scene load_steps=40 format=3 uid="uid://b0oxpwdga5piw"]
 
 [ext_resource type="Script" path="res://levels/main_menu/main_menu.gd" id="1_2parm"]
 [ext_resource type="Texture2D" uid="uid://chjf8xbx7d6p7" path="res://assets/main_menu/images/sell.png" id="3_12bmi"]
@@ -36,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://bm75462v7555w" path="res://assets/main_menu/images/settings_close_btn_pressed_ru.png" id="24_6tuk6"]
 [ext_resource type="AudioStream" uid="uid://sw1qitwr88hb" path="res://assets/main_menu/audio/we_will_die_ru.ogg" id="34_gyoxc"]
 [ext_resource type="AudioStream" uid="uid://p8x6h21vnk61" path="res://assets/main_menu/audio/door_opening.ogg" id="36_bsjtv"]
+[ext_resource type="PackedScene" uid="uid://d07l8dige6u8c" path="res://levels/main_menu/mm_elements/mm_player_movement/mm_player_movement.tscn" id="37_hfcdm"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_6i8l5"]
 
@@ -49,33 +50,33 @@ denied_stream = ExtResource("4_xr86l")
 agenda_players = [NodePath("AgendaAudioPlayers/Agenda_1"), NodePath("AgendaAudioPlayers/Agenda_2"), NodePath("AgendaAudioPlayers/Agenda_3")]
 prison_activities_piayers = [NodePath("PrisonActivitiesPlayers/GuardAndPrisoner"), NodePath("PrisonActivitiesPlayers/FarCry"), NodePath("PrisonActivitiesPlayers/WeWillDie")]
 
-[node name="MainScreen" type="Node2D" parent="."]
+[node name="Screen1" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="MainBG" type="Sprite2D" parent="MainScreen"]
+[node name="MainBG" type="Sprite2D" parent="Screen1"]
 texture = ExtResource("3_fe5br")
 centered = false
 metadata/_edit_lock_ = true
 
-[node name="Table" type="Sprite2D" parent="MainScreen/MainBG"]
+[node name="Table" type="Sprite2D" parent="Screen1/MainBG"]
 position = Vector2(851, 397)
 texture = ExtResource("4_0ti8l")
 metadata/_edit_lock_ = true
 
-[node name="Sell" type="Sprite2D" parent="MainScreen"]
+[node name="Sell" type="Sprite2D" parent="Screen1"]
 texture = ExtResource("3_12bmi")
 centered = false
 
-[node name="Title" type="Sprite2D" parent="MainScreen/Sell"]
+[node name="Title" type="Sprite2D" parent="Screen1/Sell"]
 auto_translate_mode = 1
 position = Vector2(511, 403)
 texture = ExtResource("6_6bi5f")
 
-[node name="Pillar" type="Sprite2D" parent="MainScreen"]
+[node name="Pillar" type="Sprite2D" parent="Screen1"]
 texture = ExtResource("4_q7sss")
 centered = false
 
-[node name="MainScreenButtons" type="VBoxContainer" parent="MainScreen"]
+[node name="MainScreenButtons" type="VBoxContainer" parent="Screen1"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -89,7 +90,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 7
 
-[node name="MainMenuResumeBtn" type="TextureButton" parent="MainScreen/MainScreenButtons"]
+[node name="MainMenuResumeBtn" type="TextureButton" parent="Screen1/MainScreenButtons"]
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("5_t2mnk")
@@ -97,7 +98,7 @@ texture_normal = ExtResource("5_lcrkm")
 texture_pressed = ExtResource("6_qv702")
 texture_click_mask = ExtResource("7_3i0jr")
 
-[node name="MainMenuStartBtn" type="TextureButton" parent="MainScreen/MainScreenButtons"]
+[node name="MainMenuStartBtn" type="TextureButton" parent="Screen1/MainScreenButtons"]
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("5_t2mnk")
@@ -105,7 +106,7 @@ texture_normal = ExtResource("8_cs7rj")
 texture_pressed = ExtResource("9_j28vf")
 texture_click_mask = ExtResource("7_3i0jr")
 
-[node name="MainMenuSettingsBtn" type="TextureButton" parent="MainScreen/MainScreenButtons"]
+[node name="MainMenuSettingsBtn" type="TextureButton" parent="Screen1/MainScreenButtons"]
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("5_t2mnk")
@@ -113,7 +114,7 @@ texture_normal = ExtResource("10_05jwj")
 texture_pressed = ExtResource("11_u1nbq")
 texture_click_mask = ExtResource("7_3i0jr")
 
-[node name="MainMenuExitBtn" type="TextureButton" parent="MainScreen/MainScreenButtons"]
+[node name="MainMenuExitBtn" type="TextureButton" parent="Screen1/MainScreenButtons"]
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("5_t2mnk")
@@ -121,7 +122,7 @@ texture_normal = ExtResource("12_bfd7g")
 texture_pressed = ExtResource("13_suaa6")
 texture_click_mask = ExtResource("7_3i0jr")
 
-[node name="MainMenuCallBtn" type="TextureButton" parent="MainScreen"]
+[node name="MainMenuCallBtn" type="TextureButton" parent="Screen1"]
 offset_left = 1418.0
 offset_top = 856.0
 offset_right = 1844.0
@@ -130,7 +131,7 @@ texture_normal = ExtResource("14_o4tcq")
 texture_pressed = ExtResource("15_7ddbu")
 texture_click_mask = ExtResource("7_3i0jr")
 
-[node name="VersionNumber" type="Label" parent="MainScreen"]
+[node name="VersionNumber" type="Label" parent="Screen1"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -145,15 +146,15 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 
-[node name="SettingsScreen" type="Node2D" parent="."]
+[node name="Screen2" type="Node2D" parent="."]
 position = Vector2(1920, 1080)
 
-[node name="SettingsBG" type="Sprite2D" parent="SettingsScreen"]
+[node name="SettingsBG" type="Sprite2D" parent="Screen2"]
 texture = ExtResource("17_kgiqp")
 centered = false
 metadata/_edit_lock_ = true
 
-[node name="Resolution" type="Label" parent="SettingsScreen/SettingsBG"]
+[node name="Resolution" type="Label" parent="Screen2/SettingsBG"]
 auto_translate_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -170,14 +171,14 @@ text = "RESOLUTION_TXT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResolutionSwitcher" parent="SettingsScreen/SettingsBG" instance=ExtResource("5_5paug")]
+[node name="ResolutionSwitcher" parent="Screen2/SettingsBG" instance=ExtResource("5_5paug")]
 offset_left = 664.0
 offset_top = 209.0
 offset_right = 1236.0
 offset_bottom = 318.0
 resolutions_button_group = SubResource("ButtonGroup_6i8l5")
 
-[node name="FullScreen" type="Label" parent="SettingsScreen/SettingsBG"]
+[node name="FullScreen" type="Label" parent="Screen2/SettingsBG"]
 auto_translate_mode = 1
 offset_left = 682.0
 offset_top = 361.0
@@ -191,13 +192,13 @@ text = "FULLSCREEN_TXT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FullScreenSwitcher" parent="SettingsScreen/SettingsBG" instance=ExtResource("5_katyy")]
+[node name="FullScreenSwitcher" parent="Screen2/SettingsBG" instance=ExtResource("5_katyy")]
 offset_left = 1045.0
 offset_top = 334.0
 offset_right = 1205.0
 offset_bottom = 434.0
 
-[node name="Languages" type="Label" parent="SettingsScreen/SettingsBG"]
+[node name="Languages" type="Label" parent="Screen2/SettingsBG"]
 auto_translate_mode = 1
 offset_left = 781.0
 offset_top = 481.0
@@ -211,7 +212,7 @@ text = "LANGUAGES_TXT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="English" type="Label" parent="SettingsScreen/SettingsBG"]
+[node name="English" type="Label" parent="Screen2/SettingsBG"]
 auto_translate_mode = 1
 offset_left = 773.0
 offset_top = 543.0
@@ -222,7 +223,7 @@ theme_override_fonts/font = ExtResource("22_w4pss")
 theme_override_font_sizes/font_size = 25
 text = "ENGLISH_TXT"
 
-[node name="Russian" type="Label" parent="SettingsScreen/SettingsBG"]
+[node name="Russian" type="Label" parent="Screen2/SettingsBG"]
 auto_translate_mode = 1
 offset_left = 974.0
 offset_top = 543.0
@@ -233,14 +234,14 @@ theme_override_fonts/font = ExtResource("22_w4pss")
 theme_override_font_sizes/font_size = 25
 text = "RUSSIAN_TXT"
 
-[node name="LanguageSwitcher" parent="SettingsScreen/SettingsBG" instance=ExtResource("6_w83mj")]
+[node name="LanguageSwitcher" parent="Screen2/SettingsBG" instance=ExtResource("6_w83mj")]
 offset_left = 821.0
 offset_top = 609.0
 offset_right = 1029.0
 offset_bottom = 673.0
 languages_buttons_group = SubResource("ButtonGroup_j7406")
 
-[node name="Volume" type="Label" parent="SettingsScreen/SettingsBG"]
+[node name="Volume" type="Label" parent="Screen2/SettingsBG"]
 auto_translate_mode = 1
 offset_left = 761.0
 offset_top = 724.0
@@ -254,13 +255,13 @@ text = "GLOBAL_VOLUME_TXT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VolumeSwitcher" parent="SettingsScreen/SettingsBG" instance=ExtResource("22_vakl6")]
+[node name="VolumeSwitcher" parent="Screen2/SettingsBG" instance=ExtResource("22_vakl6")]
 offset_left = 690.0
 offset_top = 782.0
 offset_right = 1206.0
 offset_bottom = 882.0
 
-[node name="CloseSettings" type="TextureButton" parent="SettingsScreen/SettingsBG"]
+[node name="CloseSettings" type="TextureButton" parent="Screen2/SettingsBG"]
 offset_left = 763.0
 offset_top = 917.0
 offset_right = 1153.0
@@ -323,3 +324,5 @@ bus = &"Objects_Bus"
 wait_time = 15.0
 
 [node name="AgendaSpeechTimer" type="Timer" parent="."]
+
+[node name="MMPlayerMovement" parent="." instance=ExtResource("37_hfcdm")]

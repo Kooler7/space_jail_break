@@ -7,6 +7,6 @@ var player : Player
 
 var current_object :InteractiveObject
 
-#var dialogue_manager : DialogueManager
+var player_movement : ChapterPlayerMovement
 
 var story_manager : StoryManager

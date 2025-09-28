@@ -12,13 +12,11 @@ script = ExtResource("1_kpc1a")
 buddy_alive = ExtResource("2_wljmr")
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(1554, 313)
 texture = ExtResource("1_mvd33")
 
 [node name="MouseDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseDetector"]
-position = Vector2(1554.5, 313.5)
 shape = SubResource("RectangleShape2D_to1ut")
 
 [connection signal="input_event" from="MouseDetector" to="." method="_on_mouse_detector_input_event"]

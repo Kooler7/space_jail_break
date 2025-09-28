@@ -2,4 +2,5 @@ extends Button
 
 
 func _on_toggled(toggled_on: bool) -> void:
-	pass # Replace with function body.
+	Globals.player_movement.check_player_position(Globals.player_movement.PlayerPositions.SCREEN_3)
+	DialogueManager.finish_dialogue()

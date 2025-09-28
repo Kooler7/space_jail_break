@@ -27,7 +27,6 @@ func construct_door() -> void:
 
 func on_mouse_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		toggle_pickable()
 		Globals.current_object = self
 		DialogueManager.current_dialogue = choose_dialogue()
 		DialogueManager.start_dialogue()
@@ -51,6 +50,9 @@ func choose_dialogue() -> Dictionary:
 	elif current_door_state == DoorStates.OPENED:
 		pass
 	return {}
+
+func on_dialogue_started() -> void:
+	toggle_pickable()
 
 func on_dialogue_completed() -> void:
 	toggle_pickable()

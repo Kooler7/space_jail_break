@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d07l8dige6u8c"]
+
+[ext_resource type="Script" path="res://levels/main_menu/mm_elements/mm_player_movement/mm_player_movement.gd" id="1_c3r7i"]
+
+[node name="MMPlayerMovement" type="Node"]
+script = ExtResource("1_c3r7i")

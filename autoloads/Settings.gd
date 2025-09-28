@@ -27,7 +27,9 @@ var languages : Dictionary = {
 }
 
 func _ready() -> void:
-	set_language(current_language)
+	#print(OS.get_locale_language())
+	#current_language = OS.get_locale_language()
+	set_language(OS.get_locale_language())
 
 ##Установка необходимого разрешения экрана
 func set_screen_resolution(default_resolution : Vector2, new_resolution : Vector2) -> void:
@@ -54,3 +56,4 @@ func toggle_fullscreen(new_state) -> void:
 ##Установка языка
 func set_language(language) -> void:
 	TranslationServer.set_locale(language)
+	print(TranslationServer.get_locale())

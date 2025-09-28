@@ -19,7 +19,7 @@ var summaries : Dictionary = {
 
 func _ready() -> void:
 	#Указание имен узлов истории для переключения при нажатии кнопки
-	story_node_names = ["MainMenu", "Chapter_1"]
+	story_node_names = ["MainMenu", "Chapter1"]
 	#Вызов фукций в классе
 	buttons_loading()
 	init_constructor()

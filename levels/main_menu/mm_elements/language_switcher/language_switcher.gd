@@ -16,7 +16,7 @@ func _ready() -> void:
 	for button in languages_buttons:
 		button.toggled.connect(on_button_toggled.bind(button))
 		if button.name == Settings.current_language:
-			button.button_pressed = true
+			button.set_pressed_no_signal(true)
 
 #Обработчик нажатия кнопки
 func on_button_toggled(toggled_on : bool, button : TextureButton) -> void:

@@ -87,8 +87,9 @@ func fill_options(data : Array) -> void:
 ##Удаление всех кнопок опций диалога
 func remove_options() -> void:
 	var option_buttons = options_pool.get_children()
-	for button in option_buttons:
-		button.queue_free()
+	if option_buttons.is_empty() == false:
+		for button in option_buttons:
+			button.queue_free()
 
 
 ##Перехват клика по диалоговому окну
