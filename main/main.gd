@@ -33,13 +33,13 @@ func _process(delta: float) -> void:
 
 ##Старт загрузки
 func start_loading() -> void:
+	AudioManager.off_sounds()
 	Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_STOP
 	#Проверка количества загруженных уровней, если больше нуля,
 	#то включается заход в темное
 	var levels : int = level_viewer.get_child_count()
 	if levels > 0:
 		await black_screen.popin()
-	AudioManager.fading_sounds()
 	#Передача в лоадер пути нового уровня и переключение переменной в true
 	ResourceLoader.load_threaded_request(loading_level_path)
 	is_loading_starting = true
@@ -54,7 +54,7 @@ func remove_older_level() -> void:
 
 ##Инстанцирование загруженного уровня
 func instance_level() -> void:
-	AudioManager.rising_sounds()
+	
 	#Инстанцирование загруженного уровня
 	var new_level : Node2D = ResourceLoader.load_threaded_get(loading_level_path).instantiate()
 	#Добавление в дерево
@@ -64,6 +64,7 @@ func instance_level() -> void:
 	clear_paths()
 	#Запуск функции выхода из черного
 	await black_screen.popout()
+	AudioManager.on_sounds()
 	Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 	#Проверка количества инстанцированных уровней и 
