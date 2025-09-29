@@ -57,7 +57,6 @@ var main_screen_buttons : Array
 
 
 func _ready() -> void:
-	print(TranslationServer.get_locale())
 	#Отключение блокировки кнопок
 	Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
@@ -142,7 +141,12 @@ func slide_sell() -> void:
 
 ##Действия при подтверждении нажатия кнопки "Продолжить"
 func on_resume_btn_pressed() -> void:
-	await play_call_response(denied_stream)
+	if Globals.player.reached_level != "":
+		await play_call_response(accepted_stream)
+		await slide_sell()
+		Globals.story_manager.change_story_node(Globals.player.reached_level)
+	elif Globals.player.reached_level == "":
+		await play_call_response(denied_stream)
 	#Отключение блокировки кнопок
 	Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
 

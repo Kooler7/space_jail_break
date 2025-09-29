@@ -21,8 +21,10 @@ var chapter_decisions : Dictionary = {
 func _ready() -> void:
 	Globals.player.player_chapter_decisions = chapter_decisions
 	Globals.player.reached_level = name
+	SaveLoad.save_game()
 	steam_sound.play()
 	place_interactive_objects()
+	
 
 func place_interactive_objects() -> void:
 		for object_position in object_positions:

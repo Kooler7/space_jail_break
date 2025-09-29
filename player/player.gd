@@ -7,7 +7,7 @@ const MouseShieldRed = Color(1, 0, 0, 0.2)
 const MouseShieldGray = Color(0, 0, 0, 0.5)
 const MouseShieldDefault = Color(0, 0, 0, 0)
 
-var reached_level : String
+var reached_level : String = ""
 var player_global_decisions : Dictionary = {
 	"HelpMelon" : false,
 }
