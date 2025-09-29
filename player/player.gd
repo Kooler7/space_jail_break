@@ -9,7 +9,7 @@ const MouseShieldDefault = Color(0, 0, 0, 0)
 
 var reached_level : String
 var player_global_decisions : Dictionary = {
-	"Help_Dinia" : false,
+	"HelpMelon" : false,
 }
 var player_chapter_decisions : Dictionary
 
@@ -17,8 +17,6 @@ var current_game_object : Node2D
 var is_game_started : bool = false
 
 @onready var avatar : Sprite2D = $PlayerAvatar
-#@onready var dialogue_manager : Node = $DialogueManager
-#@onready var game_object_holder : Node2D = $GameObject
 @onready var camera : Camera2D = $Camera2D
 @onready var mouse_shield : ColorRect = $MouseShield
 @onready var explaner : Node2D = $Explaner

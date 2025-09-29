@@ -22,6 +22,5 @@ texture_click_mask = ExtResource("4_u7adl")
 
 [node name="ButtonClick" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_o0jm4")
-bus = &"BtnClick_Bus"
 
 [connection signal="toggled" from="TextureButton" to="." method="_on_texture_button_toggled"]

@@ -15,6 +15,9 @@ var is_loading_starting : bool = false
 
 func _ready() -> void:
 	Globals.main = self
+	SaveLoad.load_settings()
+	Settings.set_screen_resolution(Settings.screen_sizes["Default"], Settings.screen_sizes[Settings.current_screen_resolution])
+	Settings.toggle_fullscreen(Settings.current_screen_state)
 	Globals.story_manager.change_story_node("MainMenu")
 
 

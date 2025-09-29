@@ -7,6 +7,8 @@ const PRISON_ACTIVITY_VOLUME = -10
 const AGENDA_VOLUME = -10.5
 const VOLUME_SPEED = 0.3
 
+
+
 ##Выключение громкости шин кроме Master
 func fading_sounds() -> void:
 	var buses = AudioServer.bus_count
@@ -34,6 +36,7 @@ func rising_sounds() -> void:
 			"Agenda_Bus":
 				var current_bus_int = AudioServer.get_bus_index(current_bus_name)
 				AudioServer.set_bus_volume_db(current_bus_int, AGENDA_VOLUME)
+
 
 func set_master_volume(new_volume : float) -> void:
 	var master_index : int = AudioServer.get_bus_index("Master")

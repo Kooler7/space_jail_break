@@ -11,7 +11,6 @@ enum ScreenStates {
 var current_screen_state : ScreenStates
 
 var camera : Camera2D
-var full_screen : bool = false
 var current_screen_resolution : String = "Default"
 var screen_sizes : Dictionary = {
 	"854x480" : Vector2(854, 480),
@@ -20,7 +19,7 @@ var screen_sizes : Dictionary = {
 	"Default" : Vector2(1920, 1080)
 	}
 
-var current_locale : String
+var current_locale : String = "ru"
 var languages_locales : Dictionary = {
 	"English" : "en",
 	"Russian" : "ru"
@@ -29,8 +28,9 @@ var languages_locales : Dictionary = {
 var current_global_volume : float = -5
 
 func _ready() -> void:
-	set_language(OS.get_locale_language())
+	set_language(current_locale)
 	set_global_volume(current_global_volume)
+
 
 ##Установка необходимого разрешения экрана
 func set_screen_resolution(default_resolution : Vector2, new_resolution : Vector2) -> void:
@@ -55,8 +55,11 @@ func toggle_fullscreen(new_state) -> void:
 			current_screen_state = ScreenStates.FULLSCREEN
 
 ##Установка языка
-func set_language(locale) -> void:
-	TranslationServer.set_locale(locale)
+func set_language(locale : String) -> void:
+	if locale == null:
+		TranslationServer.set_locale(OS.get_locale_language())
+	elif locale != null:
+		TranslationServer.set_locale(locale)
 	current_locale = TranslationServer.get_locale()
 
 func set_global_volume(volume) -> void:

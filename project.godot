@@ -19,9 +19,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 Settings="*res://autoloads/Settings.gd"
-SaveLoad="*res://autoloads/Save_load.gd"
 Globals="*res://autoloads/Globals.gd"
 AudioManager="*res://autoloads/AudioManager.gd"
+SaveLoad="*res://autoloads/Save_load.gd"
 DialogueManager="*res://autoloads/DialogueManager.gd"
 
 [display]

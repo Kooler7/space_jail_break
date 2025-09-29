@@ -52,17 +52,8 @@ var cam_coordinates : Array = [
 	Vector2(1920, 1080)
 ]
 
-#Нумерованный список позиций камеры
-#enum PlayerPositions {
-	#MAIN,
-	#SETTINGS
-#}
-#var current_player_position : PlayerPositions = PlayerPositions.MAIN
 
-#Массив для кнопок главного меню
 var main_screen_buttons : Array
-
-
 
 
 func _ready() -> void:
@@ -118,6 +109,7 @@ func on_accept_button_pressed() ->void:
 ##Действия при нажатии кнопки закрытия настроек
 func on_back_btn_pressed() -> void:
 	button_click.play()
+	SaveLoad.save_settings()
 	Globals.player_movement.check_player_position(Globals.player_movement.PlayerPositions.SCREEN_1)
 	#Отключение блокировки кнопок
 	Globals.player.mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE

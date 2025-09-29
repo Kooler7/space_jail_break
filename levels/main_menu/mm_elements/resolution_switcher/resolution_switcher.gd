@@ -15,7 +15,7 @@ func _ready() -> void:
 	for button in resolution_buttons:
 		button.pressed.connect(on_button.bind(button))
 		if button.name == Settings.current_screen_resolution:
-			button.button_pressed = true
+			button.set_pressed_no_signal(true)
 	
 	
 

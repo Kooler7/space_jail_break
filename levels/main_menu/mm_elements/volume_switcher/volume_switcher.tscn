@@ -26,7 +26,7 @@ layout_mode = 2
 min_value = -40.0
 max_value = 30.0
 step = 7.0
-value = -10.0
+value = -12.0
 texture_under = ExtResource("3_3adyq")
 texture_progress = ExtResource("4_ead8f")
 
