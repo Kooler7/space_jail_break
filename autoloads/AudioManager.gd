@@ -34,3 +34,8 @@ func rising_sounds() -> void:
 			"Agenda_Bus":
 				var current_bus_int = AudioServer.get_bus_index(current_bus_name)
 				AudioServer.set_bus_volume_db(current_bus_int, AGENDA_VOLUME)
+
+func set_master_volume(new_volume : float) -> void:
+	var master_index : int = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_volume_db(master_index, new_volume)
+	print(AudioServer.get_bus_volume_db(master_index))

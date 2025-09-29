@@ -3,7 +3,7 @@ extends Node
 
 @onready var window : Window = get_window()
 
-
+#Состояния экрана
 enum ScreenStates {
 	WINDOWED,
 	FULLSCREEN
@@ -20,16 +20,17 @@ var screen_sizes : Dictionary = {
 	"Default" : Vector2(1920, 1080)
 	}
 
-var current_language : String = "English"
-var languages : Dictionary = {
+var current_locale : String
+var languages_locales : Dictionary = {
 	"English" : "en",
 	"Russian" : "ru"
 }
 
+var current_global_volume : float = -5
+
 func _ready() -> void:
-	#print(OS.get_locale_language())
-	#current_language = OS.get_locale_language()
 	set_language(OS.get_locale_language())
+	set_global_volume(current_global_volume)
 
 ##Установка необходимого разрешения экрана
 func set_screen_resolution(default_resolution : Vector2, new_resolution : Vector2) -> void:
@@ -54,6 +55,9 @@ func toggle_fullscreen(new_state) -> void:
 			current_screen_state = ScreenStates.FULLSCREEN
 
 ##Установка языка
-func set_language(language) -> void:
-	TranslationServer.set_locale(language)
-	print(TranslationServer.get_locale())
+func set_language(locale) -> void:
+	TranslationServer.set_locale(locale)
+	current_locale = TranslationServer.get_locale()
+
+func set_global_volume(volume) -> void:
+	AudioManager.set_master_volume(volume)

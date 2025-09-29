@@ -1,3 +1,4 @@
+#language_switcher.gd
 extends HBoxContainer
 
 #Переменная для ресурса Группа Кнопок
@@ -15,10 +16,11 @@ func _ready() -> void:
 	languages_buttons.sort()
 	for button in languages_buttons:
 		button.toggled.connect(on_button_toggled.bind(button))
-		if button.name == Settings.current_language:
+		var button_locale = Settings.languages_locales[button.name]
+		if button_locale == Settings.current_locale:
 			button.set_pressed_no_signal(true)
 
 #Обработчик нажатия кнопки
 func on_button_toggled(toggled_on : bool, button : TextureButton) -> void:
 	button_click.play()
-	Settings.set_language(Settings.languages[button.name])
+	Settings.set_language(Settings.languages_locales[button.name])

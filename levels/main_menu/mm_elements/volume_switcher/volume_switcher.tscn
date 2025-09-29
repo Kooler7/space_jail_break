@@ -23,7 +23,10 @@ texture_pressed = ExtResource("2_4su5u")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 layout_mode = 2
-value = 50.0
+min_value = -40.0
+max_value = 30.0
+step = 7.0
+value = -10.0
 texture_under = ExtResource("3_3adyq")
 texture_progress = ExtResource("4_ead8f")
 
@@ -35,7 +38,6 @@ texture_pressed = ExtResource("4_4bpp2")
 
 [node name="ButtonClick" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_gk0md")
-bus = &"BtnClick_Bus"
 
 [connection signal="button_down" from="MinusVolume" to="." method="_on_minus_volume_button_down"]
 [connection signal="button_down" from="PlusVolume" to="." method="_on_plus_volume_button_down"]
