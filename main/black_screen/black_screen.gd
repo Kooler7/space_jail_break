@@ -8,6 +8,7 @@ const MODULATION_SPEED : float = 1
 @onready var wire : Sprite2D = $Wire
 
 func _ready() -> void:
+	hide()
 	modulate = START_MODULATE
 
 func _process(delta: float) -> void:
@@ -23,6 +24,7 @@ func popin() -> void:
 	#Запуск Tween
 	modulate_tween.tween_property(self, "modulate", FINISH_MODULATE, MODULATION_SPEED)
 	modulate_tween.play()
+	show()
 	await modulate_tween.finished
 	modulate = FINISH_MODULATE
 	return
@@ -35,6 +37,7 @@ func popout() -> void:
 	modulate_tween.tween_property(self, "modulate", START_MODULATE, MODULATION_SPEED)
 	modulate_tween.play()
 	await modulate_tween.finished
+	hide()
 	modulate = START_MODULATE
 	return
 

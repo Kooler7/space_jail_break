@@ -9,12 +9,13 @@ const START_RATIO : int = 0
 const FINISH_RATIO : int = 1
 const LETTER_SPEED : float = 0.02
 
-
+@onready var paper : AnimatedSprite2D = $AnimatedSprite2D
 @onready var text_field : Label = $Text
 @onready var options_pool : VBoxContainer = $Buttons
 
 
 func _ready() -> void:
+	text_field.hide()
 	modulate = START_MODULATE
 
 
@@ -25,7 +26,11 @@ func dialogue_box_popin() -> void:
 	#Запуск Tween
 	modulate_tween.tween_property(self, "modulate", FINISH_MODULATE, MODULATION_TIME)
 	modulate_tween.play()
+	paper.play("default")
 	await modulate_tween.finished
+	paper.play("default")
+	await paper.animation_finished
+	text_field.show()
 	modulate = FINISH_MODULATE
 	#Включение перехвата событий мыши
 	mouse_filter = MOUSE_FILTER_STOP
@@ -40,6 +45,10 @@ func dialogue_box_popout() -> void:
 	#Запуск Tween
 	modulate_tween.tween_property(self, "modulate", START_MODULATE, MODULATION_TIME)
 	modulate_tween.play()
+	text_field.hide()
+	if paper.is_playing():
+		paper.pause()
+	paper.play_backwards("default")
 	await modulate_tween.finished
 	modulate = START_MODULATE
 	return

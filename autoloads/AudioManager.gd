@@ -41,7 +41,7 @@ func on_sounds() -> void:
 
 
 
-func set_bus_volume( target_volume : float, bus_index : int) -> void:
+func set_bus_volume(target_volume : float, bus_index : int) -> void:
 	AudioServer.set_bus_volume_db(bus_index, target_volume)
 
 func fading_rising_sounds(bus_index : int, target_volume : float) -> void:

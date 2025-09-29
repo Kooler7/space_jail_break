@@ -1,13 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://chgdstjyij0dt"]
+[gd_scene load_steps=10 format=3 uid="uid://chgdstjyij0dt"]
 
 [ext_resource type="Script" path="res://GUI/dialogue_box/dialogue_box.gd" id="1_pr6nx"]
+[ext_resource type="Texture2D" uid="uid://pyaca1ajgada" path="res://assets/ui/images/paper_anim/Paper_6.png" id="2_b8cyf"]
+[ext_resource type="Texture2D" uid="uid://bv44a181b5e30" path="res://assets/ui/images/paper_anim/Paper_5.png" id="3_j56w3"]
+[ext_resource type="Texture2D" uid="uid://b0urnyj8ile8n" path="res://assets/ui/images/paper_anim/Paper_4.png" id="4_irbav"]
+[ext_resource type="Texture2D" uid="uid://611xweeiutnf" path="res://assets/ui/images/paper_anim/Paper_3.png" id="5_d5od7"]
+[ext_resource type="Texture2D" uid="uid://x10r5bmj5bf8" path="res://assets/ui/images/paper_anim/Paper_2.png" id="6_py5np"]
+[ext_resource type="Texture2D" uid="uid://6xj8f5t66yco" path="res://assets/ui/images/paper_anim/Paper_1.png" id="7_0ymex"]
+[ext_resource type="FontFile" uid="uid://dxfwsk3ajcqa5" path="res://assets/fonts/Arturito Slab/arturito.ttf" id="8_hj5p3"]
 
-[sub_resource type="Gradient" id="Gradient_k3xyb"]
-colors = PackedColorArray(0.298039, 0.321569, 0.368627, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_aewkg"]
-gradient = SubResource("Gradient_k3xyb")
-width = 306
+[sub_resource type="SpriteFrames" id="SpriteFrames_a05df"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b8cyf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_j56w3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_irbav")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_d5od7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_py5np")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0ymex")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
 
 [node name="DialogueBox" type="TextureRect"]
 modulate = Color(1, 1, 1, 0)
@@ -24,8 +50,12 @@ offset_bottom = -58.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
-texture = SubResource("GradientTexture1D_aewkg")
 script = ExtResource("1_pr6nx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.12696, 1)
+sprite_frames = SubResource("SpriteFrames_a05df")
+centered = false
 
 [node name="Text" type="Label" parent="."]
 layout_mode = 1
@@ -34,15 +64,19 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1344.0
-offset_top = -318.0
-offset_right = -16.0
-offset_bottom = 2.0
+offset_left = -1315.0
+offset_top = -302.0
+offset_right = -110.0
+offset_bottom = -25.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
+theme_override_colors/font_color = Color(0.160784, 0.160784, 0.160784, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("8_hj5p3")
+theme_override_font_sizes/font_size = 30
 text = "Testing text Testing text Testing text Testing text Testing text Testing text Testing text"
+autowrap_mode = 2
 visible_characters = 0
 visible_ratio = 0.0
 
