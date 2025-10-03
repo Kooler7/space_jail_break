@@ -21,24 +21,27 @@ func on_dialogue_box_clicked() -> void:
 
 ##Обработка словаря диалога
 func start_dialogue() -> void:
-	#Вызов окна диалога
-	await Globals.current_object.on_dialogue_started()
-	await Globals.player.on_dialogue_started()
-	
-	current_line_number = START_DIALOGUE_NUMBER
-	current_line = current_dialogue["Line_" + str(current_line_number)]
-	
-	#Вызов обработки текущей реплики
-	parse_line_type()
+	if current_dialogue.is_empty() == false:
+		#Вызов окна диалога
+		await Globals.current_object.on_dialogue_started()
+		await Globals.player.on_dialogue_started()
+		
+		current_line_number = START_DIALOGUE_NUMBER
+		current_line = current_dialogue["Line_" + str(current_line_number)]
+		
+		#Вызов обработки текущей реплики
+		parse_line_type()
+	elif current_dialogue.is_empty() == true:
+		return
 
 func finish_dialogue() -> void:
 	current_line_number = START_DIALOGUE_NUMBER
 	if Globals.current_object.object_type == Globals.current_object.ObjectTypes.NPC:
-		Globals.player.on_dialogue_completed()
+		await Globals.player.on_dialogue_completed()
 		Globals.current_object.on_dialogue_completed()
 		#Globals.current_object = null
 	elif Globals.current_object.object_type == Globals.current_object.ObjectTypes.ENVIRONMENT:
-		Globals.player.on_dialogue_completed()
+		await Globals.player.on_dialogue_completed()
 		Globals.current_object.on_dialogue_completed()
 		#Globals.current_object = null
 
@@ -77,7 +80,8 @@ func parse_dialogue_line() -> void:
 				await Globals.current_object.on_nps_avatar_called()
 	elif Globals.current_object.object_type == Globals.current_object.ObjectTypes.ENVIRONMENT:
 		await Globals.player.on_player_avatar_called()
-	await Globals.player.dialogue_box.text_typing(current_line["Words"])
+	var temp_text_translation = tr(current_line["Words"])
+	await Globals.player.dialogue_box.text_typing(temp_text_translation)
 	current_line_number = current_line["Next_line"]
 	
 

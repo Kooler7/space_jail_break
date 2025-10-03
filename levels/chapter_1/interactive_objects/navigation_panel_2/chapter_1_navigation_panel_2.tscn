@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dnhfkfoyvba1k"]
 
 [ext_resource type="PackedScene" uid="uid://cyvh721f8spv" path="res://classes/level_navigation_panel_class/level_navigation_panel.tscn" id="1_xdhgt"]
-[ext_resource type="Script" path="res://levels/chapter_1/interractional_objects/navigation_panel_2/chapter_1_navigation_panel_2.gd" id="2_pavi3"]
+[ext_resource type="Script" path="res://levels/chapter_1/interactive_objects/navigation_panel_2/chapter_1_navigation_panel_2.gd" id="2_pavi3"]
 
 [node name="Chapter1NavigationPanel2" instance=ExtResource("1_xdhgt")]
 script = ExtResource("2_pavi3")

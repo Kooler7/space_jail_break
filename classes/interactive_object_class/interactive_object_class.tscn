@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://classes/interactive_object_class/interactive_object_class.gd" id="1_gqo77"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gfn6x"]
+radius = 56.5685
 
 [node name="InteractiveObjectClass" type="Node2D"]
 script = ExtResource("1_gqo77")
@@ -18,3 +19,7 @@ shape = SubResource("CircleShape2D_gfn6x")
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
+
+[connection signal="input_event" from="MouseDetector" to="." method="_on_mouse_detector_input_event"]
+[connection signal="mouse_entered" from="MouseDetector" to="." method="_on_mouse_detector_mouse_entered"]
+[connection signal="mouse_exited" from="MouseDetector" to="." method="_on_mouse_detector_mouse_exited"]

@@ -9,8 +9,9 @@ extends Node2D
 @export var object_positions : Array
 
 var interactive_objects_paths : Dictionary = {
-	"Melon" : "res://levels/chapter_1/interractional_objects/buddy_npc/buddy_scene/buddy_scene.tscn",
-	"Door" : "res://levels/chapter_1/interractional_objects/cell_door/cell_door.tscn"
+	"Melon" : "res://levels/chapter_1/interactive_objects/melon_chapter_1/melon_chapter_1.tscn",
+	"Door" : "res://levels/chapter_1/interactive_objects/cell_door/cell_door.tscn",
+	"Pipe" : "res://levels/chapter_1/interactive_objects/pipe_screen_1/pipe_screen_1.tscn"
 }
 var chapter_decisions : Dictionary = {
 	"pipe_picked_up" : false,

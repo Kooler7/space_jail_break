@@ -58,3 +58,4 @@ func on_dialogue_completed() -> void:
 	await avatar.popout()
 	mouse_shield.color = MouseShieldDefault
 	mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	return

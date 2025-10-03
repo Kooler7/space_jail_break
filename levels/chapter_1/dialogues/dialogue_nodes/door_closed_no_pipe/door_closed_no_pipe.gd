@@ -21,7 +21,7 @@ var dialogue : Dictionary = {
 	"Line_4" : {
 		"Type" : "Text",
 		"Character" : "Player",
-		"Words" : "Черт! Чтож мне делать с этой дверью?",
+		"Words" : "Черт! Что ж мне делать с этой дверью?",
 		"Next_line" : -1
 	}
 }

@@ -103,5 +103,5 @@ func remove_options() -> void:
 
 ##Перехват клика по диалоговому окну
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton and event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
 		DialogueManager.on_dialogue_box_clicked()

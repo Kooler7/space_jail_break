@@ -1,16 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://b12cnvigggsh7"]
+[gd_scene load_steps=7 format=3 uid="uid://b12cnvigggsh7"]
 
-[ext_resource type="Script" path="res://levels/chapter_1/interractional_objects/cell_door/cell_door.gd" id="1_2d8bl"]
+[ext_resource type="Script" path="res://levels/chapter_1/interactive_objects/cell_door/cell_door.gd" id="1_2d8bl"]
 [ext_resource type="PackedScene" uid="uid://cnrfgsqpemish" path="res://classes/interactive_object_class/interactive_object_class.tscn" id="1_v72sk"]
+[ext_resource type="Texture2D" uid="uid://c65oed0s8m0t8" path="res://assets/chapter_1/images/Cell_Door.png" id="3_4kru2"]
 [ext_resource type="PackedScene" uid="uid://b7k0hqkng6yok" path="res://levels/chapter_1/dialogues/dialogue_nodes/door_closed_no_pipe/door_closed_no_pipe.tscn" id="3_cvvek"]
+[ext_resource type="Shape2D" uid="uid://cnd1oi6s4ug45" path="res://resources/collision_shapes/cell_door_collision_shape.tres" id="4_gufgy"]
 [ext_resource type="PackedScene" uid="uid://w4dm8a0upear" path="res://levels/chapter_1/dialogues/dialogue_nodes/door_closed_pipe/door_closed_pipe.tscn" id="4_sfliy"]
 
 [node name="CellDoor" instance=ExtResource("1_v72sk")]
 script = ExtResource("1_2d8bl")
+icon_texture = ExtResource("3_4kru2")
+detector_shape = ExtResource("4_gufgy")
 object_type = 1
 
 [node name="CollisionPosition" type="Marker2D" parent="." index="3"]
 position = Vector2(-544, 0)
+gizmo_extents = 60.0
 
 [node name="DoorClosedPipe" parent="." index="4" instance=ExtResource("4_sfliy")]
 

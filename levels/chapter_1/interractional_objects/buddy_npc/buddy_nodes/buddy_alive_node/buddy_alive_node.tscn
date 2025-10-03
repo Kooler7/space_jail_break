@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://cypgw84v1ipeb"]
-
-[ext_resource type="Script" path="res://levels/chapter_1/interractional_objects/buddy_npc/buddy_nodes/buddy_alive_node/buddy_alive_node.gd" id="1_800k5"]
-[ext_resource type="PackedScene" uid="uid://c28luwww7ukvi" path="res://levels/chapter_1/interractional_objects/buddy_npc/buddy_nodes/buddy_alive_node/buddy_alive_avatar/buddy_alive_avatar.tscn" id="2_cifdq"]
-
-[node name="BuddyAliveNode" type="Node2D"]
-script = ExtResource("1_800k5")
-
-[node name="BuddyAliveAvatar" parent="." instance=ExtResource("2_cifdq")]
