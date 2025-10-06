@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://u1x1smqtcgll"]
+
+[ext_resource type="Texture2D" uid="uid://8wb31valymvb" path="res://assets/summary/images/background.png" id="1_bko1y"]
+[ext_resource type="Script" path="res://classes/summary_class/summary_class.gd" id="1_urpbr"]
+[ext_resource type="FontFile" uid="uid://dxfwsk3ajcqa5" path="res://assets/fonts/Arturito Slab/arturito.ttf" id="2_v5r0d"]
+[ext_resource type="Texture2D" uid="uid://dv2y44plj2ed0" path="res://assets/summary/images/accept_btn_idle_ru.png" id="3_mswgd"]
+[ext_resource type="Texture2D" uid="uid://dcuex236cbdhr" path="res://assets/summary/images/accept_btn_pressed_ru.png" id="4_knabn"]
+[ext_resource type="Texture2D" uid="uid://b4gywkuihjeyc" path="res://assets/summary/images/accept_btn_hover_ru.png" id="5_415uu"]
+[ext_resource type="Texture2D" uid="uid://cfw8oof8l1kvb" path="res://assets/summary/images/deny_btn_idle_ru.png" id="6_xf0iq"]
+[ext_resource type="BitMap" uid="uid://movxg3rb8j54" path="res://assets/summary/images/symmary_btn_mask.png" id="7_d2vbp"]
+[ext_resource type="Texture2D" uid="uid://b4okimkkoh7cu" path="res://assets/summary/images/deny_btn_pressed_ru.png" id="7_kiufb"]
+[ext_resource type="Texture2D" uid="uid://ci1ljgfs4u3pc" path="res://assets/summary/images/deny_btn_hover_ru.png" id="8_88ojn"]
+[ext_resource type="AudioStream" uid="uid://csrsx3og6h2ot" path="res://assets/summary/audio/hard_stamp.ogg" id="11_npw2c"]
+
+[node name="SummaryClass" type="Node2D"]
+script = ExtResource("1_urpbr")
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_bko1y")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Title" type="Label" parent="."]
+offset_left = 770.0
+offset_top = 150.0
+offset_right = 1195.0
+offset_bottom = 220.0
+rotation = -0.249582
+theme_override_colors/font_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+theme_override_fonts/font = ExtResource("2_v5r0d")
+theme_override_font_sizes/font_size = 40
+text = "REPORT"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="ReportText" type="Label" parent="."]
+offset_left = 740.0
+offset_top = 240.0
+offset_right = 1270.0
+offset_bottom = 820.0
+rotation = -0.249582
+theme_override_colors/font_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+theme_override_fonts/font = ExtResource("2_v5r0d")
+theme_override_font_sizes/font_size = 20
+text = "Some text"
+autowrap_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="AcceptButton" type="TextureButton" parent="."]
+offset_left = 889.0
+offset_top = 824.0
+offset_right = 1145.0
+offset_bottom = 959.0
+rotation = -0.249582
+toggle_mode = true
+texture_normal = ExtResource("3_mswgd")
+texture_pressed = ExtResource("4_knabn")
+texture_hover = ExtResource("5_415uu")
+texture_click_mask = ExtResource("7_d2vbp")
+metadata/_edit_lock_ = true
+
+[node name="DenyButton" type="TextureButton" parent="."]
+offset_left = 1171.0
+offset_top = 741.0
+offset_right = 1427.0
+offset_bottom = 876.0
+rotation = -0.249582
+toggle_mode = true
+texture_normal = ExtResource("6_xf0iq")
+texture_pressed = ExtResource("7_kiufb")
+texture_hover = ExtResource("8_88ojn")
+texture_click_mask = ExtResource("7_d2vbp")
+metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1171, 741)
+rotation = -0.249582
+stream = ExtResource("11_npw2c")
+bus = &"CallBtn_Bus"
+
+[connection signal="button_up" from="AcceptButton" to="." method="_on_accept_button_button_up"]
+[connection signal="button_up" from="DenyButton" to="." method="_on_deny_button_button_up"]

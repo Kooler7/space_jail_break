@@ -6,8 +6,8 @@ func _ready() -> void:
 	construct_object(constructed_name) 
 
 
-func construct_object(constructed_name) -> void:
-	super.construct_object(constructed_name)
+func construct_object(new_constructed_name) -> void:
+	super.construct_object(new_constructed_name)
 	current_object_condition = ObjectConditions.TALK
 
 func _on_mouse_detector_mouse_entered():

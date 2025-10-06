@@ -24,7 +24,7 @@ chapter_path = "res://levels/main_menu/main_menu.tscn"
 
 [node name="SummaryIntro" type="Node" parent="StoryManager"]
 script = ExtResource("5_5xyb0")
-chapter_path = "res://levels/summary/summary.tscn"
+chapter_path = "res://levels/summaries/intro_summary/intro_summary.tscn"
 
 [node name="Chapter1" type="Node" parent="StoryManager"]
 script = ExtResource("5_5xyb0")

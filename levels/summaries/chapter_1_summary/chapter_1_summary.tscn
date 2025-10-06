@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1drlxic8576d"]
+
+[ext_resource type="PackedScene" uid="uid://u1x1smqtcgll" path="res://classes/summary_class/summary_class.tscn" id="1_ui4tl"]
+[ext_resource type="Script" path="res://levels/summaries/chapter_1_summary/chapter_1_summary.gd" id="2_tlvni"]
+
+[node name="Chapter1Summary" instance=ExtResource("1_ui4tl")]
+script = ExtResource("2_tlvni")

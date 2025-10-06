@@ -23,7 +23,8 @@ func on_dialogue_box_clicked() -> void:
 func start_dialogue() -> void:
 	if current_dialogue.is_empty() == false:
 		#Вызов окна диалога
-		await Globals.current_object.on_dialogue_started()
+		if Globals.current_object.object_type == Globals.current_object.ObjectTypes.NPC:
+			Globals.player.current_npc_avatar = Globals.current_object.avatar
 		await Globals.player.on_dialogue_started()
 		
 		current_line_number = START_DIALOGUE_NUMBER
@@ -38,11 +39,11 @@ func finish_dialogue() -> void:
 	current_line_number = START_DIALOGUE_NUMBER
 	if Globals.current_object.object_type == Globals.current_object.ObjectTypes.NPC:
 		await Globals.player.on_dialogue_completed()
-		Globals.current_object.on_dialogue_completed()
+		#Globals.current_object.on_dialogue_completed()
 		#Globals.current_object = null
 	elif Globals.current_object.object_type == Globals.current_object.ObjectTypes.ENVIRONMENT:
 		await Globals.player.on_dialogue_completed()
-		Globals.current_object.on_dialogue_completed()
+		#Globals.current_object.on_dialogue_completed()
 		#Globals.current_object = null
 
 
@@ -58,6 +59,22 @@ func parse_line_type() -> void:
 			parse_options_line(current_line["Paths"])
 		"Random":
 			parse_random_line()
+		"Exicute":
+			parse_exicute_line()
+
+
+func parse_exicute_line() -> void:
+	match current_line["Method"]:
+		"update_player_decisions":
+			update_player_decisions(current_line["Decision"], current_line["Value"])
+	current_line_number = current_line["Next_line"]
+	on_dialogue_box_clicked()
+
+
+func update_player_decisions(decision : String, value : bool) -> void:
+	Globals.player.player_chapter_decisions[decision] = value
+
+
 
 ###Обработка реплики типа "Рандом"
 func parse_random_line() -> void:
@@ -73,13 +90,11 @@ func parse_dialogue_line() -> void:
 	if Globals.current_object.object_type == Globals.current_object.ObjectTypes.NPC:
 		match current_line["Character"]:
 			"Player":
-				await Globals.current_object.on_npc_avatar_dismissed()
-				await Globals.player.on_player_avatar_called()
+				await Globals.player.on_avatar_called(Globals.player.player_avatar)
 			"Npc":
-				await Globals.player.on_player_avatar_dismissed()
-				await Globals.current_object.on_nps_avatar_called()
+				await Globals.player.on_avatar_called(Globals.player.npc_avatar)
 	elif Globals.current_object.object_type == Globals.current_object.ObjectTypes.ENVIRONMENT:
-		await Globals.player.on_player_avatar_called()
+		await Globals.player.on_avatar_called(Globals.player.player_avatar)
 	var temp_text_translation = tr(current_line["Words"])
 	await Globals.player.dialogue_box.text_typing(temp_text_translation)
 	current_line_number = current_line["Next_line"]
@@ -90,17 +105,7 @@ func parse_dialogue_line() -> void:
 func parse_options_line(paths : Array) -> void:
 	if Globals.current_object.object_type == Globals.current_object.ObjectTypes.NPC:
 			await Globals.current_object.on_npc_avatar_dismissed()
-			await Globals.player.on_player_avatar_called()
+			await Globals.player.on_avatar_called(Globals.player.player_avatar)
 			await Globals.player.dialogue_box.fill_options(paths)
 	elif Globals.current_object.object_type == Globals.current_object.ObjectTypes.ENVIRONMENT:
 		await Globals.player.dialogue_box.fill_options(paths)
-
-#func parse_line(line : String) -> String:
-	#var line_info = line.split(":")
-	#if line_info[0] == "Player":
-		#Globals.player.on_player_avatar_called()
-		##Signals.emit_signal("player_avatar_called")
-	#elif line_info[0] == "Npc":
-		#Globals.player.on_npc_avatar_called()
-		##Signals.emit_signal("npc_avatar_called")
-	#return line_info[1]

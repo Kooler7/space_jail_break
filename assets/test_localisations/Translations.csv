@@ -11,3 +11,40 @@ GLOBAL_VOLUME_TXT,GLOBAL VOLUME,ОБЩАЯ ГРОМКОСТЬ
 CELL_DOOR,Cell door,Дверь камеры
 MELON_NPC,Melon,Дыня
 PIPE,Pipe,Труба
+"Имя: Гор Врайман
+	Возраст: 35 лет
+	Общие сведения:
+	Поступил 25 Априла 25 года Э.Н.О
+	Поведение в условиях изоляции:
+	Сохраняет спокойствие даже в конфликтных ситуациях.
+	Не склонен к открытому агрессивному поведению, однако при необходимости способен на решительные и жесткие действия.
+	Избирательно идёт на контакт с другими заключёнными, избегает лишнего внимания.
+	Много времени проводит в размышлениях, анализе окружающей обстановки.
+	Особенности личности:
+	Обладает высоким уровнем интеллекта, умеет логически просчитывать последствия своих действий.
+	Имеет инженерно-технические навыки, может импровизировать из подручных средств.","Name: Gor Vrayman
+Age: 35 years
+General Information:
+Admitted on April 25, Year 25 A.I.F.
+
+Behavior under isolation conditions:
+Maintains composure even in conflict situations.
+Not prone to overtly aggressive behavior; however, capable of decisive and forceful actions when necessary.
+Selectively engages with other inmates and avoids unnecessary attention.
+Spends considerable time in contemplation and analyzing his surroundings.
+
+Personality traits:
+Possesses a high level of intelligence and is capable of logically assessing the consequences of his actions.
+Has engineering and technical skills and can improvise effectively using available materials.","Имя: Гор Врайман
+	Возраст: 35 лет
+	Общие сведения:
+	Поступил 25 Априла 25 года Э.Н.О
+	Поведение в условиях изоляции:
+	Сохраняет спокойствие даже в конфликтных ситуациях.
+	Не склонен к открытому агрессивному поведению, однако при необходимости способен на решительные и жесткие действия.
+	Избирательно идёт на контакт с другими заключёнными, избегает лишнего внимания.
+	Много времени проводит в размышлениях, анализе окружающей обстановки.
+	Особенности личности:
+	Обладает высоким уровнем интеллекта, умеет логически просчитывать последствия своих действий.
+	Имеет инженерно-технические навыки, может импровизировать из подручных средств."
+REPORT,Report,Донесение

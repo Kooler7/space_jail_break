@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://mgunyw21q8vx"]
+
+[ext_resource type="PackedScene" uid="uid://u1x1smqtcgll" path="res://classes/summary_class/summary_class.tscn" id="1_x7jgh"]
+[ext_resource type="Script" path="res://levels/summaries/intro_summary/intro_summary.gd" id="2_3ht4d"]
+
+[node name="IntroSummary" instance=ExtResource("1_x7jgh")]
+script = ExtResource("2_3ht4d")
+
+[node name="ReportText" parent="." index="2"]
+theme_override_colors/font_color = Color(0.0980392, 0.0980392, 0.0980392, 1)

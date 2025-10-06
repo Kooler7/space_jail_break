@@ -1,0 +1,79 @@
+[gd_scene load_steps=13 format=3 uid="uid://bvy33y8okhc0"]
+
+[ext_resource type="Texture2D" uid="uid://cylh4cjosaxyk" path="res://assets/chapter_1/images/chapter_1_background_3.png" id="1_mbmjg"]
+[ext_resource type="Script" path="res://levels/chapter_1/interactive_objects/open_door_game/open_door_game.gd" id="1_nqw2h"]
+[ext_resource type="Texture2D" uid="uid://byjmndg8larew" path="res://assets/chapter_1/images/pipe_animation/1.png" id="2_urtid"]
+[ext_resource type="Texture2D" uid="uid://clh177uqtlhn7" path="res://assets/chapter_1/images/pipe_animation/2.png" id="3_tadyh"]
+[ext_resource type="Texture2D" uid="uid://dw80qailxlkj0" path="res://assets/chapter_1/images/pipe_animation/3.png" id="4_gamw7"]
+[ext_resource type="Texture2D" uid="uid://calcklmq36srh" path="res://assets/chapter_1/images/pipe_animation/4.png" id="5_e68x1"]
+[ext_resource type="Texture2D" uid="uid://cv0ri5xdf52m4" path="res://assets/chapter_1/images/pipe_animation/5.png" id="6_l2w3y"]
+[ext_resource type="Texture2D" uid="uid://dk3iwljpwdw07" path="res://assets/chapter_1/images/pipe_animation/6.png" id="7_fomuw"]
+[ext_resource type="Texture2D" uid="uid://djtl7a1qcd7n0" path="res://assets/chapter_1/images/cell_door_screen_3.png" id="8_lc6v1"]
+[ext_resource type="FontFile" uid="uid://dxfwsk3ajcqa5" path="res://assets/fonts/Arturito Slab/arturito.ttf" id="10_2afw3"]
+[ext_resource type="Texture2D" uid="uid://1ygsjsyr2mp2" path="res://assets/chapter_1/images/diagram.png" id="11_gklev"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7wacc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_urtid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tadyh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gamw7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_e68x1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_l2w3y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fomuw")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="OpenDoorGame" type="Node2D"]
+script = ExtResource("1_nqw2h")
+
+[node name="Screen3Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_mbmjg")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Pipe" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7wacc")
+frame = 5
+frame_progress = 1.0
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Door" type="Sprite2D" parent="."]
+texture = ExtResource("8_lc6v1")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 300.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 526.0
+offset_top = 84.0
+offset_right = 1410.0
+offset_bottom = 179.0
+theme_override_colors/font_color = Color(0.695503, 0.695503, 0.695503, 1)
+theme_override_fonts/font = ExtResource("10_2afw3")
+theme_override_font_sizes/font_size = 40
+text = "Надо подумать и ухватить нужную мысль"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Force" type="Sprite2D" parent="."]
+position = Vector2(414, 719)
+texture = ExtResource("11_gklev")

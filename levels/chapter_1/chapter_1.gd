@@ -15,7 +15,8 @@ var interactive_objects_paths : Dictionary = {
 }
 var chapter_decisions : Dictionary = {
 	"pipe_picked_up" : false,
-	"melon_first_dialogue_complete" : false
+	"melon_first_dialogue_complete" : false,
+	"door_open" : false
 }
 
 

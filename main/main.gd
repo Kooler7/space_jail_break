@@ -20,7 +20,7 @@ func _ready() -> void:
 	Globals.story_manager.change_story_node("MainMenu")
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 		if is_loading_starting:
 			loading_status = ResourceLoader.load_threaded_get_status(loading_level_path, loading_progress)
 			match loading_status:

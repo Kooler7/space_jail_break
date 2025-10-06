@@ -7,8 +7,8 @@ extends Sprite2D
 #Константы для анимации появления и исчезания аватара
 const START_MODULATE : Color = Color(1, 1, 1, 0)
 const FINISH_MODULATE : Color = Color(1, 1, 1, 1)
-const START_POSITION : Vector2 = Vector2(597, 563)
-const FINISH_POSITION : Vector2 = Vector2(597-48, 563-48)
+const START_POSITION : Vector2 = Vector2.ZERO
+const FINISH_POSITION : Vector2 = Vector2(-48, -48)
 const START_ROTATION : float = 0
 const FINISH_ROTATION : float = -17
 const MODULATION_SPEED : float = 0.1

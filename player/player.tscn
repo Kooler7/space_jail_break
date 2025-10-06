@@ -17,8 +17,11 @@ metadata/_edit_lock_ = true
 [node name="Explaner" parent="." instance=ExtResource("2_kc20y")]
 position = Vector2(249, 872)
 
-[node name="PlayerAvatar" parent="." instance=ExtResource("2_6wjm5")]
+[node name="AvatarPosition" type="Marker2D" parent="."]
 position = Vector2(597, 563)
+gizmo_extents = 50.0
+
+[node name="PlayerAvatar" parent="AvatarPosition" instance=ExtResource("2_6wjm5")]
 
 [node name="DialogueBox" parent="." instance=ExtResource("5_jghpy")]
 offset_left = 492.0

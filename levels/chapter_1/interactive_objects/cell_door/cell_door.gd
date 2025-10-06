@@ -17,8 +17,8 @@ func _ready() -> void:
 	construct_object(constructed_name) 
 
 
-func construct_object(constructed_name) -> void:
-	super.construct_object(constructed_name)
+func construct_object(new_constructed_name) -> void:
+	super.construct_object(new_constructed_name)
 	mouse_detector.position = $CollisionPosition.position
 	current_object_condition = ObjectConditions.TALK
 
