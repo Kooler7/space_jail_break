@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvy33y8okhc0"]
+[gd_scene load_steps=14 format=3 uid="uid://bvy33y8okhc0"]
 
 [ext_resource type="Texture2D" uid="uid://cylh4cjosaxyk" path="res://assets/chapter_1/images/chapter_1_background_3.png" id="1_mbmjg"]
 [ext_resource type="Script" path="res://levels/chapter_1/interactive_objects/open_door_game/open_door_game.gd" id="1_nqw2h"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://djtl7a1qcd7n0" path="res://assets/chapter_1/images/cell_door_screen_3.png" id="8_lc6v1"]
 [ext_resource type="FontFile" uid="uid://dxfwsk3ajcqa5" path="res://assets/fonts/Arturito Slab/arturito.ttf" id="10_2afw3"]
 [ext_resource type="Texture2D" uid="uid://1ygsjsyr2mp2" path="res://assets/chapter_1/images/diagram.png" id="11_gklev"]
+[ext_resource type="Texture2D" uid="uid://cmd86cmn4dwvn" path="res://assets/test_jpgs/Dymohod-10-F115-1.jpg" id="12_ponmb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7wacc"]
 animations = [{
@@ -48,8 +49,6 @@ metadata/_edit_lock_ = true
 
 [node name="Pipe" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7wacc")
-frame = 5
-frame_progress = 1.0
 centered = false
 metadata/_edit_lock_ = true
 
@@ -57,9 +56,6 @@ metadata/_edit_lock_ = true
 texture = ExtResource("8_lc6v1")
 centered = false
 metadata/_edit_lock_ = true
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 300.0
 
 [node name="Label" type="Label" parent="."]
 offset_left = 526.0
@@ -77,3 +73,24 @@ metadata/_edit_lock_ = true
 [node name="Force" type="Sprite2D" parent="."]
 position = Vector2(414, 719)
 texture = ExtResource("11_gklev")
+
+[node name="DiagramPipe" type="Sprite2D" parent="."]
+position = Vector2(414, 719)
+scale = Vector2(0.236561, 0.355703)
+texture = ExtResource("12_ponmb")
+
+[node name="Tip1" type="Label" parent="."]
+offset_left = 109.0
+offset_top = 280.0
+offset_right = 798.0
+offset_bottom = 329.0
+theme_override_font_sizes/font_size = 27
+text = "Удерживайте трубу в зоне максимального усилия"
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 300.0
+
+[node name="DiagramTimer" type="Timer" parent="."]
+
+[node name="ReachedTimer" type="Timer" parent="."]
+wait_time = 0.5
