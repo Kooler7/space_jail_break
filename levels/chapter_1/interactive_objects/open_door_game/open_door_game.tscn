@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bvy33y8okhc0"]
+[gd_scene load_steps=17 format=3 uid="uid://bvy33y8okhc0"]
 
 [ext_resource type="Texture2D" uid="uid://cylh4cjosaxyk" path="res://assets/chapter_1/images/chapter_1_background_3.png" id="1_mbmjg"]
 [ext_resource type="Script" path="res://levels/chapter_1/interactive_objects/open_door_game/open_door_game.gd" id="1_nqw2h"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://djtl7a1qcd7n0" path="res://assets/chapter_1/images/cell_door_screen_3.png" id="8_lc6v1"]
 [ext_resource type="FontFile" uid="uid://dxfwsk3ajcqa5" path="res://assets/fonts/Arturito Slab/arturito.ttf" id="10_2afw3"]
 [ext_resource type="Texture2D" uid="uid://1ygsjsyr2mp2" path="res://assets/chapter_1/images/diagram.png" id="11_gklev"]
-[ext_resource type="Texture2D" uid="uid://cmd86cmn4dwvn" path="res://assets/test_jpgs/Dymohod-10-F115-1.jpg" id="12_ponmb"]
+[ext_resource type="Texture2D" uid="uid://b7a6nopjlyh60" path="res://assets/chapter_1/images/pipe_diagram.png" id="12_o50jo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7wacc"]
 animations = [{
@@ -39,6 +39,44 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Animation" id="Animation_gtk0i"]
+resource_name = "shake_door"
+length = 0.02
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-10, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qgfcj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-10, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xxu7o"]
+_data = {
+"RESET": SubResource("Animation_qgfcj"),
+"shake_door": SubResource("Animation_gtk0i")
+}
+
 [node name="OpenDoorGame" type="Node2D"]
 script = ExtResource("1_nqw2h")
 
@@ -53,9 +91,9 @@ centered = false
 metadata/_edit_lock_ = true
 
 [node name="Door" type="Sprite2D" parent="."]
+position = Vector2(-10, 0)
 texture = ExtResource("8_lc6v1")
 centered = false
-metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="."]
 offset_left = 526.0
@@ -76,8 +114,10 @@ texture = ExtResource("11_gklev")
 
 [node name="DiagramPipe" type="Sprite2D" parent="."]
 position = Vector2(414, 719)
-scale = Vector2(0.236561, 0.355703)
-texture = ExtResource("12_ponmb")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_o50jo")
+centered = false
+offset = Vector2(-110, -600)
 
 [node name="Tip1" type="Label" parent="."]
 offset_left = 109.0
@@ -92,5 +132,15 @@ wait_time = 300.0
 
 [node name="DiagramTimer" type="Timer" parent="."]
 
-[node name="ReachedTimer" type="Timer" parent="."]
-wait_time = 0.5
+[node name="Label2" type="Label" parent="."]
+offset_left = 1166.0
+offset_top = 302.0
+offset_right = 1304.0
+offset_bottom = 353.0
+theme_override_font_sizes/font_size = 30
+text = "Text"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xxu7o")
+}
