@@ -39,6 +39,21 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Animation" id="Animation_qgfcj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-10, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_gtk0i"]
 resource_name = "shake_door"
 length = 0.02
@@ -54,21 +69,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-10, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_qgfcj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Door:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-10, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xxu7o"]
@@ -95,7 +95,19 @@ position = Vector2(-10, 0)
 texture = ExtResource("8_lc6v1")
 centered = false
 
-[node name="Label" type="Label" parent="."]
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 300.0
+
+[node name="DiagramTimer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xxu7o")
+}
+
+[node name="Stage1Items" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Stage1Items"]
 offset_left = 526.0
 offset_top = 84.0
 offset_right = 1410.0
@@ -108,39 +120,28 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Force" type="Sprite2D" parent="."]
+[node name="Stage2Items" type="Node2D" parent="."]
+
+[node name="Tip1" type="Label" parent="Stage2Items"]
+offset_left = 109.0
+offset_top = 280.0
+offset_right = 719.0
+offset_bottom = 357.0
+theme_override_colors/font_color = Color(0.694118, 0.694118, 0.694118, 1)
+theme_override_fonts/font = ExtResource("10_2afw3")
+theme_override_font_sizes/font_size = 27
+text = "Удерживайте трубу в зоне максимального усилия правой и левой кнопками мыши"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Force" type="Sprite2D" parent="Stage2Items"]
 position = Vector2(414, 719)
 texture = ExtResource("11_gklev")
 
-[node name="DiagramPipe" type="Sprite2D" parent="."]
+[node name="DiagramPipe" type="Sprite2D" parent="Stage2Items"]
 position = Vector2(414, 719)
+rotation = 1.5708
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_o50jo")
-centered = false
-offset = Vector2(-110, -600)
-
-[node name="Tip1" type="Label" parent="."]
-offset_left = 109.0
-offset_top = 280.0
-offset_right = 798.0
-offset_bottom = 329.0
-theme_override_font_sizes/font_size = 27
-text = "Удерживайте трубу в зоне максимального усилия"
-
-[node name="DeathTimer" type="Timer" parent="."]
-wait_time = 300.0
-
-[node name="DiagramTimer" type="Timer" parent="."]
-
-[node name="Label2" type="Label" parent="."]
-offset_left = 1166.0
-offset_top = 302.0
-offset_right = 1304.0
-offset_bottom = 353.0
-theme_override_font_sizes/font_size = 30
-text = "Text"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_xxu7o")
-}
+offset = Vector2(-100, 0)
