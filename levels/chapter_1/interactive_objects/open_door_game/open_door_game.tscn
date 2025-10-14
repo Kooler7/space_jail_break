@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bvy33y8okhc0"]
+[gd_scene load_steps=19 format=3 uid="uid://bvy33y8okhc0"]
 
 [ext_resource type="Texture2D" uid="uid://cylh4cjosaxyk" path="res://assets/chapter_1/images/chapter_1_background_3.png" id="1_mbmjg"]
 [ext_resource type="Script" path="res://levels/chapter_1/interactive_objects/open_door_game/open_door_game.gd" id="1_nqw2h"]
@@ -12,6 +12,8 @@
 [ext_resource type="FontFile" uid="uid://dxfwsk3ajcqa5" path="res://assets/fonts/Arturito Slab/arturito.ttf" id="10_2afw3"]
 [ext_resource type="Texture2D" uid="uid://1ygsjsyr2mp2" path="res://assets/chapter_1/images/diagram.png" id="11_gklev"]
 [ext_resource type="Texture2D" uid="uid://b7a6nopjlyh60" path="res://assets/chapter_1/images/pipe_diagram.png" id="12_o50jo"]
+[ext_resource type="Texture2D" uid="uid://lhxfe05fv64w" path="res://assets/chapter_1/images/ceiling_bar_background.png" id="13_0xmhr"]
+[ext_resource type="Texture2D" uid="uid://dy4pm0uptnu8a" path="res://assets/chapter_1/images/ceiling_bar.png" id="14_x6bq7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7wacc"]
 animations = [{
@@ -107,22 +109,7 @@ libraries = {
 
 [node name="Stage1Items" type="Node2D" parent="."]
 
-[node name="Label" type="Label" parent="Stage1Items"]
-offset_left = 526.0
-offset_top = 84.0
-offset_right = 1410.0
-offset_bottom = 179.0
-theme_override_colors/font_color = Color(0.695503, 0.695503, 0.695503, 1)
-theme_override_fonts/font = ExtResource("10_2afw3")
-theme_override_font_sizes/font_size = 40
-text = "Надо подумать и ухватить нужную мысль"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="Stage2Items" type="Node2D" parent="."]
-
-[node name="Tip1" type="Label" parent="Stage2Items"]
+[node name="Tip1" type="Label" parent="Stage1Items"]
 offset_left = 109.0
 offset_top = 280.0
 offset_right = 719.0
@@ -135,13 +122,23 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Force" type="Sprite2D" parent="Stage2Items"]
+[node name="Force" type="Sprite2D" parent="Stage1Items"]
 position = Vector2(414, 719)
 texture = ExtResource("11_gklev")
 
-[node name="DiagramPipe" type="Sprite2D" parent="Stage2Items"]
+[node name="DiagramPipe" type="Sprite2D" parent="Stage1Items"]
 position = Vector2(414, 719)
 rotation = 1.5708
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_o50jo")
 offset = Vector2(-100, 0)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Stage1Items"]
+offset_left = 651.0
+offset_top = 92.0
+offset_right = 2011.0
+offset_bottom = 362.0
+scale = Vector2(0.5, 0.5)
+max_value = 300.0
+texture_under = ExtResource("13_0xmhr")
+texture_progress = ExtResource("14_x6bq7")

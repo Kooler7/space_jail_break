@@ -5,13 +5,14 @@ extends Node2D
 @onready var pipe : AnimatedSprite2D = $Pipe
 @onready var door : Sprite2D = $Door
 @onready var death_timer : Timer = $DeathTimer
-@onready var diagram : Sprite2D = $Stage2Items/Force
+@onready var diagram : Sprite2D = $Stage1Items/Force
 @onready var diagram_timer : Timer = $DiagramTimer
-@onready var tip_1 :Label = $Stage2Items/Tip1
-@onready var diagram_pipe : Sprite2D = $Stage2Items/DiagramPipe
+@onready var tip_1 :Label = $Stage1Items/Tip1
+@onready var diagram_pipe : Sprite2D = $Stage1Items/DiagramPipe
 @onready var shake_door : AnimationPlayer = $AnimationPlayer
 @onready var stage_1_items : Node2D = $Stage1Items
-@onready var stage_2_items : Node2D = $Stage2Items
+@onready var ceiling_damage : TextureProgressBar = $Stage1Items/TextureProgressBar
+
 
 
 
@@ -22,7 +23,6 @@ const MAX_DIAGRAM_ANGLE : float = 180
 
 enum GameStages {
 	STAGE_1,
-	STAGE_2,
 	FINISHED,
 	LOOSE
 }
@@ -35,6 +35,7 @@ func _ready() -> void:
 	print(current_game_stage)
 	print(new_stage)
 	update_game_stage(new_stage)
+	death_timer.start()
 	
 
 
@@ -44,21 +45,18 @@ func _process(delta: float) -> void:
 	if current_game_stage != new_stage:
 		update_game_stage(new_stage)
 	
-	if current_game_stage == GameStages.STAGE_2:
+	if current_game_stage == GameStages.STAGE_1:
 		turn_pipe_to_idle(delta)
 		scene_pipe_animation()
+		ceiling_damage.value = death_timer.time_left
+		
 
 
 func update_game_stage(new_stage) -> void:
 	match new_stage:
 		GameStages.STAGE_1:
-			stage_2_items.hide()
 			stage_1_items.show()
 			current_game_stage = GameStages.STAGE_1
-		GameStages.STAGE_2:
-			stage_1_items.hide()
-			stage_2_items.show()
-			current_game_stage = GameStages.STAGE_2
 			diagram.rotation_degrees = randi_range(MIN_DIAGRAM_ANGLE, MAX_DIAGRAM_ANGLE)
 			calculate_new_diagram_angle()
 		GameStages.FINISHED:
@@ -95,7 +93,7 @@ func rotate_diagram(new_angle : float) -> void:
 	rotate_tween.play()
 
 func turn_pipe_to_idle(delta : float) -> void:
-	if current_game_stage == GameStages.STAGE_2:
+	if current_game_stage == GameStages.STAGE_1:
 		if diagram_pipe.rotation_degrees > 90:
 			diagram_pipe.rotation_degrees -= PIPE_TO_IDLE_SPEED * delta
 			return
@@ -105,7 +103,7 @@ func turn_pipe_to_idle(delta : float) -> void:
 	return
 
 func  _input(event: InputEvent) -> void:
-	if current_game_stage == GameStages.STAGE_2:
+	if current_game_stage == GameStages.STAGE_1:
 		if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				diagram_pipe.rotation_degrees -= PIPE_ROTATION_SPEED
