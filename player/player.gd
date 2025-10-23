@@ -37,17 +37,12 @@ var player_global_decisions : Dictionary = {
 }
 var player_chapter_decisions : Dictionary
 
-var is_player_alive : bool = true
-#var is_game_started : bool = false
+
 
 @onready var ui : Control = $UI
 @onready var camera : Camera2D = $Camera2D
-@onready var mouse_shield : ColorRect = $MouseShield
 
-
-#var current_npc_avatar : PackedScene
-#var npc_avatar : ChacrterAvatarClass
-#var showed_avatar : ChacrterAvatarClass
+var current_npc_avatar : PackedScene
 
 func _ready() -> void:
 	ui.update_ui_state(ui.UiStates.IDLE)
@@ -67,11 +62,13 @@ func update_health_state(new_health) -> void:
 func update_action_state(new_action : LevelActionStates) -> void:
 	match new_action:
 		LevelActionStates.SPEAK:
+			ui.current_npc_avatar = current_npc_avatar
 			ui.action_text = action_text
 			await ui.update_ui_state(ui.UiStates.SPEAK)
 			current_level_action = LevelActionStates.SPEAK
 			return
 		LevelActionStates.LISTEN:
+			ui.current_npc_avatar = current_npc_avatar
 			ui.action_text = action_text
 			await ui.update_ui_state(ui.UiStates.LISTEN)
 			current_level_action = LevelActionStates.LISTEN
@@ -93,7 +90,5 @@ func update_game_state(new_game_action : GameActionStates) -> void:
 			pass
 		GameActionStates.ACTIVE:
 			ui.update_ui_state(ui.UiStates.ACTIVE)
-			mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		GameActionStates.INACTIVE:
 			ui.update_ui_state(ui.UiStates.INACTIVE)
-			mouse_shield.mouse_filter = Control.MOUSE_FILTER_STOP

@@ -25,11 +25,15 @@ var showed_avatar : ChacrterAvatarClass
 
 @onready var avatar_position : Marker2D = $AvatarPosition
 @onready var player_avatar : ChacrterAvatarClass = $AvatarPosition/PlayerAvatar
-
+@onready var mouse_shield : ColorRect = $MouseShield
 @onready var explaner : Node2D = $Explaner
 @onready var dialogue_box : TextureRect = $DialogueBox
 
 @export var dialogue_avatars : Array
+
+func  _ready() -> void:
+	mouse_shield.color = MouseShieldDefault
+
 
 func update_ui_state(new_state : UiStates) -> void:
 	match new_state:
@@ -38,8 +42,8 @@ func update_ui_state(new_state : UiStates) -> void:
 			pass
 		
 		UiStates.SPEAK:
-			#mouse_shield.mouse_filter = Control.MOUSE_FILTER_STOP
-			#mouse_shield.color = MouseShieldGray
+			mouse_shield.mouse_filter = Control.MOUSE_FILTER_STOP
+			mouse_shield.color = MouseShieldGray
 			if current_ui_state == UiStates.EXPLAIN:
 				hide_explainer()
 				await on_dialogue_started()
@@ -49,8 +53,8 @@ func update_ui_state(new_state : UiStates) -> void:
 			return
 		
 		UiStates.LISTEN:
-			#mouse_shield.mouse_filter = Control.MOUSE_FILTER_STOP
-			#mouse_shield.color = MouseShieldGray
+			mouse_shield.mouse_filter = Control.MOUSE_FILTER_STOP
+			mouse_shield.color = MouseShieldGray
 			if current_ui_state == UiStates.EXPLAIN:
 				hide_explainer()
 				await on_dialogue_started()
@@ -71,8 +75,8 @@ func update_ui_state(new_state : UiStates) -> void:
 				UiStates.EXPLAIN:
 					hide_explainer()
 				UiStates.SPEAK or UiStates.LISTEN:
-					#mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
-					#mouse_shield.color = MouseShieldDefault
+					mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
+					mouse_shield.color = MouseShieldDefault
 					await on_dialogue_completed()
 					await on_avatar_dismissed()
 					remove_object_avatar()
@@ -80,10 +84,10 @@ func update_ui_state(new_state : UiStates) -> void:
 		UiStates.PAUSED:
 			pass
 		UiStates.ACTIVE:
-			#mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			current_ui_state = UiStates.ACTIVE
 		UiStates.INACTIVE:
-			#mouse_shield.mouse_filter = Control.MOUSE_FILTER_STOP
+			mouse_shield.set_mouse_filter(Control.MOUSE_FILTER_STOP)
 			current_ui_state = UiStates.INACTIVE
 
 

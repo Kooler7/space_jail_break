@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://chgdstjyij0dt" path="res://GUI/dialogue_box/dialogue_box.tscn" id="4_difgc"]
 
 [node name="UI" type="Control"]
+custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +15,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5bdqp")
 dialogue_avatars = [ExtResource("3_4q3ji"), null]
+
+[node name="MouseShield" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
 
 [node name="Explaner" parent="." instance=ExtResource("2_s3w7m")]
 position = Vector2(249, 872)

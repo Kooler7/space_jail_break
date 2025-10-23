@@ -25,8 +25,6 @@ func start_dialogue() -> void:
 		#Вызов окна диалога
 		if Globals.current_object.object_type == Globals.current_object.ObjectTypes.NPC:
 			Globals.player.current_npc_avatar = Globals.current_object.avatar
-		await Globals.player.on_dialogue_started()
-		
 		current_line_number = START_DIALOGUE_NUMBER
 		current_line = current_dialogue["Line_" + str(current_line_number)]
 		

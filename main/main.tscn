@@ -11,9 +11,9 @@ script = ExtResource("1_byjwn")
 
 [node name="LevelVeiwer" type="Node" parent="."]
 
-[node name="BlackScreen" parent="." instance=ExtResource("2_3k1hh")]
-
 [node name="Player" parent="." instance=ExtResource("5_6wbq5")]
+
+[node name="BlackScreen" parent="." instance=ExtResource("2_3k1hh")]
 
 [node name="StoryManager" type="Node" parent="."]
 script = ExtResource("4_5svnp")
