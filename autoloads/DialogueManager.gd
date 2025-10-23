@@ -87,16 +87,16 @@ func parse_random_line() -> void:
 
 ##Обработка реплики типа "Тескт"
 func parse_dialogue_line() -> void:
+	var temp_text_translation = await tr(current_line["Words"])
+	Globals.player.action_text = temp_text_translation
 	if Globals.current_object.object_type == Globals.current_object.ObjectTypes.NPC:
 		match current_line["Character"]:
 			"Player":
-				await Globals.player.on_avatar_called(Globals.player.player_avatar)
+				await Globals.player.update_action_state(Globals.player.LevelActionStates.SPEAK)
 			"Npc":
-				await Globals.player.on_avatar_called(Globals.player.npc_avatar)
+				await Globals.player.update_action_state(Globals.player.LevelActionStates.LISTEN)
 	elif Globals.current_object.object_type == Globals.current_object.ObjectTypes.ENVIRONMENT:
-		await Globals.player.on_avatar_called(Globals.player.player_avatar)
-	var temp_text_translation = tr(current_line["Words"])
-	await Globals.player.dialogue_box.text_typing(temp_text_translation)
+		await Globals.player.update_action_state(Globals.player.LevelActionStates.SPEAK)
 	current_line_number = current_line["Next_line"]
 	
 

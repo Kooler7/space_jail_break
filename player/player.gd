@@ -3,9 +3,32 @@ class_name Player
 
 extends Node2D
 
-const MouseShieldRed = Color(1, 0, 0, 0.2)
-const MouseShieldGray = Color(0, 0, 0, 0.5)
-const MouseShieldDefault = Color(0, 0, 0, 0)
+
+
+#Состояния здоровья
+enum HealthStates {
+	ALIVE,
+	DEAD
+}
+var current_health : HealthStates = HealthStates.ALIVE
+
+#Состояния действий игрока на уровне
+enum LevelActionStates {
+	SPEAK,
+	LISTEN,
+	EXPLAIN,
+	INTERACT,
+	IDLE
+}
+var current_level_action : LevelActionStates = LevelActionStates.IDLE
+var action_text : String = ""
+
+enum GameActionStates {
+	ACTIVE,
+	PAUSED,
+	INACTIVE
+}
+var current_game_action : GameActionStates = GameActionStates.ACTIVE
 
 var reached_level : String = ""
 
@@ -17,81 +40,60 @@ var player_chapter_decisions : Dictionary
 var is_player_alive : bool = true
 #var is_game_started : bool = false
 
-@onready var avatar_position : Marker2D = $AvatarPosition
-@onready var player_avatar : ChacrterAvatarClass = $AvatarPosition/PlayerAvatar
+@onready var ui : Control = $UI
 @onready var camera : Camera2D = $Camera2D
 @onready var mouse_shield : ColorRect = $MouseShield
-@onready var explaner : Node2D = $Explaner
-@onready var dialogue_box : TextureRect = $DialogueBox
 
-var current_npc_avatar : PackedScene
-var npc_avatar : ChacrterAvatarClass
-var showed_avatar : ChacrterAvatarClass
+
+#var current_npc_avatar : PackedScene
+#var npc_avatar : ChacrterAvatarClass
+#var showed_avatar : ChacrterAvatarClass
 
 func _ready() -> void:
-	mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	mouse_shield.color = MouseShieldDefault
+	ui.update_ui_state(ui.UiStates.IDLE)
 	Settings.camera = camera
 	Globals.player = self
 
 
+func update_health_state(new_health) -> void:
+	match new_health:
+		HealthStates.ALIVE:
+			ui.update_ui_state(ui.UiStates.IDLE)
+			current_health = HealthStates.ALIVE
+		HealthStates.DEAD:
+			ui.update_ui_state(ui.UiStates.DEAD)
+			current_health = HealthStates.DEAD
 
-func add_object_avatar() -> void:
-	npc_avatar = current_npc_avatar.instantiate()
-	avatar_position.add_child(npc_avatar)
-
-func remove_object_avatar() -> void:
-	current_npc_avatar = null
-	npc_avatar = null
-	showed_avatar = null
-	var avatars : Array = avatar_position.get_children()
-	for avatar in avatars:
-		var temp_name : String = avatar.name
-		if temp_name.begins_with("Player") == false:
-			avatar.queue_free()
-
-func on_avatar_called(new_avatar : ChacrterAvatarClass) -> void:
-	if showed_avatar != null:
-		if showed_avatar == new_avatar:
+func update_action_state(new_action : LevelActionStates) -> void:
+	match new_action:
+		LevelActionStates.SPEAK:
+			ui.action_text = action_text
+			await ui.update_ui_state(ui.UiStates.SPEAK)
+			current_level_action = LevelActionStates.SPEAK
 			return
-		elif showed_avatar != new_avatar:
-			await showed_avatar.popout()
-			showed_avatar = new_avatar
-			await new_avatar.popin()
+		LevelActionStates.LISTEN:
+			ui.action_text = action_text
+			await ui.update_ui_state(ui.UiStates.LISTEN)
+			current_level_action = LevelActionStates.LISTEN
 			return
-	elif showed_avatar == null:
-		showed_avatar = new_avatar
-		await new_avatar.popin()
-		return
+		LevelActionStates.EXPLAIN:
+			ui.action_text = action_text
+			ui.update_ui_state(ui.UiStates.EXPLAIN)
+			current_level_action = LevelActionStates.EXPLAIN
+		LevelActionStates.INTERACT:
+			pass
+		LevelActionStates.IDLE:
+			ui.update_ui_state(ui.UiStates.IDLE)
+			current_level_action = LevelActionStates.IDLE
 
-func on_avatar_dismissed() -> void:
-	if showed_avatar != null:
-		await showed_avatar.popout()
-	return
 
-
-func on_game_object_hovered(new_text: String)-> void:
-	explaner.text.text = new_text
-	explaner.popin()
-
-func on_game_object_unhovered()-> void:
-	explaner.popout()
-
-func on_dialogue_started() ->void:
-	explaner.popout()
-	mouse_shield.mouse_filter = Control.MOUSE_FILTER_STOP
-	mouse_shield.color = MouseShieldGray
-	if Globals.current_object.object_type == Globals.current_object.ObjectTypes.NPC: 
-		add_object_avatar()
-	await dialogue_box.dialogue_box_popin()
-	return
-
-func on_dialogue_completed() -> void:
-	dialogue_box.remove_options()
-	await dialogue_box.dialogue_box_popout()
-	dialogue_box.text_field.text = ""
-	await on_avatar_dismissed()
-	remove_object_avatar()
-	mouse_shield.color = MouseShieldDefault
-	mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	return
+func update_game_state(new_game_action : GameActionStates) -> void:
+	match new_game_action:
+		GameActionStates.PAUSED:
+			pass
+		GameActionStates.ACTIVE:
+			ui.update_ui_state(ui.UiStates.ACTIVE)
+			mouse_shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		GameActionStates.INACTIVE:
+			ui.update_ui_state(ui.UiStates.INACTIVE)
+			mouse_shield.mouse_filter = Control.MOUSE_FILTER_STOP

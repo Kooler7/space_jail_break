@@ -49,13 +49,14 @@ func toggle_pickable() -> void:
 
 func _on_mouse_detector_mouse_entered() -> void:
 	if current_object_condition != ObjectConditions.IGNORE:
-		Globals.player.on_game_object_hovered(object_name.text)
+		Globals.player.action_text = object_name.text
+		Globals.player.update_action_state(Globals.player.LevelActionStates.EXPLAIN)
 		icon.modulate = HOVER_DOOR_MODULATE
 
 
 func _on_mouse_detector_mouse_exited() -> void:
 	if current_object_condition != ObjectConditions.IGNORE:
-		Globals.player.on_game_object_unhovered()
+		Globals.player.update_action_state(Globals.player.LevelActionStates.IDLE)
 		icon.modulate = IDLE_DOOR_MODULATE
 
 
