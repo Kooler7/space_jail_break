@@ -12,7 +12,7 @@ extends Node2D
 @onready var object_name : Label = $Name
 
 const IDLE_DOOR_MODULATE = Color(1, 1, 1, 1)
-const HOVER_DOOR_MODULATE = Color(1.5, 1.5, 1.5, 1)
+const HOVER_DOOR_MODULATE = Color(1.8, 1.8, 1.8, 1)
 
 enum ObjectTypes {
 	NPC,

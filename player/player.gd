@@ -3,8 +3,6 @@ class_name Player
 
 extends Node2D
 
-
-
 #Состояния здоровья
 enum HealthStates {
 	ALIVE,
@@ -17,11 +15,14 @@ enum LevelActionStates {
 	SPEAK,
 	LISTEN,
 	EXPLAIN,
+	CHOOSE,
 	INTERACT,
 	IDLE
 }
 var current_level_action : LevelActionStates = LevelActionStates.IDLE
 var action_text : String = ""
+var choosing_options : Array
+
 
 enum GameActionStates {
 	ACTIVE,
@@ -60,28 +61,33 @@ func update_health_state(new_health) -> void:
 			current_health = HealthStates.DEAD
 
 func update_action_state(new_action : LevelActionStates) -> void:
-	match new_action:
-		LevelActionStates.SPEAK:
-			ui.current_npc_avatar = current_npc_avatar
-			ui.action_text = action_text
-			await ui.update_ui_state(ui.UiStates.SPEAK)
-			current_level_action = LevelActionStates.SPEAK
-			return
-		LevelActionStates.LISTEN:
-			ui.current_npc_avatar = current_npc_avatar
-			ui.action_text = action_text
-			await ui.update_ui_state(ui.UiStates.LISTEN)
-			current_level_action = LevelActionStates.LISTEN
-			return
-		LevelActionStates.EXPLAIN:
-			ui.action_text = action_text
-			ui.update_ui_state(ui.UiStates.EXPLAIN)
-			current_level_action = LevelActionStates.EXPLAIN
-		LevelActionStates.INTERACT:
-			pass
-		LevelActionStates.IDLE:
-			ui.update_ui_state(ui.UiStates.IDLE)
-			current_level_action = LevelActionStates.IDLE
+	if current_level_action != new_action and current_health == HealthStates.ALIVE:
+		match new_action:
+			LevelActionStates.SPEAK:
+				ui.current_npc_avatar = current_npc_avatar
+				ui.action_text = action_text
+				await ui.update_ui_state(ui.UiStates.SPEAK)
+				current_level_action = LevelActionStates.SPEAK
+				return
+			LevelActionStates.LISTEN:
+				ui.current_npc_avatar = current_npc_avatar
+				ui.action_text = action_text
+				await ui.update_ui_state(ui.UiStates.LISTEN)
+				current_level_action = LevelActionStates.LISTEN
+				return
+			LevelActionStates.EXPLAIN:
+				ui.action_text = action_text
+				ui.update_ui_state(ui.UiStates.EXPLAIN)
+				current_level_action = LevelActionStates.EXPLAIN
+			LevelActionStates.INTERACT:
+				pass
+			LevelActionStates.IDLE:
+				await ui.update_ui_state(ui.UiStates.IDLE)
+				current_level_action = LevelActionStates.IDLE
+				return
+			LevelActionStates.CHOOSE:
+				ui.dialogue_box.options = choosing_options
+				await ui.update_ui_state(ui.UiStates.CHOOSE)
 
 
 func update_game_state(new_game_action : GameActionStates) -> void:

@@ -9,14 +9,43 @@ const START_RATIO : int = 0
 const FINISH_RATIO : int = 1
 const LETTER_SPEED : float = 0.02
 
+enum VisibilityStates {
+	POP_IN,
+	POP_OUT,
+	FILL_OPTIONS,
+	REMOVE_OPTIONS
+}
+var current_visibility_state : VisibilityStates
+
+var options : Array
+
 @onready var paper : AnimatedSprite2D = $AnimatedSprite2D
 @onready var text_field : Label = $Text
 @onready var options_pool : VBoxContainer = $Buttons
 
 
 func _ready() -> void:
-	text_field.hide()
-	modulate = START_MODULATE
+	update_visibility_state(VisibilityStates.POP_OUT)
+
+
+func update_visibility_state(new_visibility_state: VisibilityStates) -> void:
+	if current_visibility_state != new_visibility_state:
+		match new_visibility_state:
+			VisibilityStates.POP_IN:
+				await dialogue_box_popin()
+				current_visibility_state = VisibilityStates.POP_IN
+				return
+			VisibilityStates.POP_OUT:
+				await dialogue_box_popout()
+				current_visibility_state = VisibilityStates.POP_OUT
+				return
+			VisibilityStates.FILL_OPTIONS:
+				await  fill_options(options)
+				current_visibility_state = VisibilityStates.FILL_OPTIONS
+				return
+			VisibilityStates.REMOVE_OPTIONS:
+				pass
+		return
 
 
 ##Появление диалогового окна

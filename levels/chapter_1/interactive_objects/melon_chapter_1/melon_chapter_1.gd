@@ -31,9 +31,3 @@ func choose_dialogue() -> Dictionary:
 	if Globals.player.player_chapter_decisions["pipe_picked_up"] and Globals.player.player_chapter_decisions["door_open"] == false:
 		return pipe_dialogue.dialogue
 	return {}
-
-#func on_npc_avatar_called() -> void:
-	#await avatar.popin()
-#
-#func on_npc_avatar_dismissed() -> void:
-	#await avatar.popout()

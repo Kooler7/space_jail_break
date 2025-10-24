@@ -22,9 +22,12 @@ func on_dialogue_box_clicked() -> void:
 ##Обработка словаря диалога
 func start_dialogue() -> void:
 	if current_dialogue.is_empty() == false:
-		#Вызов окна диалога
+		#Подготовка к вызову окна диалога
 		if Globals.current_object.object_type == Globals.current_object.ObjectTypes.NPC:
 			Globals.player.current_npc_avatar = Globals.current_object.avatar
+			Globals.current_object.toggle_pickable()
+		elif Globals.current_object.object_type == Globals.current_object.ObjectTypes.ENVIRONMENT:
+			Globals.current_object.toggle_pickable()
 		current_line_number = START_DIALOGUE_NUMBER
 		current_line = current_dialogue["Line_" + str(current_line_number)]
 		
@@ -33,18 +36,12 @@ func start_dialogue() -> void:
 	elif current_dialogue.is_empty() == true:
 		return
 
+
+##Заканчивание диалога
 func finish_dialogue() -> void:
 	current_line_number = START_DIALOGUE_NUMBER
-	if Globals.current_object.object_type == Globals.current_object.ObjectTypes.NPC:
-		await Globals.player.on_dialogue_completed()
-		#Globals.current_object.on_dialogue_completed()
-		#Globals.current_object = null
-	elif Globals.current_object.object_type == Globals.current_object.ObjectTypes.ENVIRONMENT:
-		await Globals.player.on_dialogue_completed()
-		#Globals.current_object.on_dialogue_completed()
-		#Globals.current_object = null
-
-
+	await Globals.player.update_action_state(Globals.player.LevelActionStates.IDLE)
+	Globals.current_object.toggle_pickable()
 
 
 ##Обработка текущей реплики
@@ -60,7 +57,7 @@ func parse_line_type() -> void:
 		"Exicute":
 			parse_exicute_line()
 
-
+##Обработка реплики с действием
 func parse_exicute_line() -> void:
 	match current_line["Method"]:
 		"update_player_decisions":
@@ -101,9 +98,6 @@ func parse_dialogue_line() -> void:
 
 ##Обработка реплики типа "Опции"
 func parse_options_line(paths : Array) -> void:
-	if Globals.current_object.object_type == Globals.current_object.ObjectTypes.NPC:
-			await Globals.current_object.on_npc_avatar_dismissed()
-			await Globals.player.on_avatar_called(Globals.player.player_avatar)
-			await Globals.player.dialogue_box.fill_options(paths)
-	elif Globals.current_object.object_type == Globals.current_object.ObjectTypes.ENVIRONMENT:
-		await Globals.player.dialogue_box.fill_options(paths)
+	Globals.player.choosing_options = paths
+	await Globals.player.update_action_state(Globals.player.LevelActionStates.SPEAK)
+	await Globals.player.update_action_state(Globals.player.LevelActionStates.CHOOSE)

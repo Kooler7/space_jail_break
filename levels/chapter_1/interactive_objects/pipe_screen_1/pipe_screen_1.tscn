@@ -9,6 +9,7 @@
 script = ExtResource("2_ewy7e")
 icon_texture = ExtResource("3_mtv3h")
 detector_shape = ExtResource("4_q33nx")
+object_type = 1
 
 [node name="CollisionShape2D" parent="MouseDetector" index="0"]
 skew = 0.242601

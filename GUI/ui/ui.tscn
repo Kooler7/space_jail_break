@@ -13,8 +13,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_5bdqp")
 dialogue_avatars = [ExtResource("3_4q3ji"), null]
+metadata/_edit_lock_ = true
 
 [node name="MouseShield" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(1920, 1080)
@@ -25,19 +27,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 8
 
 [node name="Explaner" parent="." instance=ExtResource("2_s3w7m")]
 position = Vector2(249, 872)
+metadata/_edit_lock_ = true
 
 [node name="AvatarPosition" type="Marker2D" parent="."]
 position = Vector2(597, 563)
 gizmo_extents = 50.0
+metadata/_edit_lock_ = true
 
 [node name="PlayerAvatar" parent="AvatarPosition" instance=ExtResource("3_4q3ji")]
 
 [node name="DialogueBox" parent="." instance=ExtResource("4_difgc")]
 layout_mode = 1
-offset_left = 492.0
-offset_top = 684.0
-offset_right = 1860.0
-offset_bottom = 1026.0
+offset_left = -1432.0
+offset_top = -394.0
+offset_right = -64.0
+offset_bottom = -52.0
