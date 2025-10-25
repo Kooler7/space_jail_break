@@ -34,7 +34,7 @@ func _process(_delta: float) -> void:
 ##Старт загрузки
 func start_loading() -> void:
 	AudioManager.off_sounds()
-	Globals.player.update_game_state(Globals.player.GameActionStates.INACTIVE)
+	Globals.player.update_activity_state(Player.PlayerActivityStates.INACTIVE)
 	#Проверка количества загруженных уровней, если больше нуля,
 	#то включается заход в темное
 	var levels : int = level_viewer.get_child_count()
@@ -65,7 +65,7 @@ func instance_level() -> void:
 	#Запуск функции выхода из черного
 	await black_screen.popout()
 	AudioManager.on_sounds()
-	Globals.player.update_game_state(Globals.player.GameActionStates.ACTIVE)
+	Globals.player.update_activity_state(Player.PlayerActivityStates.ACTIVE)
 	
 	#Проверка количества инстанцированных уровней и 
 	#запуск функции удаления старого уровня

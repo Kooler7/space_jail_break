@@ -23,5 +23,5 @@ func _on_mouse_detector_mouse_exited() -> void:
 func _on_mouse_detector_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
 		Globals.player.player_chapter_decisions["pipe_picked_up"] = true
-		Globals.player.update_action_state(Globals.player.LevelActionStates.IDLE)
+		Globals.player.update_in_world_state(Player.PlayerInWorldStates.CAN_MOVE)
 		queue_free()

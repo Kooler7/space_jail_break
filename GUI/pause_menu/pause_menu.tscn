@@ -1,0 +1,110 @@
+[gd_scene load_steps=18 format=3 uid="uid://cc0hp0ngym34a"]
+
+[ext_resource type="Texture2D" uid="uid://pyaca1ajgada" path="res://assets/ui/images/paper_anim/Paper_6.png" id="1_04y2u"]
+[ext_resource type="Script" path="res://GUI/pause_menu/pause_menu.gd" id="1_30uyk"]
+[ext_resource type="Texture2D" uid="uid://bv44a181b5e30" path="res://assets/ui/images/paper_anim/Paper_5.png" id="2_t6xdr"]
+[ext_resource type="Texture2D" uid="uid://b0urnyj8ile8n" path="res://assets/ui/images/paper_anim/Paper_4.png" id="3_xho2s"]
+[ext_resource type="Texture2D" uid="uid://611xweeiutnf" path="res://assets/ui/images/paper_anim/Paper_3.png" id="4_lg6l3"]
+[ext_resource type="Texture2D" uid="uid://x10r5bmj5bf8" path="res://assets/ui/images/paper_anim/Paper_2.png" id="5_e4o6r"]
+[ext_resource type="Texture2D" uid="uid://6xj8f5t66yco" path="res://assets/ui/images/paper_anim/Paper_1.png" id="6_rcmwu"]
+[ext_resource type="FontFile" uid="uid://dxfwsk3ajcqa5" path="res://assets/fonts/Arturito Slab/arturito.ttf" id="7_eaotu"]
+[ext_resource type="Texture2D" uid="uid://dv2y44plj2ed0" path="res://assets/summary/images/accept_btn_idle_ru.png" id="8_y5m74"]
+[ext_resource type="Texture2D" uid="uid://dcuex236cbdhr" path="res://assets/summary/images/accept_btn_pressed_ru.png" id="9_khbkx"]
+[ext_resource type="Texture2D" uid="uid://b4gywkuihjeyc" path="res://assets/summary/images/accept_btn_hover_ru.png" id="10_2yhfa"]
+[ext_resource type="BitMap" uid="uid://movxg3rb8j54" path="res://assets/summary/images/symmary_btn_mask.png" id="11_n0g4u"]
+[ext_resource type="Texture2D" uid="uid://cfw8oof8l1kvb" path="res://assets/summary/images/deny_btn_idle_ru.png" id="12_laxxa"]
+[ext_resource type="Texture2D" uid="uid://b4okimkkoh7cu" path="res://assets/summary/images/deny_btn_pressed_ru.png" id="13_xb4a0"]
+[ext_resource type="Texture2D" uid="uid://ci1ljgfs4u3pc" path="res://assets/summary/images/deny_btn_hover_ru.png" id="14_aqm1k"]
+[ext_resource type="AudioStream" uid="uid://csrsx3og6h2ot" path="res://assets/summary/audio/hard_stamp.ogg" id="16_lkvkx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_257gl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_04y2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_t6xdr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xho2s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lg6l3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_e4o6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rcmwu")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="PauseMenu" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.196078, 0.196078, 0.196078, 0.372549)
+script = ExtResource("1_30uyk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(960, 540)
+scale = Vector2(1.12696, 1)
+sprite_frames = SubResource("SpriteFrames_257gl")
+frame = 4
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -255.0
+offset_top = -142.0
+offset_right = 255.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.160784, 0.160784, 0.160784, 1)
+theme_override_fonts/font = ExtResource("7_eaotu")
+theme_override_font_sizes/font_size = 79
+text = "ЗАКОНЧИТЬ?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AcceptButton" type="TextureButton" parent="."]
+offset_left = 1057.0
+offset_top = 526.0
+offset_right = 1313.0
+offset_bottom = 661.0
+mouse_force_pass_scroll_events = false
+toggle_mode = true
+texture_normal = ExtResource("8_y5m74")
+texture_pressed = ExtResource("9_khbkx")
+texture_hover = ExtResource("10_2yhfa")
+texture_click_mask = ExtResource("11_n0g4u")
+
+[node name="DenyButton" type="TextureButton" parent="."]
+offset_left = 609.0
+offset_top = 529.0
+offset_right = 865.0
+offset_bottom = 664.0
+mouse_force_pass_scroll_events = false
+toggle_mode = true
+texture_normal = ExtResource("12_laxxa")
+texture_pressed = ExtResource("13_xb4a0")
+texture_hover = ExtResource("14_aqm1k")
+texture_click_mask = ExtResource("11_n0g4u")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_lkvkx")
+bus = &"CallBtn_Bus"
+
+[connection signal="button_up" from="AcceptButton" to="." method="_on_accept_button_button_up"]
+[connection signal="button_up" from="DenyButton" to="." method="_on_deny_button_button_up"]

@@ -40,11 +40,19 @@ func update_visibility_state(new_visibility_state: VisibilityStates) -> void:
 				current_visibility_state = VisibilityStates.POP_OUT
 				return
 			VisibilityStates.FILL_OPTIONS:
-				await  fill_options(options)
-				current_visibility_state = VisibilityStates.FILL_OPTIONS
+				if current_visibility_state == VisibilityStates.POP_IN:
+					await  fill_options(options)
+					current_visibility_state = VisibilityStates.FILL_OPTIONS
+				else :
+					await dialogue_box_popin()
+					await  fill_options(options)
+					current_visibility_state = VisibilityStates.FILL_OPTIONS
 				return
 			VisibilityStates.REMOVE_OPTIONS:
-				pass
+				if current_visibility_state == VisibilityStates.FILL_OPTIONS:
+					await remove_options()
+					current_visibility_state = VisibilityStates.REMOVE_OPTIONS
+				return
 		return
 
 
@@ -128,6 +136,7 @@ func remove_options() -> void:
 	if option_buttons.is_empty() == false:
 		for button in option_buttons:
 			button.queue_free()
+	return
 
 
 ##Перехват клика по диалоговому окну

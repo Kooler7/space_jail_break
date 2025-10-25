@@ -30,7 +30,7 @@ func start_dialogue() -> void:
 			Globals.current_object.toggle_pickable()
 		current_line_number = START_DIALOGUE_NUMBER
 		current_line = current_dialogue["Line_" + str(current_line_number)]
-		
+		Globals.player.update_level_state(Player.PlayerLevelStates.IN_DIALOGUE)
 		#Вызов обработки текущей реплики
 		parse_line_type()
 	elif current_dialogue.is_empty() == true:
@@ -40,7 +40,7 @@ func start_dialogue() -> void:
 ##Заканчивание диалога
 func finish_dialogue() -> void:
 	current_line_number = START_DIALOGUE_NUMBER
-	await Globals.player.update_action_state(Globals.player.LevelActionStates.IDLE)
+	await Globals.player.update_level_state(Player.PlayerLevelStates.IN_WORLD)
 	Globals.current_object.toggle_pickable()
 
 
@@ -82,16 +82,16 @@ func parse_random_line() -> void:
 
 ##Обработка реплики типа "Тескт"
 func parse_dialogue_line() -> void:
-	var temp_text_translation = await tr(current_line["Words"])
+	var temp_text_translation = tr(current_line["Words"])
 	Globals.player.action_text = temp_text_translation
 	if Globals.current_object.object_type == Globals.current_object.ObjectTypes.NPC:
 		match current_line["Character"]:
 			"Player":
-				await Globals.player.update_action_state(Globals.player.LevelActionStates.SPEAK)
+				await Globals.player.update_in_dialogue_state(Player.PlayerInDialogueStates.SPEAK)
 			"Npc":
-				await Globals.player.update_action_state(Globals.player.LevelActionStates.LISTEN)
+				await Globals.player.update_in_dialogue_state(Player.PlayerInDialogueStates.LISTEN)
 	elif Globals.current_object.object_type == Globals.current_object.ObjectTypes.ENVIRONMENT:
-		await Globals.player.update_action_state(Globals.player.LevelActionStates.SPEAK)
+		await Globals.player.update_in_dialogue_state(Player.PlayerInDialogueStates.SPEAK)
 	current_line_number = current_line["Next_line"]
 	
 
@@ -99,5 +99,4 @@ func parse_dialogue_line() -> void:
 ##Обработка реплики типа "Опции"
 func parse_options_line(paths : Array) -> void:
 	Globals.player.choosing_options = paths
-	await Globals.player.update_action_state(Globals.player.LevelActionStates.SPEAK)
-	await Globals.player.update_action_state(Globals.player.LevelActionStates.CHOOSE)
+	await Globals.player.update_in_dialogue_state(Player.PlayerInDialogueStates.CHOOSE)
