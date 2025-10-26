@@ -1,5 +1,5 @@
 #black_screen.gd
-extends Node2D
+extends ColorRect
 
 const START_MODULATE : Color = Color(1, 1, 1, 0)
 const FINISH_MODULATE : Color = Color(1, 1, 1, 1)
@@ -40,12 +40,3 @@ func popout() -> void:
 	hide()
 	modulate = START_MODULATE
 	return
-
-
-#func rotate_wire() -> void:
-	#var rotate_tween = create_tween()
-	#rotate_tween.tween_property(wire, "rotation_degrees", 359, 2)
-	#rotate_tween.play()
-	#await rotate_tween.finished
-	#wire.rotation_degrees = 0
-	#rotate_wire()

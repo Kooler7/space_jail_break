@@ -21,10 +21,18 @@ var chapter_decisions : Dictionary = {
 
 
 func _ready() -> void:
+	#Globals.player_movement.check_player_position(Globals.player_movement.PlayerPositions.SCREEN_1)
+	#Передача игроку возможных решений на уровне
 	Globals.player.player_chapter_decisions = chapter_decisions
+	#Передача игроку имени достигнутого уровня
 	Globals.player.reached_level = name
+	#Перевод игрока в состояние управления паузой игры
+	Globals.player.is_can_pause = true
+	#Сохранение игры
 	SaveLoad.save_game()
+	#Включение звука
 	steam_sound.play()
+	#Размещение интерактивных объектов на уровне
 	place_interactive_objects()
 	
 

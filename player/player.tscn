@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://biu2qf2hc50xs"]
+[gd_scene load_steps=4 format=3 uid="uid://biu2qf2hc50xs"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_qgkk4"]
 [ext_resource type="PackedScene" uid="uid://drru1xs01q3v6" path="res://GUI/ui/ui.tscn" id="2_2olre"]
+[ext_resource type="PackedScene" uid="uid://dpgf7tgds0nna" path="res://GUI/black_screen/black_screen.tscn" id="3_hsk04"]
 
 [node name="Player" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_qgkk4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -14,3 +16,6 @@ metadata/_edit_lock_ = true
 z_index = 5
 offset_right = 1920.0
 offset_bottom = 1080.0
+metadata/_edit_lock_ = true
+
+[node name="BlackScreen" parent="." instance=ExtResource("3_hsk04")]

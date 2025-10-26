@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://dpgf7tgds0nna"]
 
 [ext_resource type="Texture2D" uid="uid://dj0uwp65wwuij" path="res://assets/black_screen/black_rect _16x16.png" id="1_dws55"]
-[ext_resource type="Script" path="res://main/black_screen/black_screen.gd" id="1_x1vo8"]
+[ext_resource type="Script" path="res://GUI/black_screen/black_screen.gd" id="1_x1vo8"]
 [ext_resource type="Texture2D" uid="uid://bu3qj5qwq5vco" path="res://assets/black_screen/barbed_wire_circle.png" id="3_84d4y"]
 
-[node name="BlackScreen" type="Node2D"]
+[node name="BlackScreen" type="ColorRect"]
 top_level = true
 script = ExtResource("1_x1vo8")
 

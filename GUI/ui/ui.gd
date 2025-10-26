@@ -2,9 +2,10 @@ extends Control
 
 #Константы для блокиратора мыши
 const MouseShieldRed = Color(1, 0, 0, 0.2)
-const MouseShieldGray = Color(0, 0, 0, 0.5)
+const MouseShieldGray = Color(0, 0, 0, 0.7)
 const MouseShieldDefault = Color(0, 0, 0, 0)
 const DialogueBox = preload("res://GUI/dialogue_box/dialogue_box.gd")
+const PauseMenu = preload("res://GUI/pause_menu/pause_menu.gd")
 
 
 
@@ -17,11 +18,12 @@ var showed_avatar : ChacrterAvatarClass
 @onready var mouse_shield : ColorRect = $MouseShield
 @onready var explaner : Node2D = $Explaner
 @onready var dialogue_box : DialogueBox = $DialogueBox
+@onready var pause_menu : PauseMenu = $PauseMenu
 
 @export var dialogue_avatars : Array
 
 func  _ready() -> void:
-	#set_owner(Globals.player)
+
 	mouse_shield.color = MouseShieldDefault
 
 

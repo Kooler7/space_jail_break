@@ -9,7 +9,7 @@ var loading_progress : Array[float]
 var is_loading_starting : bool = false
 
 
-@onready var black_screen : Node2D = $BlackScreen
+
 @onready var level_viewer : Node = $LevelVeiwer
 
 
@@ -34,12 +34,12 @@ func _process(_delta: float) -> void:
 ##Старт загрузки
 func start_loading() -> void:
 	AudioManager.off_sounds()
-	Globals.player.update_activity_state(Player.PlayerActivityStates.INACTIVE)
+
 	#Проверка количества загруженных уровней, если больше нуля,
-	#то включается заход в темное
+	#то включается заход в темное и перевод игрока в неактивное состояние
 	var levels : int = level_viewer.get_child_count()
 	if levels > 0:
-		await black_screen.popin()
+		await Globals.player.update_loading_state(Player.PlayerLoadingStates.LOADING)
 	#Передача в лоадер пути нового уровня и переключение переменной в true
 	ResourceLoader.load_threaded_request(loading_level_path)
 	is_loading_starting = true
@@ -62,10 +62,10 @@ func instance_level() -> void:
 
 	#Запуск функции очистки пуией
 	clear_paths()
-	#Запуск функции выхода из черного
-	await black_screen.popout()
+	#Запуск функции выхода из черного и перевод игрока в активное состояние
+	await Globals.player.update_loading_state(Player.PlayerLoadingStates.LOADED)
 	AudioManager.on_sounds()
-	Globals.player.update_activity_state(Player.PlayerActivityStates.ACTIVE)
+	
 	
 	#Проверка количества инстанцированных уровней и 
 	#запуск функции удаления старого уровня
@@ -75,5 +75,4 @@ func instance_level() -> void:
 
 #Функция очистки путей
 func clear_paths() -> void:
-	#loading_constructor_path = ""
 	loading_level_path = ""

@@ -59,7 +59,7 @@ var main_screen_buttons : Array
 func _ready() -> void:
 	#Отключение блокировки кнопок
 	#Globals.player.update_game_state(Globals.player.GameActionStates.ACTIVE)
-	
+	Globals.player_movement.check_player_position(Globals.player_movement.PlayerPositions.SCREEN_1)
 	choose_prison_activity(5)
 	choose_agenda(2)
 
@@ -148,7 +148,7 @@ func on_resume_btn_pressed() -> void:
 	elif Globals.player.reached_level == "":
 		await play_call_response(denied_stream)
 	##Отключение блокировки кнопок
-	#Globals.player.update_activity_state(Player.PlayerActivityStates.ACTIVE)
+	Globals.player.update_activity_state(Player.PlayerActivityStates.ACTIVE)
 
 
 ##Действия при подтверждении нажатия кнопки "Выход"

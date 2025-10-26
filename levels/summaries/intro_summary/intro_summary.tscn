@@ -5,6 +5,3 @@
 
 [node name="IntroSummary" instance=ExtResource("1_x7jgh")]
 script = ExtResource("2_3ht4d")
-
-[node name="ReportText" parent="." index="2"]
-theme_override_colors/font_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
