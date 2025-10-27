@@ -32,8 +32,8 @@ var current_game_stage : GameStages
 var is_pipe_in_position : bool = false
 
 func _ready() -> void:
-	print(current_game_stage)
-	print(new_stage)
+	#print(current_game_stage)
+	#print(new_stage)
 	update_game_stage(new_stage)
 	death_timer.start()
 	
