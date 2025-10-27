@@ -59,7 +59,10 @@ func instance_level() -> void:
 	var new_level : Node2D = ResourceLoader.load_threaded_get(loading_level_path).instantiate()
 	#Добавление в дерево
 	level_viewer.add_child(new_level)
-
+	#Проверка количества инстанцированных уровней и 
+	#запуск функции удаления старого уровня
+	if level_viewer.get_child_count() > 1:
+		remove_older_level()
 	#Запуск функции очистки пуией
 	clear_paths()
 	#Запуск функции выхода из черного и перевод игрока в активное состояние
@@ -67,10 +70,7 @@ func instance_level() -> void:
 	AudioManager.on_sounds()
 	
 	
-	#Проверка количества инстанцированных уровней и 
-	#запуск функции удаления старого уровня
-	if level_viewer.get_child_count() > 1:
-		remove_older_level()
+	
 
 
 #Функция очистки путей

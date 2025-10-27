@@ -21,7 +21,7 @@ var chapter_decisions : Dictionary = {
 
 
 func _ready() -> void:
-	#Globals.player_movement.check_player_position(Globals.player_movement.PlayerPositions.SCREEN_1)
+	Globals.player_movement.check_player_position(Globals.player_movement.PlayerPositions.SCREEN_1)
 	#Передача игроку возможных решений на уровне
 	Globals.player.player_chapter_decisions = chapter_decisions
 	#Передача игроку имени достигнутого уровня

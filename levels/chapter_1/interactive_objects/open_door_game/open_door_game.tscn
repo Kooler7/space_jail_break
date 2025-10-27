@@ -97,16 +97,6 @@ position = Vector2(-10, 0)
 texture = ExtResource("8_lc6v1")
 centered = false
 
-[node name="DeathTimer" type="Timer" parent="."]
-wait_time = 300.0
-
-[node name="DiagramTimer" type="Timer" parent="."]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_xxu7o")
-}
-
 [node name="Stage1Items" type="Node2D" parent="."]
 
 [node name="Tip1" type="Label" parent="Stage1Items"]
@@ -142,3 +132,13 @@ scale = Vector2(0.5, 0.5)
 max_value = 300.0
 texture_under = ExtResource("13_0xmhr")
 texture_progress = ExtResource("14_x6bq7")
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 300.0
+
+[node name="DiagramTimer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xxu7o")
+}

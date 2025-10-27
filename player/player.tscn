@@ -8,14 +8,13 @@
 process_mode = 3
 script = ExtResource("1_qgkk4")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-metadata/_edit_lock_ = true
-
 [node name="UI" parent="." instance=ExtResource("2_2olre")]
-z_index = 5
 offset_right = 1920.0
 offset_bottom = 1080.0
 metadata/_edit_lock_ = true
 
 [node name="BlackScreen" parent="." instance=ExtResource("3_hsk04")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+metadata/_edit_lock_ = true

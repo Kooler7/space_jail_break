@@ -1,5 +1,5 @@
 #black_screen.gd
-extends ColorRect
+extends Node2D
 
 const START_MODULATE : Color = Color(1, 1, 1, 0)
 const FINISH_MODULATE : Color = Color(1, 1, 1, 1)
