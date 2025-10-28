@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bvy33y8okhc0"]
+[gd_scene load_steps=20 format=3 uid="uid://bvy33y8okhc0"]
 
 [ext_resource type="Texture2D" uid="uid://cylh4cjosaxyk" path="res://assets/chapter_1/images/chapter_1_background_3.png" id="1_mbmjg"]
 [ext_resource type="Script" path="res://levels/chapter_1/interactive_objects/open_door_game/open_door_game.gd" id="1_nqw2h"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://1ygsjsyr2mp2" path="res://assets/chapter_1/images/diagram.png" id="11_gklev"]
 [ext_resource type="Texture2D" uid="uid://b7a6nopjlyh60" path="res://assets/chapter_1/images/pipe_diagram.png" id="12_o50jo"]
 [ext_resource type="Texture2D" uid="uid://lhxfe05fv64w" path="res://assets/chapter_1/images/ceiling_bar_background.png" id="13_0xmhr"]
+[ext_resource type="Texture2D" uid="uid://4cvr0luqc8iw" path="res://assets/chapter_1/images/ceiling_bar_frame.png" id="14_2jrk1"]
 [ext_resource type="Texture2D" uid="uid://dy4pm0uptnu8a" path="res://assets/chapter_1/images/ceiling_bar.png" id="14_x6bq7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7wacc"]
@@ -126,12 +127,32 @@ offset = Vector2(-100, 0)
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Stage1Items"]
 offset_left = 651.0
 offset_top = 92.0
-offset_right = 2011.0
-offset_bottom = 362.0
-scale = Vector2(0.5, 0.5)
+offset_right = 1622.0
+offset_bottom = 292.0
+scale = Vector2(0.3, 0.3)
 max_value = 300.0
 texture_under = ExtResource("13_0xmhr")
+texture_over = ExtResource("14_2jrk1")
 texture_progress = ExtResource("14_x6bq7")
+tint_under = Color(1, 0.5023, 0.43551, 1)
+
+[node name="Label" type="Label" parent="Stage1Items/TextureProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.741385, 0.741385, 0.741385, 1)
+theme_override_fonts/font = ExtResource("10_2afw3")
+theme_override_font_sizes/font_size = 70
+text = "СОСТОЯНИЕ ПОТОЛКА"
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 300.0
