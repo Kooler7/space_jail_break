@@ -11,7 +11,7 @@ extends Node2D
 @onready var diagram_pipe : Sprite2D = $Stage1Items/DiagramPipe
 @onready var shake_door : AnimationPlayer = $AnimationPlayer
 @onready var stage_1_items : Node2D = $Stage1Items
-@onready var ceiling_damage : TextureProgressBar = $Stage1Items/TextureProgressBar
+@onready var ceiling_damage : TextureProgressBar = $Stage1Items/CeilingBar
 
 
 

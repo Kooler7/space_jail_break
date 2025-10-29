@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bvy33y8okhc0"]
+[gd_scene load_steps=23 format=3 uid="uid://bvy33y8okhc0"]
 
 [ext_resource type="Texture2D" uid="uid://cylh4cjosaxyk" path="res://assets/chapter_1/images/chapter_1_background_3.png" id="1_mbmjg"]
 [ext_resource type="Script" path="res://levels/chapter_1/interactive_objects/open_door_game/open_door_game.gd" id="1_nqw2h"]
@@ -15,6 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://lhxfe05fv64w" path="res://assets/chapter_1/images/ceiling_bar_background.png" id="13_0xmhr"]
 [ext_resource type="Texture2D" uid="uid://4cvr0luqc8iw" path="res://assets/chapter_1/images/ceiling_bar_frame.png" id="14_2jrk1"]
 [ext_resource type="Texture2D" uid="uid://dy4pm0uptnu8a" path="res://assets/chapter_1/images/ceiling_bar.png" id="14_x6bq7"]
+[ext_resource type="Texture2D" uid="uid://bkqp17pkw1eth" path="res://assets/chapter_1/images/door_gear_bar_background.png" id="16_xngos"]
+[ext_resource type="Texture2D" uid="uid://b6oc7msx31xra" path="res://assets/chapter_1/images/door_gear_bar.png" id="17_6lykh"]
+[ext_resource type="Texture2D" uid="uid://cr2abdblcl5bm" path="res://assets/chapter_1/images/door_gear_bar_over.png" id="17_ub3nj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7wacc"]
 animations = [{
@@ -124,7 +127,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_o50jo")
 offset = Vector2(-100, 0)
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Stage1Items"]
+[node name="CeilingBar" type="TextureProgressBar" parent="Stage1Items"]
 offset_left = 651.0
 offset_top = 92.0
 offset_right = 1622.0
@@ -136,7 +139,7 @@ texture_over = ExtResource("14_2jrk1")
 texture_progress = ExtResource("14_x6bq7")
 tint_under = Color(1, 0.5023, 0.43551, 1)
 
-[node name="Label" type="Label" parent="Stage1Items/TextureProgressBar"]
+[node name="Label" type="Label" parent="Stage1Items/CeilingBar"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -153,6 +156,35 @@ theme_override_colors/font_color = Color(0.741385, 0.741385, 0.741385, 1)
 theme_override_fonts/font = ExtResource("10_2afw3")
 theme_override_font_sizes/font_size = 70
 text = "СОСТОЯНИЕ ПОТОЛКА"
+
+[node name="GearBar" type="TextureProgressBar" parent="Stage1Items"]
+offset_left = 1125.0
+offset_top = 754.0
+offset_right = 1800.0
+offset_bottom = 1004.0
+value = 12.0
+texture_under = ExtResource("16_xngos")
+texture_over = ExtResource("17_ub3nj")
+texture_progress = ExtResource("17_6lykh")
+tint_under = Color(1, 0.541241, 0.476759, 1)
+
+[node name="Label" type="Label" parent="Stage1Items/GearBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.5
+offset_top = -42.0
+offset_right = 201.5
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.666569, 0.666569, 0.666569, 1)
+theme_override_fonts/font = ExtResource("10_2afw3")
+theme_override_font_sizes/font_size = 29
+text = "СОСТОЯНИЕ ДВЕРИ"
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 300.0
