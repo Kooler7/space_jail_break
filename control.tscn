@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://lfad7h3js252"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GraphEdit" type="GraphEdit" parent="."]
+layout_mode = 0
+offset_right = 1931.0
+offset_bottom = 1072.0
+scroll_offset = Vector2(-215, -108)
+
+[node name="GraphNode" type="GraphNode" parent="GraphEdit"]
+layout_mode = 0
+offset_left = 215.0
+offset_top = 108.0
+offset_right = 329.0
+offset_bottom = 184.0
+mouse_filter = 1
+title = "TTest"
+
+[node name="GraphNode2" type="GraphNode" parent="GraphEdit"]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 107.0
+offset_right = 490.0
+offset_bottom = 183.0
+mouse_filter = 1
+position_offset = Vector2(161, -1)
+title = "TTest2"
