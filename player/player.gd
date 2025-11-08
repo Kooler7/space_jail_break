@@ -132,14 +132,12 @@ func update_loading_state(new_state : PlayerLoadingStates) -> void:
 				await black_screen.popout()
 				is_can_pause = true
 				current_loading_state = PlayerLoadingStates.LOADED
-				print("LOADED")
 				return
 			PlayerLoadingStates.LOADING:
 				is_can_pause = false
 				ui.mouse_shield.set_mouse_filter(Control.MOUSE_FILTER_STOP)
 				await black_screen.popin()
 				current_loading_state = PlayerLoadingStates.LOADING
-				print("LOADing")
 				return
 
 
@@ -151,7 +149,6 @@ func update_health_state(new_state : PlayerHealthStates) -> void:
 				ui.toggle_mouse_filter(ui.MouseShieldDefault, Control.MOUSE_FILTER_IGNORE)
 				current_health = PlayerHealthStates.ALIVE
 			PlayerHealthStates.DEAD:
-				ui.update_ui_state(ui.UiStates.DEAD)
 				ui.toggle_mouse_filter(ui.MouseShieldRed, Control.MOUSE_FILTER_STOP)
 				current_health = PlayerHealthStates.DEAD
 
