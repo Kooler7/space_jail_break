@@ -7,6 +7,7 @@ var current_dialogue : Dictionary
 var current_line : Dictionary
 var current_line_number : int = 1
 
+var dialogue_node : DialogueNode
 
 ##Обработка сигнала "dialogue_box_clicked"
 func on_dialogue_box_clicked() -> void:
@@ -93,10 +94,33 @@ func parse_dialogue_line() -> void:
 	elif Globals.current_object.object_type == Globals.current_object.ObjectTypes.ENVIRONMENT:
 		await Globals.player.update_in_dialogue_state(Player.PlayerInDialogueStates.SPEAK)
 	current_line_number = current_line["Next_line"]
-	
 
 
 ##Обработка реплики типа "Опции"
 func parse_options_line(paths : Array) -> void:
 	Globals.player.choosing_options = paths
 	await Globals.player.update_in_dialogue_state(Player.PlayerInDialogueStates.CHOOSE)
+
+
+
+##Проверка типа узла диалога
+func check_node_type() -> void:
+	match dialogue_node.current_node_type:
+		dialogue_node.NodeTypes.RANDOMIZER:
+			execute_randomizer()
+		dialogue_node.NodeTypes.TEXT:
+			execute_text()
+		dialogue_node.NodeTypes.OPTIONS:
+			pass
+		dialogue_node.NodeTypes.ACTION:
+			pass
+
+
+##Обработка узла типа "Рандомайзер"
+func execute_randomizer() -> void:
+	pass
+
+
+##Обработка узла типа "Текст"
+func execute_text() -> void:
+	var temp_text_translation = tr(dialogue_node.node_text)

@@ -1,20 +1,24 @@
-
+@icon("res://assets/icons_classes/DialogueNodeIcon.png")
 class_name DialogueNode
 
 extends Node
 
-enum Lines {
-	LINE_1,
-	LINE_2
+enum NodeTypes {
+	RANDOMIZER,
+	TEXT,
+	OPTIONS,
+	ACTION
 }
+@export var current_node_type : NodeTypes = NodeTypes.TEXT
 
-@export var dialogue : Dictionary
+@export var random_nodes : Array = []
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@export var speaker : String = "Player"
 
+@export_multiline var node_text : String = ""
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+@export var options : Array = []
+
+@export var callable : String = ""
+
+@export var next_node : String = "END"

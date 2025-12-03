@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://4u83gjvltf6a"]
+
+[ext_resource type="Script" path="res://classes/dialogue_tree_class/DialogueTreeClass.gd" id="1_plorw"]
+[ext_resource type="Script" path="res://classes/dialogue_node_class/dialogue_node_class.gd" id="2_hgmhy"]
+
+[node name="MelonFirstDialogue" type="Node"]
+script = ExtResource("1_plorw")
+
+[node name="N1" type="Node" parent="."]
+script = ExtResource("2_hgmhy")
+current_node_type = 0
+random_nodes = ["N2", "N3", "N4"]
+
+[node name="N2" type="Node" parent="."]
+script = ExtResource("2_hgmhy")
+node_text = "Да уж Дыня... серьезно тебя приложило!"
+next_node = "N5"
+
+[node name="N3" type="Node" parent="."]
+script = ExtResource("2_hgmhy")
+node_text = "Дыня, у тебя из ноги штырь торчит..."
+next_node = "N5"
+
+[node name="N4" type="Node" parent="."]
+script = ExtResource("2_hgmhy")
+node_text = "Черт! Не выспаться мне сегодня!"
+next_node = "N5"
+
+[node name="N5" type="Node" parent="."]
+script = ExtResource("2_hgmhy")
+speaker = "Melon"
+node_text = "Гор, это ты? Что-то мне нехорошо... Что произошло?"
+next_node = "N6"
+
+[node name="N6" type="Node" parent="."]
+script = ExtResource("2_hgmhy")
+node_text = "Похоже в цеху кто-то накосячил и он бахнул. Мы так-то не сахар здесь варили."
+next_node = "N7"
+
+[node name="N7" type="Node" parent="."]
+script = ExtResource("2_hgmhy")
+speaker = "Melon"
+node_text = "А ты цел. Вовремя ты отлить встал. А мне чего-то не фортануло."
+next_node = "N8"
+
+[node name="N8" type="Node" parent="."]
+script = ExtResource("2_hgmhy")
+node_text = "Это не надолго. Сейчас остатки потолка упадут и нас завалит."
+next_node = "N9"
+
+[node name="N9" type="Node" parent="."]
+script = ExtResource("2_hgmhy")
+speaker = "Melon"
+node_text = "Ты башковитый, чего-нибудь придумаешь. Только, когда будешь линять про кореша не забудь."
+next_node = "N10"
+
+[node name="N10" type="Node" parent="."]
+script = ExtResource("2_hgmhy")
