@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxyfm7d5dn8es"]
+
+[ext_resource type="PackedScene" uid="uid://chgdstjyij0dt" path="res://GUI/dialogue_box/dialogue_box.tscn" id="1_dig04"]
+[ext_resource type="Script" path="res://classes/dialogue_ui_class/dialogue_ui_class.gd" id="1_dqu6q"]
+[ext_resource type="PackedScene" uid="uid://byvnav0x5q2rw" path="res://levels/chapter_1/interactive_objects/melon_chapter_1/melon_avatar.tscn" id="3_7y6mw"]
+[ext_resource type="PackedScene" uid="uid://cc0mtyajbcmst" path="res://player/player_avatar/player_avatar.tscn" id="4_a1ckm"]
+
+[node name="DialogueUI" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_dqu6q")
+
+[node name="DialogueBox" parent="." instance=ExtResource("1_dig04")]
+offset_left = 488.0
+offset_top = 680.0
+offset_right = 1856.0
+offset_bottom = 1022.0
+
+[node name="AvatarPosition" type="Marker2D" parent="."]
+position = Vector2(512, 512)
+
+[node name="Melon" parent="AvatarPosition" instance=ExtResource("3_7y6mw")]
+
+[node name="Player" parent="AvatarPosition" instance=ExtResource("4_a1ckm")]

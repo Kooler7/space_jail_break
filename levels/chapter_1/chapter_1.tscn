@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://podhonapc5fq" path="res://assets/chapter_1/images/chapter_1_background_2_Part.png" id="9_24pmb"]
 [ext_resource type="PackedScene" uid="uid://bvy33y8okhc0" path="res://levels/chapter_1/interactive_objects/open_door_game/open_door_game.tscn" id="9_mchw1"]
 [ext_resource type="PackedScene" uid="uid://dnhfkfoyvba1k" path="res://levels/chapter_1/interactive_objects/navigation_panel_2/chapter_1_navigation_panel_2.tscn" id="10_x00um"]
-[ext_resource type="PackedScene" uid="uid://c8virrjs8pyge" path="res://levels/chapter_1/player_movement_managment/chapter_1_player_movement.tscn" id="13_kd5dn"]
+[ext_resource type="PackedScene" uid="uid://cxyfm7d5dn8es" path="res://classes/dialogue_ui_class/dialogue_ui_class.tscn" id="12_kiub2"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gxvl6"]
 particle_flag_disable_z = true
@@ -106,4 +106,4 @@ bus = &"PrisonActivity_Bus"
 parameters/looping = true
 metadata/_edit_lock_ = true
 
-[node name="Chapter1PlayerMovement" parent="." instance=ExtResource("13_kd5dn")]
+[node name="DialogueUI" parent="." instance=ExtResource("12_kiub2")]

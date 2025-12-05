@@ -1,6 +1,6 @@
 #character_avatar_class.gd
 @icon("res://assets/icons_classes/character_avatar_class.png")
-class_name ChacrterAvatarClass
+class_name CharacterAvatarClass
 
 extends Sprite2D
 

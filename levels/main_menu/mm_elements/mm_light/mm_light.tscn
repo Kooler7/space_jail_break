@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4cro2xlskx2n"]
+
+[ext_resource type="Script" path="res://levels/main_menu/mm_elements/mm_light/mm_light.gd" id="1_yr2wd"]
+
+[sub_resource type="Gradient" id="Gradient_uvl4p"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ibqd5"]
+gradient = SubResource("Gradient_uvl4p")
+fill = 1
+fill_from = Vector2(0.508547, 0.478632)
+fill_to = Vector2(0.773504, 0.183761)
+
+[node name="MMLight" type="PointLight2D"]
+scale = Vector2(6.26563, 6.82812)
+energy = 2.69
+texture = SubResource("GradientTexture2D_ibqd5")
+script = ExtResource("1_yr2wd")
+
+[node name="PauseTimer" type="Timer" parent="."]
+
+[node name="FlashTimer" type="Timer" parent="."]

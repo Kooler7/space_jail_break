@@ -38,8 +38,8 @@ func load_settings() -> void:
 
 func save_game() -> void:
 	var save_data : Dictionary = {
-		"ReachedLevel" : Globals.player.reached_level,
-		"PlayerGlobalDecisions" : Globals.player.player_global_decisions
+		"ReachedLevel" : GameState.current_level,
+		"PlayerGlobalDecisions" : GameState.global_decisions
 	}
 	var file = FileAccess.open(save_game_path, FileAccess.WRITE)
 	file.store_var(save_data)
@@ -52,5 +52,5 @@ func load_game() -> void:
 	elif FileAccess.file_exists(save_game_path) == true:
 		var file = FileAccess.open(save_game_path, FileAccess.READ)
 		var saved_data = file.get_var()
-		Globals.player.reached_level = saved_data["ReachedLevel"]
-		Globals.player.player_global_decisions = saved_data["PlayerGlobalDecisions"]
+		GameState.current_level = saved_data["ReachedLevel"]
+		GameState.global_decisions = saved_data["PlayerGlobalDecisions"]

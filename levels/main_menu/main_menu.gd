@@ -59,7 +59,7 @@ var main_screen_buttons : Array
 func _ready() -> void:
 	#Отключение блокировки кнопок
 	#Globals.player.update_game_state(Globals.player.GameActionStates.ACTIVE)
-	Globals.player_movement.check_player_position(Globals.player_movement.PlayerPositions.SCREEN_1)
+	Globals.player.movement.check_player_position(Globals.player.movement.PlayerPositions.SCREEN_1)
 	choose_prison_activity(5)
 	choose_agenda(2)
 
@@ -109,7 +109,7 @@ func on_accept_button_pressed() ->void:
 func on_back_btn_pressed() -> void:
 	button_click.play()
 	SaveLoad.save_settings()
-	Globals.player_movement.check_player_position(Globals.player_movement.PlayerPositions.SCREEN_1)
+	Globals.player.movement.check_player_position(Globals.player.movement.PlayerPositions.SCREEN_1)
 	#Отключение блокировки кнопок
 	Globals.player.update_activity_state(Player.PlayerActivityStates.ACTIVE)
 
@@ -118,7 +118,7 @@ func on_back_btn_pressed() -> void:
 ##Действия при подтверждении нажатия кнопки "Настройка"
 func on_settings_btn_pressed() -> void:
 	await play_call_response(accepted_stream)
-	Globals.player_movement.check_player_position(Globals.player_movement.PlayerPositions.SCREEN_2)
+	Globals.player.movement.check_player_position(Globals.player.movement.PlayerPositions.SCREEN_2)
 	Globals.player.update_activity_state(Player.PlayerActivityStates.ACTIVE)
 
 
@@ -141,11 +141,11 @@ func slide_sell() -> void:
 
 ##Действия при подтверждении нажатия кнопки "Продолжить"
 func on_resume_btn_pressed() -> void:
-	if Globals.player.reached_level != "":
+	if GameState.current_level != "":
 		await play_call_response(accepted_stream)
 		await slide_sell()
-		Globals.story_manager.change_story_node(Globals.player.reached_level)
-	elif Globals.player.reached_level == "":
+		Globals.story_manager.change_story_node(GameState.current_level)
+	elif GameState.current_level == "":
 		await play_call_response(denied_stream)
 	##Отключение блокировки кнопок
 	Globals.player.update_activity_state(Player.PlayerActivityStates.ACTIVE)

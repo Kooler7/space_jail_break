@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://blsdr763dwuyx"]
-
-[ext_resource type="Script" path="res://levels/chapter_1/dialogues/dialogue_nodes/melon_first_dialogue/melon_first_dialogue.gd" id="1_ufs3o"]
-
-[node name="MelonFirstDialogue" type="Node"]
-script = ExtResource("1_ufs3o")

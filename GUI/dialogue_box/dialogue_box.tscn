@@ -38,17 +38,8 @@ animations = [{
 [node name="DialogueBox" type="TextureRect"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(50, 50)
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1920.0
-offset_top = -1080.0
-offset_right = -552.0
-offset_bottom = -738.0
-grow_horizontal = 0
-grow_vertical = 0
+offset_right = 1368.0
+offset_bottom = 342.0
 mouse_filter = 2
 script = ExtResource("1_pr6nx")
 

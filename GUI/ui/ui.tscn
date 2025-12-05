@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://drru1xs01q3v6"]
+[gd_scene load_steps=4 format=3 uid="uid://drru1xs01q3v6"]
 
 [ext_resource type="Script" path="res://GUI/ui/ui.gd" id="1_5bdqp"]
 [ext_resource type="PackedScene" uid="uid://0q02y30luv84" path="res://GUI/explaner/explaner.tscn" id="2_s3w7m"]
-[ext_resource type="PackedScene" uid="uid://cc0mtyajbcmst" path="res://player/player_avatar/player_avatar.tscn" id="3_4q3ji"]
-[ext_resource type="PackedScene" uid="uid://chgdstjyij0dt" path="res://GUI/dialogue_box/dialogue_box.tscn" id="4_difgc"]
 [ext_resource type="PackedScene" uid="uid://cc0hp0ngym34a" path="res://GUI/pause_menu/pause_menu.tscn" id="5_ymj0p"]
 
 [node name="UI" type="Control"]
@@ -16,7 +14,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_5bdqp")
-dialogue_avatars = [ExtResource("3_4q3ji"), null]
 
 [node name="MouseShield" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(1920, 1080)
@@ -33,20 +30,6 @@ mouse_default_cursor_shape = 8
 [node name="Explaner" parent="." instance=ExtResource("2_s3w7m")]
 position = Vector2(249, 872)
 metadata/_edit_lock_ = true
-
-[node name="AvatarPosition" type="Marker2D" parent="."]
-position = Vector2(597, 563)
-gizmo_extents = 50.0
-metadata/_edit_lock_ = true
-
-[node name="PlayerAvatar" parent="AvatarPosition" instance=ExtResource("3_4q3ji")]
-
-[node name="DialogueBox" parent="." instance=ExtResource("4_difgc")]
-layout_mode = 1
-offset_left = -1432.0
-offset_top = -394.0
-offset_right = -64.0
-offset_bottom = -52.0
 
 [node name="PauseMenu" parent="." instance=ExtResource("5_ymj0p")]
 layout_mode = 0

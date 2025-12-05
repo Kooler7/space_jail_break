@@ -15,7 +15,9 @@ enum VisibilityStates {
 	FILL_OPTIONS,
 	REMOVE_OPTIONS
 }
-var current_visibility_state : VisibilityStates
+var current_visibility_state : VisibilityStates = VisibilityStates.POP_OUT
+
+#var modulate_tween : Tween
 
 var options : Array
 
@@ -24,8 +26,10 @@ var options : Array
 @onready var options_pool : VBoxContainer = $Buttons
 
 
-func _ready() -> void:
-	update_visibility_state(VisibilityStates.POP_OUT)
+#func _ready() -> void:
+	#update_visibility_state(VisibilityStates.POP_IN)
+
+
 
 
 func update_visibility_state(new_visibility_state: VisibilityStates) -> void:
@@ -99,8 +103,6 @@ func text_typing(text : String) -> void:
 	#Проверка наличия текста
 	if text == null:
 		print("Текст недоступен!!!")
-	elif text == "":
-		print("Получена пустая строка!")
 	else:
 		#Сброс видимости текста
 		text_field.visible_ratio = START_RATIO
@@ -142,4 +144,4 @@ func remove_options() -> void:
 ##Перехват клика по диалоговому окну
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
-		DialogueManager.on_dialogue_box_clicked()
+		DialogueManager.on_dialogue_box_clicked(DialogueManager.current_dialogue_tree)

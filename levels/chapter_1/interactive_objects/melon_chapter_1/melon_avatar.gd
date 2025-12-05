@@ -1,4 +1,4 @@
-extends ChacrterAvatarClass
+extends CharacterAvatarClass
 
 
 func _ready() -> void:

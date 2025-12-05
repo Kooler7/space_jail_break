@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://cgvcuie1pqxhc" path="res://assets/main_menu/images/mm_start_btn_idle_ru.png" id="8_cs7rj"]
 [ext_resource type="AudioStream" uid="uid://cfofmyrxfj56n" path="res://assets/main_menu/audio/agenda_2_ru.ogg" id="8_rt70v"]
 [ext_resource type="Texture2D" uid="uid://d2hk3yr0ccm45" path="res://assets/main_menu/images/mm_start_btn_pressed_ru.png" id="9_j28vf"]
+[ext_resource type="PackedScene" uid="uid://d4cro2xlskx2n" path="res://levels/main_menu/mm_elements/mm_light/mm_light.tscn" id="9_obwlv"]
 [ext_resource type="AudioStream" uid="uid://b0b25ycrxsnuw" path="res://assets/main_menu/audio/agenda_3_ru.ogg" id="9_xu7g7"]
 [ext_resource type="Texture2D" uid="uid://bv7g6m6symjtx" path="res://assets/main_menu/images/mm_settings_btn_idle_ru.png" id="10_05jwj"]
 [ext_resource type="Texture2D" uid="uid://c44rc7hror0wa" path="res://assets/main_menu/images/mm_settings_btn_pressed_ru.png" id="11_u1nbq"]
@@ -36,7 +37,6 @@
 [ext_resource type="Texture2D" uid="uid://bm75462v7555w" path="res://assets/main_menu/images/settings_close_btn_pressed_ru.png" id="24_6tuk6"]
 [ext_resource type="AudioStream" uid="uid://sw1qitwr88hb" path="res://assets/main_menu/audio/we_will_die_ru.ogg" id="34_gyoxc"]
 [ext_resource type="AudioStream" uid="uid://p8x6h21vnk61" path="res://assets/main_menu/audio/door_opening.ogg" id="36_bsjtv"]
-[ext_resource type="PackedScene" uid="uid://d07l8dige6u8c" path="res://levels/main_menu/mm_elements/mm_player_movement/mm_player_movement.tscn" id="37_hfcdm"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_6i8l5"]
 
@@ -64,17 +64,26 @@ texture = ExtResource("4_0ti8l")
 metadata/_edit_lock_ = true
 
 [node name="Sell" type="Sprite2D" parent="Screen1"]
+light_mask = 2
 texture = ExtResource("3_12bmi")
 centered = false
+metadata/_edit_lock_ = true
 
 [node name="Title" type="Sprite2D" parent="Screen1/Sell"]
 auto_translate_mode = 1
 position = Vector2(511, 403)
 texture = ExtResource("6_6bi5f")
 
+[node name="MMLight" parent="Screen1" instance=ExtResource("9_obwlv")]
+position = Vector2(1245.75, 924)
+scale = Vector2(7.72657, 13.5)
+energy = 2.5
+
 [node name="Pillar" type="Sprite2D" parent="Screen1"]
+light_mask = 2
 texture = ExtResource("4_q7sss")
 centered = false
+metadata/_edit_lock_ = true
 
 [node name="MainScreenButtons" type="VBoxContainer" parent="Screen1"]
 anchors_preset = 8
@@ -324,5 +333,3 @@ bus = &"Objects_Bus"
 wait_time = 15.0
 
 [node name="AgendaSpeechTimer" type="Timer" parent="."]
-
-[node name="MMPlayerMovement" parent="." instance=ExtResource("37_hfcdm")]

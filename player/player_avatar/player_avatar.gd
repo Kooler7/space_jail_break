@@ -1,5 +1,5 @@
 #player_avatar.gd
-extends ChacrterAvatarClass
+extends CharacterAvatarClass
 
 
 func _ready() -> void:

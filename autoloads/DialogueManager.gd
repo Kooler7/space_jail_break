@@ -1,126 +1,79 @@
 extends Node
 
-const END_DIALOGUE_NUMBER = -1
-const START_DIALOGUE_NUMBER = 1
+const END_DIALOGUE_NODE = "END"
+const START_DIALOGUE_NODE = "N1"
 
-var current_dialogue : Dictionary
-var current_line : Dictionary
-var current_line_number : int = 1
+var dialogue_ui : DialogueUI = null
 
-var dialogue_node : DialogueNode
+var current_dialogue_tree : DialogueTree = null
+var current_dialogue_node : DialogueNode = null
 
 ##Обработка сигнала "dialogue_box_clicked"
-func on_dialogue_box_clicked() -> void:
+func on_dialogue_box_clicked(tree : DialogueTree) -> void:
 	#Проверка номера строки не больше размера диалога
-	if current_line_number != END_DIALOGUE_NUMBER:
-		current_line = current_dialogue["Line_" + str(current_line_number)]
-		#Запуск обработки диалога
-		parse_line_type()
-	elif current_line_number == END_DIALOGUE_NUMBER:
+	if current_dialogue_node.next_node != "END":
+		current_dialogue_node = tree.get_node_safe(current_dialogue_node.next_node)
+		check_node_type()
+	elif current_dialogue_node.next_node == "END":
 		finish_dialogue()
 		
 
 ##Обработка словаря диалога
 func start_dialogue() -> void:
-	if current_dialogue.is_empty() == false:
+	if current_dialogue_tree != null:
 		#Подготовка к вызову окна диалога
-		if Globals.current_object.object_type == Globals.current_object.ObjectTypes.NPC:
-			Globals.player.current_npc_avatar = Globals.current_object.avatar
-			Globals.current_object.toggle_pickable()
-		elif Globals.current_object.object_type == Globals.current_object.ObjectTypes.ENVIRONMENT:
-			Globals.current_object.toggle_pickable()
-		current_line_number = START_DIALOGUE_NUMBER
-		current_line = current_dialogue["Line_" + str(current_line_number)]
+		Globals.current_object.toggle_pickable()
+		current_dialogue_node = current_dialogue_tree.get_node_safe(START_DIALOGUE_NODE)
 		Globals.player.update_level_state(Player.PlayerLevelStates.IN_DIALOGUE)
 		#Вызов обработки текущей реплики
-		parse_line_type()
-	elif current_dialogue.is_empty() == true:
+		check_node_type()
+	elif current_dialogue_tree == null:
 		return
 
 
 ##Заканчивание диалога
 func finish_dialogue() -> void:
-	current_line_number = START_DIALOGUE_NUMBER
+	dialogue_ui.dialogue_box.text_field.text = ""
+	await  dialogue_ui.toggle_speaker_avatar("", true)
+	await dialogue_ui.dialogue_box.update_visibility_state(dialogue_ui.dialogue_box.VisibilityStates.POP_OUT)
 	await Globals.player.update_level_state(Player.PlayerLevelStates.IN_WORLD)
 	Globals.current_object.toggle_pickable()
-
-
-##Обработка текущей реплики
-func parse_line_type() -> void:
-	#Проверка типа реплики
-	match current_line["Type"]:
-		"Text":
-			parse_dialogue_line()
-		"Options":
-			parse_options_line(current_line["Paths"])
-		"Random":
-			parse_random_line()
-		"Exicute":
-			parse_exicute_line()
-
-##Обработка реплики с действием
-func parse_exicute_line() -> void:
-	match current_line["Method"]:
-		"update_player_decisions":
-			update_player_decisions(current_line["Decision"], current_line["Value"])
-	current_line_number = current_line["Next_line"]
-	on_dialogue_box_clicked()
-
-
-func update_player_decisions(decision : String, value : bool) -> void:
-	Globals.player.player_chapter_decisions[decision] = value
-
-
-
-###Обработка реплики типа "Рандом"
-func parse_random_line() -> void:
-	var ranges : Array = current_line["Random_range"]
-	var first : int = ranges[0]
-	var last : int = ranges[1]
-	var number = randi_range(first, last)
-	current_line = current_dialogue["Line_" + str(number)]
-	parse_line_type()
-
-##Обработка реплики типа "Тескт"
-func parse_dialogue_line() -> void:
-	var temp_text_translation = tr(current_line["Words"])
-	Globals.player.action_text = temp_text_translation
-	if Globals.current_object.object_type == Globals.current_object.ObjectTypes.NPC:
-		match current_line["Character"]:
-			"Player":
-				await Globals.player.update_in_dialogue_state(Player.PlayerInDialogueStates.SPEAK)
-			"Npc":
-				await Globals.player.update_in_dialogue_state(Player.PlayerInDialogueStates.LISTEN)
-	elif Globals.current_object.object_type == Globals.current_object.ObjectTypes.ENVIRONMENT:
-		await Globals.player.update_in_dialogue_state(Player.PlayerInDialogueStates.SPEAK)
-	current_line_number = current_line["Next_line"]
-
-
-##Обработка реплики типа "Опции"
-func parse_options_line(paths : Array) -> void:
-	Globals.player.choosing_options = paths
-	await Globals.player.update_in_dialogue_state(Player.PlayerInDialogueStates.CHOOSE)
 
 
 
 ##Проверка типа узла диалога
 func check_node_type() -> void:
-	match dialogue_node.current_node_type:
-		dialogue_node.NodeTypes.RANDOMIZER:
+	match current_dialogue_node.current_node_type:
+		current_dialogue_node.NodeTypes.RANDOMIZER:
 			execute_randomizer()
-		dialogue_node.NodeTypes.TEXT:
+		current_dialogue_node.NodeTypes.TEXT:
 			execute_text()
-		dialogue_node.NodeTypes.OPTIONS:
-			pass
-		dialogue_node.NodeTypes.ACTION:
-			pass
+		current_dialogue_node.NodeTypes.OPTIONS:
+			execute_options()
+		current_dialogue_node.NodeTypes.ACTION:
+			execute_action()
 
 
 ##Обработка узла типа "Рандомайзер"
 func execute_randomizer() -> void:
-	pass
+	var picked_next_node = current_dialogue_node.random_nodes.pick_random()
+	current_dialogue_node = current_dialogue_tree.get_node_safe(picked_next_node)
+	check_node_type()
 
 
 ##Обработка узла типа "Текст"
 func execute_text() -> void:
-	var temp_text_translation = tr(dialogue_node.node_text)
+	var temp_text_translation = tr(current_dialogue_node.node_text)
+	dialogue_ui.toggle_speaker_avatar(current_dialogue_node.speaker)
+	await dialogue_ui.dialogue_box.update_visibility_state(dialogue_ui.dialogue_box.VisibilityStates.POP_IN)
+	await dialogue_ui.dialogue_box.text_typing(temp_text_translation)
+
+
+##Обработка узла типа "Опции"
+func execute_options() -> void:
+	var options = current_dialogue_node.options
+
+
+#Обработка узла типа "Действия"
+func execute_action() -> void:
+	pass

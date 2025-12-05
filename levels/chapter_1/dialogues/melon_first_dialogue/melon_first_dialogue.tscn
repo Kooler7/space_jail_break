@@ -5,6 +5,10 @@
 
 [node name="MelonFirstDialogue" type="Node"]
 script = ExtResource("1_plorw")
+conditions = {
+"expected_value": false,
+"key": "melon_first_dialogue_complete"
+}
 
 [node name="N1" type="Node" parent="."]
 script = ExtResource("2_hgmhy")
@@ -56,3 +60,4 @@ next_node = "N10"
 
 [node name="N10" type="Node" parent="."]
 script = ExtResource("2_hgmhy")
+node_text = "Хорошо"

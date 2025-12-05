@@ -1,15 +1,17 @@
 extends InteractiveObject
 
-@onready var first_dialogue : Node = $MelonFirstDialogue
+#@onready var first_dialogue : DialogueTree = $MelonFirstDialogue
 @onready var pipe_dialogue : Node = $MelonPipeDialogue
+
 
 @export var avatar : PackedScene
 
 var constructed_name : String = "MELON_NPC"
+var dialogues : Array
 
 func _ready() -> void:
 	construct_object(constructed_name)
-
+	dialogues = $Dialogues.get_children()
 
 
 func construct_object(new_constructed_name) -> void:
@@ -17,17 +19,11 @@ func construct_object(new_constructed_name) -> void:
 	current_object_condition = ObjectConditions.TALK
 
 
-
 func _on_mouse_detector_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
 		Globals.current_object = self
-		DialogueManager.current_dialogue = choose_dialogue()
+		for dialogue in dialogues:
+			if dialogue.is_available():
+				DialogueManager.current_dialogue_tree = dialogue
+		#DialogueManager.current_dialogue_tree = choose_dialogue()
 		DialogueManager.start_dialogue()
-
-
-func choose_dialogue() -> Dictionary:
-	if Globals.player.player_chapter_decisions["melon_first_dialogue_complete"] == false:
-		return first_dialogue.dialogue
-	if Globals.player.player_chapter_decisions["pipe_picked_up"] and Globals.player.player_chapter_decisions["door_open"] == false:
-		return pipe_dialogue.dialogue
-	return {}

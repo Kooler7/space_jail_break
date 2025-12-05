@@ -6,10 +6,16 @@ extends Node
 
 var tree_nodes : Array = []
 var node_names : Array = []
+@export var conditions: Dictionary = {
+	"key" = "", 
+	"expected_value" = false
+	}
+
 
 func _ready() -> void:
 	tree_nodes = get_children()
-	#print(get_node_safe("N3").node_text)
+
+
 
 #Функция получения искомого узла диалога по его имени
 func get_node_safe(node_name: String) -> DialogueNode:
@@ -20,6 +26,13 @@ func get_node_safe(node_name: String) -> DialogueNode:
 		return null
 	return tree_nodes[node_names.find(node_name)]
 
+
+#Функция проверяющая доступность диалога
+func is_available() -> bool:
+	if GameState.level_flags.get(conditions.key) == conditions.expected_value:
+		return true
+	else:
+		return false
 
 func get_available_choices(node_id: String) -> Array:
 	var node = get_node_safe(node_id)

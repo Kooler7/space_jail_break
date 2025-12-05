@@ -10,14 +10,6 @@ extends Node2D
 func _ready() -> void:
 	emit_sparks()
 
-#func _process(delta: float) -> void:
-	#if sparks.emitting:
-		#print("FLASH!!!")
-		#light.energy = 1
-		#await get_tree().process_frame
-		#await get_tree().process_frame
-		#light.energy = 0
-		#print("STOP!!!")
 
 func emit_sparks() -> void:
 	emission_timer.wait_time = randi_range(1, 3)

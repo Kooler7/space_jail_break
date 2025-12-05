@@ -17,6 +17,8 @@ detector_shape = ExtResource("4_3kger")
 [node name="CollisionShape2D" parent="MouseDetector" index="0"]
 position = Vector2(80, 40)
 
-[node name="MelonFirstDialogue" parent="." index="3" instance=ExtResource("6_q3nwn")]
+[node name="MelonPipeDialogue" parent="." index="3" instance=ExtResource("7_0gfu0")]
 
-[node name="MelonPipeDialogue" parent="." index="4" instance=ExtResource("7_0gfu0")]
+[node name="Dialogues" type="Node" parent="." index="4"]
+
+[node name="MelonFirstDialogue" parent="Dialogues" index="0" instance=ExtResource("6_q3nwn")]
