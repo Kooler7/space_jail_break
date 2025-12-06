@@ -3,6 +3,7 @@ extends Node
 const END_DIALOGUE_NODE = "END"
 const START_DIALOGUE_NODE = "N1"
 
+
 var dialogue_ui : DialogueUI = null
 
 var current_dialogue_tree : DialogueTree = null
@@ -38,6 +39,8 @@ func finish_dialogue() -> void:
 	await dialogue_ui.dialogue_box.update_visibility_state(dialogue_ui.dialogue_box.VisibilityStates.POP_OUT)
 	await Globals.player.update_level_state(Player.PlayerLevelStates.IN_WORLD)
 	Globals.current_object.toggle_pickable()
+	current_dialogue_node = null
+	current_dialogue_tree = null
 
 
 
@@ -76,4 +79,17 @@ func execute_options() -> void:
 
 #Обработка узла типа "Действия"
 func execute_action() -> void:
-	pass
+	match current_dialogue_node.current_action_type:
+		current_dialogue_node.ActionTypes.SET_LEVEL_FLAG:
+			for flag in current_dialogue_node.flags:
+				if GameState.has_level_flag(flag.key):
+					GameState.set_level_flag(flag.key, flag.value)
+				else:
+					return
+		current_dialogue_node.ActionTypes.SET_ITEM:
+			pass
+		current_dialogue_node.ActionTypes.SET_GLOBAL_FLAG:
+			pass
+		current_dialogue_node.ActionTypes.REMOVE_ITEM:
+			pass
+	on_dialogue_box_clicked(current_dialogue_tree)

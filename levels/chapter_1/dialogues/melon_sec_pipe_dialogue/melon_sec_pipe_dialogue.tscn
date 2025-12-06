@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxnip0xo5pkax"]
+
+[ext_resource type="Script" path="res://classes/dialogue_tree_class/DialogueTreeClass.gd" id="1_kxeut"]
+[ext_resource type="Script" path="res://classes/dialogue_node_class/dialogue_node_class.gd" id="2_usvce"]
+
+[node name="MelonSecPipeDialogue" type="Node"]
+script = ExtResource("1_kxeut")
+conditions = [{
+"condition_type": "level_flag",
+"expected_value": true,
+"key": "melon_first_dialogue_complete"
+}, {
+"condition_type": "item",
+"expected_value": true,
+"key": "pipe"
+}]
+
+[node name="N1" type="Node" parent="."]
+script = ExtResource("2_usvce")
+current_node_type = 0
+random_nodes = ["N2", "N3", "N4"]
+
+[node name="N2" type="Node" parent="."]
+script = ExtResource("2_usvce")
+speaker = "Melon"
+node_text = "О! Ты трубу нашел. Значит чего-нибудь придумаешь."
+
+[node name="N3" type="Node" parent="."]
+script = ExtResource("2_usvce")
+speaker = "Melon"
+node_text = "Поторопись! Иначе нам обоим крантец наступит."
+
+[node name="N4" type="Node" parent="."]
+script = ExtResource("2_usvce")
+speaker = "Melon"
+node_text = "Ты башковитый. Сам что-нибудь придумаешь."

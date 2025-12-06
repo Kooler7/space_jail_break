@@ -14,14 +14,14 @@ func _ready() -> void:
 	level_flags = {}
 	level_decisions = {}
 
-#func set_flag(name: String, value):
-	#if flags.has(name) and flags[name] == value:
-		#return
-	#flags[name] = value
-	#emit_signal("flag_changed", name, value)
+func set_level_flag(name: String, value):
+	if level_flags.has(name) and level_flags[name] == value:
+		return
+	level_flags[name] = value
+	emit_signal("flag_changed", name, value)
 #
-#func has_flag(name: String) -> bool:
-	#return flags.get(name, false)
+func has_level_flag(name: String) -> bool:
+	return level_flags.has(name)
 
 func add_item(item: String):
 	if not item in inventory:

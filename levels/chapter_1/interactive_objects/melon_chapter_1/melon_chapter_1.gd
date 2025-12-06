@@ -1,10 +1,5 @@
 extends InteractiveObject
 
-#@onready var first_dialogue : DialogueTree = $MelonFirstDialogue
-@onready var pipe_dialogue : Node = $MelonPipeDialogue
-
-
-@export var avatar : PackedScene
 
 var constructed_name : String = "MELON_NPC"
 var dialogues : Array
@@ -25,5 +20,4 @@ func _on_mouse_detector_input_event(viewport: Node, event: InputEvent, shape_idx
 		for dialogue in dialogues:
 			if dialogue.is_available():
 				DialogueManager.current_dialogue_tree = dialogue
-		#DialogueManager.current_dialogue_tree = choose_dialogue()
 		DialogueManager.start_dialogue()

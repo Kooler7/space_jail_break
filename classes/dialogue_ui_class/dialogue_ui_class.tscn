@@ -17,6 +17,7 @@ offset_bottom = 1022.0
 
 [node name="AvatarPosition" type="Marker2D" parent="."]
 position = Vector2(512, 512)
+gizmo_extents = 93.3
 
 [node name="Melon" parent="AvatarPosition" instance=ExtResource("3_7y6mw")]
 

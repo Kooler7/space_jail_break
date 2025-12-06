@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://levels/chapter_1/interactive_objects/melon_chapter_1/melon_avatar.gd" id="2_88p5a"]
 
 [node name="MelonAvatar" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_gn81u")
 script = ExtResource("2_88p5a")
