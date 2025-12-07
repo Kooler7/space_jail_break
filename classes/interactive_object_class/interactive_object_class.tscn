@@ -15,11 +15,6 @@ script = ExtResource("1_gqo77")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseDetector"]
 shape = SubResource("CircleShape2D_gfn6x")
 
-[node name="Name" type="Label" parent="."]
-visible = false
-offset_right = 40.0
-offset_bottom = 23.0
-
 [connection signal="input_event" from="MouseDetector" to="." method="_on_mouse_detector_input_event"]
 [connection signal="mouse_entered" from="MouseDetector" to="." method="_on_mouse_detector_mouse_entered"]
 [connection signal="mouse_exited" from="MouseDetector" to="." method="_on_mouse_detector_mouse_exited"]

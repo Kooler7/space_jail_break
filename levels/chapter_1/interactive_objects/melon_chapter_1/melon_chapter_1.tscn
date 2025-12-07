@@ -3,22 +3,29 @@
 [ext_resource type="PackedScene" uid="uid://cnrfgsqpemish" path="res://classes/interactive_object_class/interactive_object_class.tscn" id="1_ycrf1"]
 [ext_resource type="Script" path="res://levels/chapter_1/interactive_objects/melon_chapter_1/melon_chapter_1.gd" id="2_3bk1w"]
 [ext_resource type="Texture2D" uid="uid://d0slmdlara12" path="res://assets/characters/melon/melon_chapter_1.png" id="3_dfp6f"]
-[ext_resource type="Shape2D" uid="uid://56ch1pcg5oma" path="res://resources/collision_shapes/melon_chapter_1_collision_shape.tres" id="4_3kger"]
-[ext_resource type="PackedScene" uid="uid://byvnav0x5q2rw" path="res://levels/chapter_1/interactive_objects/melon_chapter_1/melon_avatar.tscn" id="5_hj6l8"]
+[ext_resource type="PackedScene" uid="uid://b8iveeivtn4as" path="res://levels/chapter_1/dialogues/melon_sec_no_pipe_dialogue/melon_sec_no_pipe_dialogue.tscn" id="6_7r2j4"]
 [ext_resource type="PackedScene" uid="uid://dxnip0xo5pkax" path="res://levels/chapter_1/dialogues/melon_sec_pipe_dialogue/melon_sec_pipe_dialogue.tscn" id="6_i57w2"]
 [ext_resource type="PackedScene" uid="uid://4u83gjvltf6a" path="res://levels/chapter_1/dialogues/melon_first_dialogue/melon_first_dialogue.tscn" id="6_q3nwn"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4f7bu"]
+radius = 72.0
+height = 352.0
+
 [node name="MelonChapter1" instance=ExtResource("1_ycrf1")]
 script = ExtResource("2_3bk1w")
-avatar = ExtResource("5_hj6l8")
-icon_texture = ExtResource("3_dfp6f")
-detector_shape = ExtResource("4_3kger")
+object_name = "MELON_NPC"
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource("3_dfp6f")
 
 [node name="CollisionShape2D" parent="MouseDetector" index="0"]
-position = Vector2(80, 40)
+position = Vector2(72, 8)
+shape = SubResource("CapsuleShape2D_4f7bu")
 
-[node name="Dialogues" type="Node" parent="." index="3"]
+[node name="Dialogues" type="Node" parent="." index="2"]
 
 [node name="MelonSecPipeDialogue" parent="Dialogues" index="0" instance=ExtResource("6_i57w2")]
 
 [node name="MelonFirstDialogue" parent="Dialogues" index="1" instance=ExtResource("6_q3nwn")]
+
+[node name="MelonSecNoPipeDialogue" parent="Dialogues" index="2" instance=ExtResource("6_7r2j4")]

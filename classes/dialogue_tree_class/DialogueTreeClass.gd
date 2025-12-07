@@ -9,13 +9,8 @@ var node_names : Array = []
 
 
 #Условия при которых данное дерево диалога доступно для использования
-@export var conditions: Array = [
-	{
-		"condition_type" = "",
-		"key" = "", 
-		"expected_value" = false
-	}
-]
+@export_category("Add Conditions!")
+@export var conditions : Array[DialogueCondition] = [] ## Условия при которых данное дерево диалога доступно для использования
 
 
 func _ready() -> void:
@@ -23,7 +18,7 @@ func _ready() -> void:
 
 
 
-#Функция получения искомого узла диалога по его имени
+##Функция получения искомого узла диалога по его имени
 func get_node_safe(node_name: String) -> DialogueNode:
 	for node in tree_nodes:
 		node_names.push_back(node.name)
@@ -33,36 +28,47 @@ func get_node_safe(node_name: String) -> DialogueNode:
 	return tree_nodes[node_names.find(node_name)]
 
 
-#Функция проверяющая доступность диалога
+##Функция проверяющая доступность диалога
 func is_available() -> bool:
+	#Возврат если уловия не указаны
+	if conditions == []:
+		return false
+	
 	var temp_conditions : Array = []
 	for condition in conditions:
 		match condition.condition_type:
-			"level_flag":
-				if GameState.has_level_flag(condition.key):
-					if GameState.level_flags[condition.key] == condition.expected_value:
+			
+			#Действия если условие для доступа к диалогу в сюжетных флагах уровня
+			condition.ConditionTypes.LEVEL_FLAG:
+				if GameState.has_flag(GameState.level_flags, condition.condition_key):
+					if GameState.level_flags[condition.condition_key] == condition.expected_value:
 						temp_conditions.push_back(true)
 					else:
 						temp_conditions.push_back(false)
 				else:
 					return false
-			"item":
-				if GameState.has_item(condition.key) == condition.expexted_value:
+			
+			#Действия если условие для доступа к диалогу в инвентаре
+			condition.ConditionTypes.ITEM:
+				if GameState.has_item(condition.condition_key) == condition.expected_value:
 					temp_conditions.push_back(true)
 				else:
 					temp_conditions.push_back(false)
+			
+			#Действия если условие для доступа к диалогу в сюжетных глобальных флагах
+			condition.ConditionTypes.GLOBAL_FLAG:
+				pass
+			
+			#Действия если условие для доступа к диалогу в решениях на уровне
+			condition.ConditionTypes.LEVEL_DECISION:
+				pass
+			
+			#Действия если условие для доступа к диалогу в глобальных решениях
+			condition.ConditionTypes.GLOBAL_DECISION:
+				pass
+	
+	#Если не выполнено хотябы одно из условий, то диалог недоступен
 	if temp_conditions.has(false) or temp_conditions == null:
 		return false
 	else:
 		return true
-
-#func get_available_choices(node_id: String) -> Array:
-	#var node = get_node_safe(node_id)
-	#if not node or not node.is_available():
-		#return []
-	#var result = []
-	#for choice in node.choices:
-		#var choice_node = get_node_safe(choice.next_node)
-		#if choice_node and choice_node.is_available():
-			#result.append(choice)
-	#return result

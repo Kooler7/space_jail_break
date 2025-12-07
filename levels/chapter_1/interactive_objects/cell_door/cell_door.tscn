@@ -3,20 +3,25 @@
 [ext_resource type="Script" path="res://levels/chapter_1/interactive_objects/cell_door/cell_door.gd" id="1_2d8bl"]
 [ext_resource type="PackedScene" uid="uid://cnrfgsqpemish" path="res://classes/interactive_object_class/interactive_object_class.tscn" id="1_v72sk"]
 [ext_resource type="Texture2D" uid="uid://c65oed0s8m0t8" path="res://assets/chapter_1/images/Cell_Door.png" id="3_4kru2"]
-[ext_resource type="PackedScene" uid="uid://b7k0hqkng6yok" path="res://levels/chapter_1/dialogues/dialogue_nodes/door_closed_no_pipe/door_closed_no_pipe.tscn" id="3_cvvek"]
-[ext_resource type="Shape2D" uid="uid://cnd1oi6s4ug45" path="res://resources/collision_shapes/cell_door_collision_shape.tres" id="4_gufgy"]
-[ext_resource type="PackedScene" uid="uid://w4dm8a0upear" path="res://levels/chapter_1/dialogues/dialogue_nodes/door_closed_pipe/door_closed_pipe.tscn" id="4_sfliy"]
+[ext_resource type="PackedScene" uid="uid://h34g2hs6pbcu" path="res://levels/chapter_1/dialogues/door_closed_no_pipe/door_closed_no_pipe.tscn" id="4_4rq87"]
+[ext_resource type="PackedScene" uid="uid://dng4avsexw28x" path="res://levels/chapter_1/dialogues/door_close_pipe/door_closed_pipe.tscn" id="5_d7kil"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8fsjw"]
+size = Vector2(657, 1069)
 
 [node name="CellDoor" instance=ExtResource("1_v72sk")]
 script = ExtResource("1_2d8bl")
-icon_texture = ExtResource("3_4kru2")
-detector_shape = ExtResource("4_gufgy")
-object_type = 1
+object_name = "CELL_DOOR"
 
-[node name="CollisionPosition" type="Marker2D" parent="." index="3"]
-position = Vector2(-544, 0)
-gizmo_extents = 60.0
+[node name="Icon" parent="." index="0"]
+texture = ExtResource("3_4kru2")
 
-[node name="DoorClosedPipe" parent="." index="4" instance=ExtResource("4_sfliy")]
+[node name="CollisionShape2D" parent="MouseDetector" index="0"]
+position = Vector2(-624.5, 1.5)
+shape = SubResource("RectangleShape2D_8fsjw")
 
-[node name="DoorClosedNoPipe" parent="." index="5" instance=ExtResource("3_cvvek")]
+[node name="Dialogues" type="Node" parent="." index="2"]
+
+[node name="DoorClosedNoPipe" parent="Dialogues" index="0" instance=ExtResource("4_4rq87")]
+
+[node name="DoorClosedPipe" parent="Dialogues" index="1" instance=ExtResource("5_d7kil")]

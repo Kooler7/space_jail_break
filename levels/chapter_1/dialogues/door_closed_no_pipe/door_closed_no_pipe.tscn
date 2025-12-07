@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://h34g2hs6pbcu"]
+
+[ext_resource type="Script" path="res://classes/dialogue_tree_class/DialogueTreeClass.gd" id="1_vurs8"]
+[ext_resource type="Script" path="res://classes/dialogue_node_class/dialogue_node_class.gd" id="2_p77yy"]
+[ext_resource type="Script" path="res://dialogue_condition_class.gd" id="3_fq5gv"]
+
+[node name="DoorClosedNoPipe" type="Node" node_paths=PackedStringArray("conditions")]
+script = ExtResource("1_vurs8")
+conditions = [NodePath("Condition")]
+
+[node name="N1" type="Node" parent="."]
+script = ExtResource("2_p77yy")
+current_node_type = 0
+random_nodes = ["N2", "N3", "N4"]
+
+[node name="N2" type="Node" parent="."]
+script = ExtResource("2_p77yy")
+node_text = "Чертову дверь заклинило намертво!"
+
+[node name="N3" type="Node" parent="."]
+script = ExtResource("2_p77yy")
+current_node_type = 0
+node_text = "Мотор сгорел напрочь!"
+
+[node name="N4" type="Node" parent="."]
+script = ExtResource("2_p77yy")
+current_node_type = 0
+node_text = "Черт! Что ж мне делать с этой дверью?"
+
+[node name="Condition" type="Node" parent="."]
+script = ExtResource("3_fq5gv")
+condition_key = "melon_first_dialogue_complete"
+expected_value = true

@@ -74,7 +74,8 @@ func execute_text() -> void:
 
 ##Обработка узла типа "Опции"
 func execute_options() -> void:
-	var options = current_dialogue_node.options
+	dialogue_ui.dialogue_box.options = current_dialogue_node.options
+	dialogue_ui.dialogue_box.update_visibility_state(dialogue_ui.dialogue_box.VisibilityStates.FILL_OPTIONS)
 
 
 #Обработка узла типа "Действия"
@@ -82,8 +83,8 @@ func execute_action() -> void:
 	match current_dialogue_node.current_action_type:
 		current_dialogue_node.ActionTypes.SET_LEVEL_FLAG:
 			for flag in current_dialogue_node.flags:
-				if GameState.has_level_flag(flag.key):
-					GameState.set_level_flag(flag.key, flag.value)
+				if GameState.has_flag(GameState.level_flags, flag.key):
+					GameState.set_flag(GameState.level_flags, flag.key, flag.value)
 				else:
 					return
 		current_dialogue_node.ActionTypes.SET_ITEM:
@@ -91,5 +92,7 @@ func execute_action() -> void:
 		current_dialogue_node.ActionTypes.SET_GLOBAL_FLAG:
 			pass
 		current_dialogue_node.ActionTypes.REMOVE_ITEM:
+			pass
+		current_dialogue_node.ActionTypes.CHECK_INVENTORY:
 			pass
 	on_dialogue_box_clicked(current_dialogue_tree)

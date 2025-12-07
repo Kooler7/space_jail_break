@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsb2wueunw1vu"]
+
+[ext_resource type="Script" path="res://classes/dialogue_tree_class/DialogueTreeClass.gd" id="1_kbo4m"]
+
+[node name="DialogueTreeClass" type="Node"]
+script = ExtResource("1_kbo4m")

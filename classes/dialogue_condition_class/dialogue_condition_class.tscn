@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://beaq5dikaflo0"]
+
+[ext_resource type="Script" path="res://dialogue_condition_class.gd" id="1_0q8io"]
+
+[node name="DialogueConditionClass" type="Node"]
+script = ExtResource("1_0q8io")

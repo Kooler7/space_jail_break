@@ -16,6 +16,7 @@ var interactive_objects_paths : Dictionary = {
 
 var level_flags : Dictionary = {
 	"melon_first_dialogue_complete" : false,
+	"pipe_picked_up" : false,
 }
 var level_decisions : Dictionary = {
 	"pipe_picked_up" : false,

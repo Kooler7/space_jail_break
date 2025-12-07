@@ -1,19 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxnip0xo5pkax"]
+[gd_scene load_steps=4 format=3 uid="uid://dxnip0xo5pkax"]
 
 [ext_resource type="Script" path="res://classes/dialogue_tree_class/DialogueTreeClass.gd" id="1_kxeut"]
 [ext_resource type="Script" path="res://classes/dialogue_node_class/dialogue_node_class.gd" id="2_usvce"]
+[ext_resource type="Script" path="res://dialogue_condition_class.gd" id="3_psn8p"]
 
-[node name="MelonSecPipeDialogue" type="Node"]
+[node name="MelonSecPipeDialogue" type="Node" node_paths=PackedStringArray("conditions")]
 script = ExtResource("1_kxeut")
-conditions = [{
-"condition_type": "level_flag",
-"expected_value": true,
-"key": "melon_first_dialogue_complete"
-}, {
-"condition_type": "item",
-"expected_value": true,
-"key": "pipe"
-}]
+conditions = [NodePath("Condition_1"), NodePath("Condition_2")]
 
 [node name="N1" type="Node" parent="."]
 script = ExtResource("2_usvce")
@@ -34,3 +27,14 @@ node_text = "Поторопись! Иначе нам обоим крантец �
 script = ExtResource("2_usvce")
 speaker = "Melon"
 node_text = "Ты башковитый. Сам что-нибудь придумаешь."
+
+[node name="Condition_1" type="Node" parent="."]
+script = ExtResource("3_psn8p")
+condition_key = "melon_first_dialogue_complete"
+expected_value = true
+
+[node name="Condition_2" type="Node" parent="."]
+script = ExtResource("3_psn8p")
+condition_type = 2
+condition_key = "pipe"
+expected_value = true

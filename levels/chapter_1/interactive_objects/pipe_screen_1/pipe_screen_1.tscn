@@ -3,13 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://cnrfgsqpemish" path="res://classes/interactive_object_class/interactive_object_class.tscn" id="1_i0tdl"]
 [ext_resource type="Script" path="res://levels/chapter_1/interactive_objects/pipe_screen_1/pipe_screen_1.gd" id="2_ewy7e"]
 [ext_resource type="Texture2D" uid="uid://8bjg78274jpm" path="res://assets/chapter_1/images/Pipe_Screen_1.png" id="3_mtv3h"]
-[ext_resource type="Shape2D" uid="uid://bv47gdyrxpo45" path="res://resources/collision_shapes/pipe_screen_1_collision_shape.tres" id="4_q33nx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_twy50"]
+size = Vector2(33.9798, 156.585)
 
 [node name="PipeScreen1" instance=ExtResource("1_i0tdl")]
 script = ExtResource("2_ewy7e")
-icon_texture = ExtResource("3_mtv3h")
-detector_shape = ExtResource("4_q33nx")
-object_type = 1
+object_name = "PIPE"
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource("3_mtv3h")
 
 [node name="CollisionShape2D" parent="MouseDetector" index="0"]
+position = Vector2(-32, 108)
 skew = 0.242601
+shape = SubResource("RectangleShape2D_twy50")
