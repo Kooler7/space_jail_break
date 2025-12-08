@@ -23,19 +23,22 @@ enum ActionTypes {
 @export var current_action_type : ActionTypes = ActionTypes.SET_LEVEL_FLAG ## Тип действия для узла типа ACTION
 
 #Вещи, полученные в процессе диалога, для добавления или удаления из инвентара
-@export var items : Array[String] = [] ## Элементы, которые могут быть получены или потеряны в этом узле в процессе диалога, для добавления или удаления из инвентара
+## Элементы, которые могут быть получены или потеряны в этом узле в
+## процессе диалога, для добавления или удаления из инвентаря
+@export var items : Array[String] = [] 
 
-#Этапы повествования пройденные в процессе диалога для добавления в level_flags и global_flags
-@export var flags : Array = [ ##Этапы повествования пройденные в процессе диалога для добавления в level_flags и global_flags
+
+## Этапы повествования пройденные в процессе диалога для добавления в level_flags и global_flags
+@export var flags : Array = [ 
 	{
 		"key" = "",
 		"value" = false
 	}
 ] 
 
-#Имена узлов используемых для случайного начала диалога (если необходимо)
+## Имена узлов используемых для случайного начала диалога (если необходимо)
 @export_category("For Randomizer!") 
-@export var random_nodes : Array[String] = [] ##Имена узлов используемых для случайного начала диалога (если необходимо)
+@export var random_nodes : Array[String] = [] 
 
 
 @export_category("For Text!")

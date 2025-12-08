@@ -11,6 +11,13 @@ enum ConditionTypes {
 	LEVEL_DECISION, ## Значение определенного решения на уровне
 	GLOBAL_DECISION ## Значение определенного глобального решения
 }
-@export var condition_type : ConditionTypes ##Выбор типа условия доступности данного диалога
-@export_multiline var condition_key : String ## Ключ этапа повествования в GameState.level_flags, GameState.global_flags, GameState.level_decisions, GameState.global_decisions 
-@export var expected_value : bool ##Ожидаемое значение ключа этапа повествования
+
+##Выбор типа условия доступности данного диалога
+@export var condition_type : ConditionTypes
+
+## Ключ этапа повествования в GameState.level_flags, GameState.global_flags,
+## GameState.level_decisions, GameState.global_decisions 
+@export_multiline var condition_key : String
+
+##Ожидаемое значение ключа этапа повествования
+@export var expected_value : bool 

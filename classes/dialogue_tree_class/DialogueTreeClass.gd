@@ -6,11 +6,14 @@ extends Node
 
 var tree_nodes : Array = []
 var node_names : Array = []
+var temp_conditions : Array = []
+
 
 
 #Условия при которых данное дерево диалога доступно для использования
 @export_category("Add Conditions!")
-@export var conditions : Array[DialogueCondition] = [] ## Условия при которых данное дерево диалога доступно для использования
+## Условия при которых данное дерево диалога доступно для использования
+@export var conditions : Array[DialogueCondition] = [] 
 
 
 func _ready() -> void:
@@ -34,27 +37,20 @@ func is_available() -> bool:
 	if conditions == []:
 		return false
 	
-	var temp_conditions : Array = []
+	temp_conditions = []
+	
+	#Цикл проверки каждого условия из массива условий
 	for condition in conditions:
 		match condition.condition_type:
 			
 			#Действия если условие для доступа к диалогу в сюжетных флагах уровня
 			condition.ConditionTypes.LEVEL_FLAG:
-				if GameState.has_flag(GameState.level_flags, condition.condition_key):
-					if GameState.level_flags[condition.condition_key] == condition.expected_value:
-						temp_conditions.push_back(true)
-					else:
-						temp_conditions.push_back(false)
-				else:
-					return false
-			
+				temp_conditions.push_back(check_condition(GameState.level_flags, condition.condition_key, condition.expected_value))
+
 			#Действия если условие для доступа к диалогу в инвентаре
 			condition.ConditionTypes.ITEM:
-				if GameState.has_item(condition.condition_key) == condition.expected_value:
-					temp_conditions.push_back(true)
-				else:
-					temp_conditions.push_back(false)
-			
+				temp_conditions.push_back(check_item(condition.condition_key, condition.expected_value))
+
 			#Действия если условие для доступа к диалогу в сюжетных глобальных флагах
 			condition.ConditionTypes.GLOBAL_FLAG:
 				pass
@@ -72,3 +68,21 @@ func is_available() -> bool:
 		return false
 	else:
 		return true
+
+
+#Функция проверки элемента в инвентаре
+func check_item(item: String, expected_value: bool) -> bool:
+	if GameState.has_item(item) == expected_value:
+		return true
+	else:
+		return false
+
+#Функция проверки глобального этапа\решения или этапа\решения уровня
+func check_condition(storage: Dictionary, condition_key: String, expected_value: bool) -> bool:
+	if GameState.has_flag(storage, condition_key):
+		if storage[condition_key] == expected_value:
+			return true
+		else:
+			return false
+	else:
+		return false

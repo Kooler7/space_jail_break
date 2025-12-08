@@ -1,9 +1,6 @@
 #cell_door.gd
 extends InteractiveObject
 
-@onready var closed_no_pipe_dialogue : Node = $DoorClosedNoPipe
-@onready var closed_pipe_dialogue : Node = $DoorClosedPipe
-
 
 
 enum DoorStates {
@@ -33,9 +30,9 @@ func check_door_state(new_state) -> void:
 func choose_dialogue() -> Dictionary:
 	if current_door_state == DoorStates.CLOSED:
 		if Globals.player.player_chapter_decisions["pipe_picked_up"] == false:
-			return closed_no_pipe_dialogue.dialogue
+			pass
 		elif Globals.player.player_chapter_decisions["pipe_picked_up"] == true:
-			return closed_pipe_dialogue.dialogue
+			pass
 		return {}
 	elif current_door_state == DoorStates.OPENED:
 		pass
