@@ -16,6 +16,10 @@ run/main_scene="res://main/main.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://resources/default_bus_layout.tres"
+
 [autoload]
 
 GameState="*res://autoloads/GameState.gd"
@@ -38,9 +42,12 @@ window/stretch/aspect="expand"
 
 folder_colors={
 "res://GUI/": "blue",
+"res://assets/": "gray",
 "res://autoloads/": "pink",
 "res://classes/": "purple",
-"res://levels/": "teal"
+"res://levels/": "green",
+"res://main/": "teal",
+"res://player/": "blue"
 }
 
 [internationalization]

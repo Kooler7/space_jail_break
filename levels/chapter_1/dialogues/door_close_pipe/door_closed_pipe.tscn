@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://classes/dialogue_node_class/dialogue_node_class.gd" id="2_bl06g"]
 [ext_resource type="PackedScene" uid="uid://b2viccqpv4dt3" path="res://levels/chapter_1/dialogues/options/try_door/try_door.tscn" id="3_wbneu"]
 [ext_resource type="PackedScene" uid="uid://dagge1otmga1i" path="res://levels/chapter_1/dialogues/options/leave/leave.tscn" id="4_m5knh"]
-[ext_resource type="Script" path="res://dialogue_condition_class.gd" id="5_soxth"]
+[ext_resource type="Script" path="res://classes/dialogue_condition_class/dialogue_condition_class.gd" id="5_soxth"]
 
 [node name="DoorClosedPipe" type="Node" node_paths=PackedStringArray("conditions")]
 script = ExtResource("1_8n1ve")
-conditions = [NodePath("Condition")]
+conditions = [NodePath("Condition_1")]
 
 [node name="N1" type="Node" parent="."]
 script = ExtResource("2_bl06g")
@@ -17,18 +17,22 @@ random_nodes = Array[String](["N2", "N3", "N4", "N5"])
 
 [node name="N2" type="Node" parent="."]
 script = ExtResource("2_bl06g")
+node_text = "…А в докторской диссертации этого не было ни словом."
 next_node = "N6"
 
 [node name="N3" type="Node" parent="."]
 script = ExtResource("2_bl06g")
+node_text = "Сталь, алюминий, человеческое упрямство — всё поддаётся приложению достаточного усилия."
 next_node = "N6"
 
 [node name="N4" type="Node" parent="."]
 script = ExtResource("2_bl06g")
+node_text = "Одна труба, один физик — и целая философия взаимодействия с бюрократией."
 next_node = "N6"
 
 [node name="N5" type="Node" parent="."]
 script = ExtResource("2_bl06g")
+node_text = "Ладно. Ньютон, прости — сейчас будет третий закон по-вреймановски."
 next_node = "N6"
 
 [node name="N6" type="Node" parent="."]
@@ -36,8 +40,17 @@ script = ExtResource("2_bl06g")
 current_node_type = 2
 options = Array[PackedScene]([ExtResource("3_wbneu"), ExtResource("4_m5knh")])
 
-[node name="Condition" type="Node" parent="."]
+[node name="Condition_1" type="Node" parent="."]
 script = ExtResource("5_soxth")
 condition_type = 2
 condition_key = "pipe"
 expected_value = true
+
+[node name="Condition_2" type="Node" parent="."]
+script = ExtResource("5_soxth")
+condition_key = "melon_first_dialogue_complete"
+expected_value = true
+
+[node name="Condition_3" type="Node" parent="."]
+script = ExtResource("5_soxth")
+condition_key = "door_open"

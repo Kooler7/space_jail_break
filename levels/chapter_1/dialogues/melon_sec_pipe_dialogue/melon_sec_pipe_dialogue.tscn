@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://classes/dialogue_tree_class/DialogueTreeClass.gd" id="1_kxeut"]
 [ext_resource type="Script" path="res://classes/dialogue_node_class/dialogue_node_class.gd" id="2_usvce"]
-[ext_resource type="Script" path="res://dialogue_condition_class.gd" id="3_psn8p"]
+[ext_resource type="Script" path="res://classes/dialogue_condition_class/dialogue_condition_class.gd" id="3_psn8p"]
 
 [node name="MelonSecPipeDialogue" type="Node" node_paths=PackedStringArray("conditions")]
 script = ExtResource("1_kxeut")
@@ -11,7 +11,7 @@ conditions = [NodePath("Condition_1"), NodePath("Condition_2")]
 [node name="N1" type="Node" parent="."]
 script = ExtResource("2_usvce")
 current_node_type = 0
-random_nodes = ["N2", "N3", "N4"]
+random_nodes = Array[String](["N2", "N3", "N4"])
 
 [node name="N2" type="Node" parent="."]
 script = ExtResource("2_usvce")
@@ -26,7 +26,7 @@ node_text = "Поторопись! Иначе нам обоим крантец �
 [node name="N4" type="Node" parent="."]
 script = ExtResource("2_usvce")
 speaker = "Melon"
-node_text = "Ты башковитый. Сам что-нибудь придумаешь."
+node_text = "Ты башковитый. Сам что-нибудь придумаешь..."
 
 [node name="Condition_1" type="Node" parent="."]
 script = ExtResource("3_psn8p")

@@ -13,7 +13,17 @@ extends Node2D
 const IDLE_MODULATE = Color(1, 1, 1, 1)
 const HOVER_MODULATE = Color(1.8, 1.8, 1.8, 1)
 
-var dialogues : Array
+var dialogues : Array = []
+
+
+#func check_available_dialogue_tree() -> DialogueTree:
+	#for dialogue in dialogues:
+		#if dialogue.is_available():
+			#return dialogue
+		#else:
+			#return null
+	#return
+
 
 func toggle_pickable() -> void:
 	if mouse_detector.input_pickable == true:

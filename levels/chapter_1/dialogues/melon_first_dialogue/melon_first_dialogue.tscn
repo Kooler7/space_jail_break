@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://classes/dialogue_tree_class/DialogueTreeClass.gd" id="1_plorw"]
 [ext_resource type="Script" path="res://classes/dialogue_node_class/dialogue_node_class.gd" id="2_hgmhy"]
-[ext_resource type="Script" path="res://dialogue_condition_class.gd" id="3_t05fb"]
+[ext_resource type="Script" path="res://classes/dialogue_condition_class/dialogue_condition_class.gd" id="3_t05fb"]
 
 [node name="MelonFirstDialogue" type="Node" node_paths=PackedStringArray("conditions")]
 script = ExtResource("1_plorw")
@@ -11,7 +11,7 @@ conditions = [NodePath("Condition")]
 [node name="N1" type="Node" parent="."]
 script = ExtResource("2_hgmhy")
 current_node_type = 0
-random_nodes = ["N2", "N3", "N4"]
+random_nodes = Array[String](["N2", "N3", "N4"])
 
 [node name="N2" type="Node" parent="."]
 script = ExtResource("2_hgmhy")

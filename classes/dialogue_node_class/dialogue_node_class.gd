@@ -3,6 +3,7 @@ class_name DialogueNode
 
 extends Node
 
+
 #Тип узла диалога
 enum NodeTypes {
 	RANDOMIZER, ## Узел, автоматически переключающийся на случайный из массива random_nodes
@@ -17,8 +18,8 @@ enum ActionTypes {
 	SET_LEVEL_FLAG, ## Добавление значения флагу уровня
 	SET_ITEM, ## Добавление элемента в инвентарь
 	SET_GLOBAL_FLAG, ## Добавление значения глобальному флагу
-	CHECK_INVENTORY, ## Проверка наличия элемента в инвентаре
-	REMOVE_ITEM ## Удаление элемента из инвентаря
+	REMOVE_ITEM, ## Удаление элемента из инвентаря
+	CHANGE_DIALOGUE_TREE ## Смена дерева диалога без заканчивания диалога
 }
 @export var current_action_type : ActionTypes = ActionTypes.SET_LEVEL_FLAG ## Тип действия для узла типа ACTION
 
@@ -42,15 +43,15 @@ enum ActionTypes {
 
 
 @export_category("For Text!")
-
-@export var speaker : String = "Player" ##Имя спикера данного узла
-
-@export_multiline var node_text : String = "" ##Текст узла диалога
-
-@export var options : Array[PackedScene] = [] ##Сцены кнопок выбора опций из файловой системы
-
-@export var next_node : String = "END" ##Имя следующего узла диалога
+ ##Имя спикера данного узла
+@export var speaker : String = "Player"
+##Текст узла диалога
+@export_multiline var node_text : String = "" 
+##Сцены кнопок выбора опций из файловой системы
+@export var options : Array[PackedScene] = [] 
+##Имя следующего узла диалога
+@export var next_node : String = "END" 
 
 @export_category("For Action!")
-#Название функции для вызова
-@export var callable : String = "" ##Название функции для вызова
+##Название функции для вызова
+@export var callable : String = "" 

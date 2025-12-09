@@ -126,7 +126,7 @@ func fill_options(data : Array) -> void:
 	#Перебор массива data
 	for item in data:
 		#Инстанцирование кнопок опций из адресов в массиве
-		var option : PackedScene = load(item)
+		var option : PackedScene = item
 		var child : Button = option.instantiate()
 		options_pool.add_child(child)
 	mouse_filter = MOUSE_FILTER_IGNORE

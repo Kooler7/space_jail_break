@@ -81,18 +81,43 @@ func execute_options() -> void:
 #Обработка узла типа "Действия"
 func execute_action() -> void:
 	match current_dialogue_node.current_action_type:
+		
 		current_dialogue_node.ActionTypes.SET_LEVEL_FLAG:
 			for flag in current_dialogue_node.flags:
-				if GameState.has_flag(GameState.level_flags, flag.key):
-					GameState.set_flag(GameState.level_flags, flag.key, flag.value)
-				else:
-					return
+				set_level_global_flag(GameState.level_flags, flag.key, flag.value)
+		
 		current_dialogue_node.ActionTypes.SET_ITEM:
-			pass
+			for item in current_dialogue_node.items:
+				set_remove_item(item)
+		
 		current_dialogue_node.ActionTypes.SET_GLOBAL_FLAG:
-			pass
+			for flag in current_dialogue_node.flags:
+				set_level_global_flag(GameState.global_flags, flag.key, flag.value)
+		
 		current_dialogue_node.ActionTypes.REMOVE_ITEM:
-			pass
-		current_dialogue_node.ActionTypes.CHECK_INVENTORY:
-			pass
+			for item in current_dialogue_node.items:
+				set_remove_item(item)
+
+		current_dialogue_node.ActionTypes.CHANGE_DIALOGUE_TREE:
+			current_dialogue_tree = Globals.current_object.check_available_dialogue_tree()
+			if current_dialogue_tree != null:
+				current_dialogue_node = current_dialogue_tree.get_node_safe(START_DIALOGUE_NODE)
+			elif current_dialogue_tree == null:
+				return
+
 	on_dialogue_box_clicked(current_dialogue_tree)
+
+
+#Функция установки или удаления элемента в инвентаре
+func set_remove_item(item: String) -> void:
+	if GameState.has_item(item) == false:
+		GameState.add_item(item)
+	elif GameState.has_item(item) == true:
+		GameState.remove_item(item)
+
+#Фукция установки значения этапа уровня или глобального этапа
+func set_level_global_flag(new_storage: Dictionary, new_flag: String, new_value: bool) -> void:
+	if GameState.has_flag(new_storage, new_flag):
+		GameState.set_flag(new_storage, new_flag, new_value)
+	else:
+		return

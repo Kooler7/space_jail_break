@@ -20,4 +20,4 @@ enum ConditionTypes {
 @export_multiline var condition_key : String
 
 ##Ожидаемое значение ключа этапа повествования
-@export var expected_value : bool 
+@export var expected_value : bool
