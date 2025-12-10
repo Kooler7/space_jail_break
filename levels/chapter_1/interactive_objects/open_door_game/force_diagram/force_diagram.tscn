@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc4sj1gsbwqju"]
+
+[ext_resource type="FontFile" uid="uid://dxfwsk3ajcqa5" path="res://assets/fonts/Arturito Slab/arturito.ttf" id="1_3dwiv"]
+[ext_resource type="Script" path="res://levels/chapter_1/interactive_objects/open_door_game/force_diagram/force_diagram.gd" id="1_7mxtt"]
+[ext_resource type="Texture2D" uid="uid://1ygsjsyr2mp2" path="res://assets/chapter_1/images/diagram.png" id="2_jfg2b"]
+[ext_resource type="Texture2D" uid="uid://b7a6nopjlyh60" path="res://assets/chapter_1/images/pipe_diagram.png" id="3_ib60s"]
+
+[node name="ForceDiagram" type="Node2D"]
+script = ExtResource("1_7mxtt")
+
+[node name="Tip1" type="Label" parent="."]
+offset_left = -302.0
+offset_top = -421.0
+offset_right = 308.0
+offset_bottom = -344.0
+theme_override_colors/font_color = Color(0.694118, 0.694118, 0.694118, 1)
+theme_override_fonts/font = ExtResource("1_3dwiv")
+theme_override_font_sizes/font_size = 27
+text = "Удерживайте трубу в зоне максимального усилия правой и левой кнопками мыши"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Force" type="Sprite2D" parent="."]
+texture = ExtResource("2_jfg2b")
+
+[node name="DiagramPipe" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ib60s")
+offset = Vector2(-100, 0)
+
+[node name="DiagramTimer" type="Timer" parent="."]

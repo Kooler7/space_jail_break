@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bvy33y8okhc0"]
+[gd_scene load_steps=15 format=3 uid="uid://bvy33y8okhc0"]
 
 [ext_resource type="Texture2D" uid="uid://cylh4cjosaxyk" path="res://assets/chapter_1/images/chapter_1_background_3.png" id="1_mbmjg"]
 [ext_resource type="Script" path="res://levels/chapter_1/interactive_objects/open_door_game/open_door_game.gd" id="1_nqw2h"]
@@ -9,15 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cv0ri5xdf52m4" path="res://assets/chapter_1/images/pipe_animation/5.png" id="6_l2w3y"]
 [ext_resource type="Texture2D" uid="uid://dk3iwljpwdw07" path="res://assets/chapter_1/images/pipe_animation/6.png" id="7_fomuw"]
 [ext_resource type="Texture2D" uid="uid://djtl7a1qcd7n0" path="res://assets/chapter_1/images/cell_door_screen_3.png" id="8_lc6v1"]
-[ext_resource type="FontFile" uid="uid://dxfwsk3ajcqa5" path="res://assets/fonts/Arturito Slab/arturito.ttf" id="10_2afw3"]
-[ext_resource type="Texture2D" uid="uid://1ygsjsyr2mp2" path="res://assets/chapter_1/images/diagram.png" id="11_gklev"]
-[ext_resource type="Texture2D" uid="uid://b7a6nopjlyh60" path="res://assets/chapter_1/images/pipe_diagram.png" id="12_o50jo"]
-[ext_resource type="Texture2D" uid="uid://lhxfe05fv64w" path="res://assets/chapter_1/images/ceiling_bar_background.png" id="13_0xmhr"]
-[ext_resource type="Texture2D" uid="uid://4cvr0luqc8iw" path="res://assets/chapter_1/images/ceiling_bar_frame.png" id="14_2jrk1"]
-[ext_resource type="Texture2D" uid="uid://dy4pm0uptnu8a" path="res://assets/chapter_1/images/ceiling_bar.png" id="14_x6bq7"]
-[ext_resource type="Texture2D" uid="uid://bkqp17pkw1eth" path="res://assets/chapter_1/images/door_gear_bar_background.png" id="16_xngos"]
-[ext_resource type="Texture2D" uid="uid://b6oc7msx31xra" path="res://assets/chapter_1/images/door_gear_bar.png" id="17_6lykh"]
-[ext_resource type="Texture2D" uid="uid://cr2abdblcl5bm" path="res://assets/chapter_1/images/door_gear_bar_over.png" id="17_ub3nj"]
+[ext_resource type="PackedScene" uid="uid://cc4sj1gsbwqju" path="res://levels/chapter_1/interactive_objects/open_door_game/force_diagram/force_diagram.tscn" id="10_dxygx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7wacc"]
 animations = [{
@@ -101,90 +93,8 @@ position = Vector2(-10, 0)
 texture = ExtResource("8_lc6v1")
 centered = false
 
-[node name="Stage1Items" type="Node2D" parent="."]
-
-[node name="Tip1" type="Label" parent="Stage1Items"]
-offset_left = 109.0
-offset_top = 280.0
-offset_right = 719.0
-offset_bottom = 357.0
-theme_override_colors/font_color = Color(0.694118, 0.694118, 0.694118, 1)
-theme_override_fonts/font = ExtResource("10_2afw3")
-theme_override_font_sizes/font_size = 27
-text = "Удерживайте трубу в зоне максимального усилия правой и левой кнопками мыши"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="Force" type="Sprite2D" parent="Stage1Items"]
-position = Vector2(414, 719)
-texture = ExtResource("11_gklev")
-
-[node name="DiagramPipe" type="Sprite2D" parent="Stage1Items"]
-position = Vector2(414, 719)
-rotation = 1.5708
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("12_o50jo")
-offset = Vector2(-100, 0)
-
-[node name="CeilingBar" type="TextureProgressBar" parent="Stage1Items"]
-offset_left = 651.0
-offset_top = 92.0
-offset_right = 1622.0
-offset_bottom = 292.0
-scale = Vector2(0.3, 0.3)
-max_value = 300.0
-texture_under = ExtResource("13_0xmhr")
-texture_over = ExtResource("14_2jrk1")
-texture_progress = ExtResource("14_x6bq7")
-tint_under = Color(1, 0.5023, 0.43551, 1)
-
-[node name="Label" type="Label" parent="Stage1Items/CeilingBar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.741385, 0.741385, 0.741385, 1)
-theme_override_fonts/font = ExtResource("10_2afw3")
-theme_override_font_sizes/font_size = 70
-text = "СОСТОЯНИЕ ПОТОЛКА"
-
-[node name="GearBar" type="TextureProgressBar" parent="Stage1Items"]
-offset_left = 1125.0
-offset_top = 754.0
-offset_right = 1800.0
-offset_bottom = 1004.0
-value = 12.0
-texture_under = ExtResource("16_xngos")
-texture_over = ExtResource("17_ub3nj")
-texture_progress = ExtResource("17_6lykh")
-tint_under = Color(1, 0.541241, 0.476759, 1)
-
-[node name="Label" type="Label" parent="Stage1Items/GearBar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -76.5
-offset_top = -42.0
-offset_right = 201.5
-offset_bottom = -4.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.666569, 0.666569, 0.666569, 1)
-theme_override_fonts/font = ExtResource("10_2afw3")
-theme_override_font_sizes/font_size = 29
-text = "СОСТОЯНИЕ ДВЕРИ"
+[node name="ForceDiagram" parent="." instance=ExtResource("10_dxygx")]
+position = Vector2(457, 764)
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 300.0
