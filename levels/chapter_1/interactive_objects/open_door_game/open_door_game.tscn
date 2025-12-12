@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bvy33y8okhc0"]
+[gd_scene load_steps=22 format=3 uid="uid://bvy33y8okhc0"]
 
 [ext_resource type="Texture2D" uid="uid://cylh4cjosaxyk" path="res://assets/chapter_1/images/chapter_1_background_3.png" id="1_mbmjg"]
 [ext_resource type="Script" path="res://levels/chapter_1/interactive_objects/open_door_game/open_door_game.gd" id="1_nqw2h"]
@@ -10,6 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://dk3iwljpwdw07" path="res://assets/chapter_1/images/pipe_animation/6.png" id="7_fomuw"]
 [ext_resource type="Texture2D" uid="uid://djtl7a1qcd7n0" path="res://assets/chapter_1/images/cell_door_screen_3.png" id="8_lc6v1"]
 [ext_resource type="PackedScene" uid="uid://cc4sj1gsbwqju" path="res://levels/chapter_1/interactive_objects/open_door_game/force_diagram/force_diagram.tscn" id="10_dxygx"]
+[ext_resource type="Texture2D" uid="uid://lhxfe05fv64w" path="res://assets/chapter_1/images/ceiling_bar_background.png" id="11_0finc"]
+[ext_resource type="Texture2D" uid="uid://4cvr0luqc8iw" path="res://assets/chapter_1/images/ceiling_bar_frame.png" id="12_x2yuv"]
+[ext_resource type="Texture2D" uid="uid://dy4pm0uptnu8a" path="res://assets/chapter_1/images/ceiling_bar.png" id="13_agejd"]
+[ext_resource type="Texture2D" uid="uid://bkqp17pkw1eth" path="res://assets/chapter_1/images/door_gear_bar_background.png" id="14_qrf0s"]
+[ext_resource type="Texture2D" uid="uid://cr2abdblcl5bm" path="res://assets/chapter_1/images/door_gear_bar_over.png" id="15_knv7i"]
+[ext_resource type="Texture2D" uid="uid://b6oc7msx31xra" path="res://assets/chapter_1/images/door_gear_bar.png" id="16_2twag"]
+[ext_resource type="FontFile" uid="uid://dxfwsk3ajcqa5" path="res://assets/fonts/Arturito Slab/arturito.ttf" id="17_bxuh4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7wacc"]
 animations = [{
@@ -96,12 +103,65 @@ centered = false
 [node name="ForceDiagram" parent="." instance=ExtResource("10_dxygx")]
 position = Vector2(457, 764)
 
+[node name="CeilingDamage" type="TextureProgressBar" parent="."]
+offset_left = 591.0
+offset_top = 93.0
+offset_right = 2767.0
+offset_bottom = 541.0
+scale = Vector2(0.3, 0.3)
+max_value = 30.0
+texture_under = ExtResource("11_0finc")
+texture_over = ExtResource("12_x2yuv")
+texture_progress = ExtResource("13_agejd")
+tint_under = Color(1, 0.821723, 0.791818, 1)
+
+[node name="CeilingCondition" type="Label" parent="."]
+offset_left = 777.0
+offset_top = 143.0
+offset_right = 1071.0
+offset_bottom = 179.0
+theme_override_colors/font_color = Color(0.694118, 0.694118, 0.694118, 1)
+theme_override_fonts/font = ExtResource("17_bxuh4")
+theme_override_font_sizes/font_size = 27
+text = "СОСТОЯНИЕ ПОТОЛКА"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="DoorDamage" type="TextureProgressBar" parent="."]
+offset_left = 1146.0
+offset_top = 744.0
+offset_right = 1821.0
+offset_bottom = 994.0
+max_value = 10.0
+step = 0.1
+value = 10.0
+texture_under = ExtResource("14_qrf0s")
+texture_over = ExtResource("15_knv7i")
+texture_progress = ExtResource("16_2twag")
+tint_under = Color(1, 0.578368, 0.516824, 1)
+
+[node name="DoorCondition" type="Label" parent="."]
+offset_left = 1407.0
+offset_top = 851.0
+offset_right = 1683.0
+offset_bottom = 887.0
+theme_override_colors/font_color = Color(0.694118, 0.694118, 0.694118, 1)
+theme_override_fonts/font = ExtResource("17_bxuh4")
+theme_override_font_sizes/font_size = 27
+text = "СОСТОЯНИЕ ДВЕРИ"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 300.0
-
-[node name="DiagramTimer" type="Timer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_xxu7o")
 }
+
+[connection signal="pipe_lost_place" from="ForceDiagram" to="." method="_on_force_diagram_pipe_lost_place"]
+[connection signal="pipe_placed" from="ForceDiagram" to="." method="_on_force_diagram_pipe_placed"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
