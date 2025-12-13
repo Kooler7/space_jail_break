@@ -23,7 +23,7 @@ var current_action_state : ActionStates = ActionStates.STOPPED
 
 
 func _ready() -> void:
-	check_action_state(ActionStates.STARTED)
+	GameState.connect("flag_changed", _on_level_flag)
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -68,10 +68,14 @@ func check_action_state (new_state : ActionStates):
 				death_timer.stop()
 				shake_door.stop()
 				door.hide()
+				GameState.set_flag(GameState.level_flags, "door_open", true)
+				Globals.player.movement.check_player_position(Globals.player.movement.PlayerPositions.SCREEN_2)
 				current_action_state = ActionStates.PLAYER_WON
 
 
-
+func _on_level_flag(flag_name: String, flag_value: bool) -> void:
+	if flag_name == "try_door" and flag_value == true:
+		check_action_state(ActionStates.STARTED)
 
 
 func _on_death_timer_timeout() -> void:

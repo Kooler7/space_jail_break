@@ -8,3 +8,5 @@ var player : Player
 var story_manager : StoryManager
 
 var current_object : InteractiveObject
+
+var current_puzzle
