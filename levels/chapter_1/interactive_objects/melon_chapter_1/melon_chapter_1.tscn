@@ -24,8 +24,8 @@ shape = SubResource("CapsuleShape2D_4f7bu")
 
 [node name="Dialogues" type="Node" parent="." index="2"]
 
-[node name="MelonSecPipeDialogue" parent="Dialogues" index="0" instance=ExtResource("6_i57w2")]
+[node name="MelonFirstDialogue" parent="Dialogues" index="0" instance=ExtResource("6_q3nwn")]
 
-[node name="MelonFirstDialogue" parent="Dialogues" index="1" instance=ExtResource("6_q3nwn")]
+[node name="MelonSecPipeDialogue" parent="Dialogues" index="1" instance=ExtResource("6_i57w2")]
 
 [node name="MelonSecNoPipeDialogue" parent="Dialogues" index="2" instance=ExtResource("6_7r2j4")]

@@ -26,6 +26,7 @@ var level_decisions : Dictionary = {
 
 
 func _ready() -> void:
+	GameState.inventory = []
 	#Помещение игрока в начальные координаты
 	Globals.player.movement.check_player_position(Globals.player.movement.PlayerPositions.SCREEN_1)
 	#Передача в GameState возможных этапов на уровне

@@ -1,14 +1,21 @@
 extends Node
 
-
+#Этапы повествования
 var global_flags = {}
 var level_flags ={}
-var inventory = []
-var current_level = ""
+
+#Выбор сделанный на каком-то этапе повествования
 var level_decisions = {}
 var global_decisions = {
 	"melon_saved" : false,
 }
+
+#Инвентарь
+var inventory = []
+
+#Текущий уровень игры
+var current_level = ""
+
 
 func _ready() -> void:
 	level_flags = {}
@@ -24,7 +31,7 @@ func has_flag(flags: Dictionary, name: String) -> bool:
 	return level_flags.has(name)
 
 func add_item(item: String):
-	if not item in inventory:
+	if inventory.has(item) == false:
 		inventory.append(item)
 		emit_signal("inventory_changed", item, true)
 

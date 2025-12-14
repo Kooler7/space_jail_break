@@ -10,6 +10,8 @@ var previous_level_name : String
 var next_level_name : String
 
 func _ready() -> void:
+	#Помещение игрока в начальные координаты
+	Globals.player.movement.check_player_position(Globals.player.movement.PlayerPositions.SCREEN_1)
 	Globals.player.update_activity_state(Player.PlayerActivityStates.ACTIVE)
 
 func print_report(new_report : String) -> void:

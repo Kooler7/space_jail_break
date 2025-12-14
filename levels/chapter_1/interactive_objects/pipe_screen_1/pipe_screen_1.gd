@@ -16,6 +16,6 @@ func _on_mouse_detector_input_event(viewport: Node, event: InputEvent, shape_idx
 	if event is InputEventMouseButton and event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
 		if GameState.has_flag(GameState.level_flags, "pipe_picked_up"):
 			GameState.set_flag(GameState.level_flags, "pipe_picked_up", true)
-			GameState.inventory.push_back("pipe")
+			GameState.add_item("pipe")
 			queue_free()
 		Globals.player.update_in_world_state(Player.PlayerInWorldStates.CAN_MOVE)

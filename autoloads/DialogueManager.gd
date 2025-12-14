@@ -9,6 +9,11 @@ var dialogue_ui : DialogueUI = null
 var current_dialogue_tree : DialogueTree = null
 var current_dialogue_node : DialogueNode = null
 
+##Обработка сигнала "on_option_clicked"
+func _on_option_clicked() -> void:
+	dialogue_ui.dialogue_box.update_visibility_state(dialogue_ui.dialogue_box.VisibilityStates.REMOVE_OPTIONS)
+	
+
 ##Обработка сигнала "dialogue_box_clicked"
 func on_dialogue_box_clicked(tree : DialogueTree) -> void:
 	#Проверка номера строки не больше размера диалога
@@ -23,9 +28,10 @@ func on_dialogue_box_clicked(tree : DialogueTree) -> void:
 func start_dialogue() -> void:
 	if current_dialogue_tree != null:
 		#Подготовка к вызову окна диалога
-		Globals.current_object.toggle_pickable()
-		current_dialogue_node = current_dialogue_tree.get_node_safe(START_DIALOGUE_NODE)
 		Globals.player.update_level_state(Player.PlayerLevelStates.IN_DIALOGUE)
+		Globals.current_object.mouse_detector.input_pickable = false
+		print(Globals.current_object.mouse_detector.input_pickable)
+		current_dialogue_node = current_dialogue_tree.get_node_safe(START_DIALOGUE_NODE)
 		#Вызов обработки текущей реплики
 		check_node_type()
 	elif current_dialogue_tree == null:
@@ -38,7 +44,8 @@ func finish_dialogue() -> void:
 	await  dialogue_ui.toggle_speaker_avatar("", true)
 	await dialogue_ui.dialogue_box.update_visibility_state(dialogue_ui.dialogue_box.VisibilityStates.POP_OUT)
 	await Globals.player.update_level_state(Player.PlayerLevelStates.IN_WORLD)
-	Globals.current_object.toggle_pickable()
+	Globals.current_object.mouse_detector.input_pickable = true
+	print(Globals.current_object.mouse_detector.input_pickable)
 	current_dialogue_node = null
 	current_dialogue_tree = null
 

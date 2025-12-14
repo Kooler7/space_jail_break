@@ -39,6 +39,7 @@ func start_loading() -> void:
 	#то включается заход в темное и перевод игрока в неактивное состояние
 	var levels : int = level_viewer.get_child_count()
 	if levels > 0:
+		Globals.player.update_health_state(Player.PlayerHealthStates.ALIVE)
 		await Globals.player.update_loading_state(Player.PlayerLoadingStates.LOADING)
 	#Передача в лоадер пути нового уровня и переключение переменной в true
 	ResourceLoader.load_threaded_request(loading_level_path)
@@ -65,7 +66,9 @@ func instance_level() -> void:
 		remove_older_level()
 	#Запуск функции очистки пуией
 	clear_paths()
+	
 	#Запуск функции выхода из черного и перевод игрока в активное состояние
+	Globals.player.movement.check_player_position(Globals.player.movement.PlayerPositions.SCREEN_1)
 	await Globals.player.update_loading_state(Player.PlayerLoadingStates.LOADED)
 	AudioManager.on_sounds()
 	

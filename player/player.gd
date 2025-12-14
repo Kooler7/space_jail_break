@@ -123,10 +123,10 @@ func update_health_state(new_state : PlayerHealthStates) -> void:
 	if new_state != current_health:
 		match new_state:
 			PlayerHealthStates.ALIVE:
-				ui.toggle_mouse_filter(ui.MouseShieldDefault, Control.MOUSE_FILTER_IGNORE)
+				ui.toggle_mouse_shield(ui.MouseShieldDefault, Control.MOUSE_FILTER_IGNORE)
 				current_health = PlayerHealthStates.ALIVE
 			PlayerHealthStates.DEAD:
-				ui.toggle_mouse_filter(ui.MouseShieldRed, Control.MOUSE_FILTER_STOP)
+				ui.toggle_mouse_shield(ui.MouseShieldRed, Control.MOUSE_FILTER_STOP)
 				current_health = PlayerHealthStates.DEAD
 
 ##Обработка состояния игрока на уровне

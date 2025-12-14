@@ -23,7 +23,10 @@ var current_action_state : ActionStates = ActionStates.STOPPED
 
 
 func _ready() -> void:
-	GameState.connect("flag_changed", _on_level_flag)
+	if self.get_parent() == get_tree().root:
+		check_action_state(ActionStates.STARTED)
+	else:
+		GameState.connect("flag_changed", _on_level_flag)
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,8 +62,9 @@ func check_action_state (new_state : ActionStates):
 				death_timer.stop()
 				shake_door.stop()
 				diagram.diagram_timer.stop()
-				print("DEAAAD!!!!")
 				current_action_state = ActionStates.FINISHED
+				Globals.player.update_health_state(Player.PlayerHealthStates.DEAD)
+				Globals.story_manager.change_story_node("SummaryChapter1")
 			ActionStates.PLAYER_WON:
 				diagram.is_started = false
 				diagram.is_pipe_placed = false

@@ -109,7 +109,8 @@ offset_top = 93.0
 offset_right = 2767.0
 offset_bottom = 541.0
 scale = Vector2(0.3, 0.3)
-max_value = 30.0
+mouse_filter = 2
+max_value = 300.0
 texture_under = ExtResource("11_0finc")
 texture_over = ExtResource("12_x2yuv")
 texture_progress = ExtResource("13_agejd")
@@ -133,9 +134,9 @@ offset_left = 1146.0
 offset_top = 744.0
 offset_right = 1821.0
 offset_bottom = 994.0
-max_value = 10.0
+mouse_filter = 2
 step = 0.1
-value = 10.0
+value = 100.0
 texture_under = ExtResource("14_qrf0s")
 texture_over = ExtResource("15_knv7i")
 texture_progress = ExtResource("16_2twag")
@@ -155,7 +156,7 @@ vertical_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="DeathTimer" type="Timer" parent="."]
-wait_time = 300.0
+wait_time = 30.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

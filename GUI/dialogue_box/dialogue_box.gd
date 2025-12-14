@@ -26,12 +26,6 @@ var options : Array
 @onready var options_pool : VBoxContainer = $Buttons
 
 
-#func _ready() -> void:
-	#update_visibility_state(VisibilityStates.POP_IN)
-
-
-
-
 func update_visibility_state(new_visibility_state: VisibilityStates) -> void:
 	if current_visibility_state != new_visibility_state:
 		match new_visibility_state:
@@ -121,6 +115,7 @@ func text_typing(text : String) -> void:
 
 ##Отображение опций диалога
 func fill_options(data : Array) -> void:
+	mouse_filter = MOUSE_FILTER_IGNORE
 	#Сброс текста в пустую строку
 	text_field.text = ""
 	#Перебор массива data
@@ -129,7 +124,6 @@ func fill_options(data : Array) -> void:
 		var option : PackedScene = item
 		var child : Button = option.instantiate()
 		options_pool.add_child(child)
-	mouse_filter = MOUSE_FILTER_IGNORE
 	return
 
 ##Удаление всех кнопок опций диалога
