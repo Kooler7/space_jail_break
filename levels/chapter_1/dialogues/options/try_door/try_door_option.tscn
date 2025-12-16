@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwerxskf2bvdb"]
+
+[ext_resource type="PackedScene" uid="uid://cmpsmlpifqkin" path="res://classes/dialogue_option_class/dialogue_option_class.tscn" id="1_24jty"]
+[ext_resource type="Script" path="res://levels/chapter_1/dialogues/options/try_door/try_door_option.gd" id="2_e6rqh"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_a81h4"]
+
+[node name="TryDoorOption" instance=ExtResource("1_24jty")]
+button_group = SubResource("ButtonGroup_a81h4")
+text = "Отжать дверь"
+script = ExtResource("2_e6rqh")

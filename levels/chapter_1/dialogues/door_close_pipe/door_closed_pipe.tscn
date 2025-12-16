@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://classes/dialogue_tree_class/DialogueTreeClass.gd" id="1_8n1ve"]
 [ext_resource type="Script" path="res://classes/dialogue_node_class/dialogue_node_class.gd" id="2_bl06g"]
-[ext_resource type="PackedScene" uid="uid://b2viccqpv4dt3" path="res://levels/chapter_1/dialogues/options/try_door/try_door.tscn" id="3_wbneu"]
-[ext_resource type="PackedScene" uid="uid://dagge1otmga1i" path="res://levels/chapter_1/dialogues/options/leave/leave.tscn" id="4_m5knh"]
+[ext_resource type="PackedScene" uid="uid://cwerxskf2bvdb" path="res://levels/chapter_1/dialogues/options/try_door/try_door_option.tscn" id="3_sv8a3"]
+[ext_resource type="PackedScene" uid="uid://cj44ga1tehaxn" path="res://levels/chapter_1/dialogues/options/exit_dialogue/exit_dialogue.tscn" id="4_kd2j5"]
 [ext_resource type="Script" path="res://classes/dialogue_condition_class/dialogue_condition_class.gd" id="5_soxth"]
 
 [node name="DoorClosedPipe" type="Node" node_paths=PackedStringArray("conditions")]
@@ -38,7 +38,7 @@ next_node = "N6"
 [node name="N6" type="Node" parent="."]
 script = ExtResource("2_bl06g")
 current_node_type = 2
-options = Array[PackedScene]([ExtResource("3_wbneu"), ExtResource("4_m5knh")])
+options = Array[PackedScene]([ExtResource("3_sv8a3"), ExtResource("4_kd2j5")])
 
 [node name="Condition_1" type="Node" parent="."]
 script = ExtResource("5_soxth")

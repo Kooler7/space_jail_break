@@ -1,0 +1,48 @@
+[gd_scene load_steps=13 format=3 uid="uid://cmpsmlpifqkin"]
+
+[ext_resource type="Script" path="res://classes/dialogue_option_class/dialogue_option_class.gd" id="1_277a3"]
+[ext_resource type="FontFile" uid="uid://dxfwsk3ajcqa5" path="res://assets/fonts/Arturito Slab/arturito.ttf" id="1_u5kgu"]
+[ext_resource type="ButtonGroup" uid="uid://n7nrwvq5qpl4" path="res://resources/button_groups/dialogue_option_buttons_group.tres" id="2_ynpro"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_toyo6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfq4w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3mr0v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f24dx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uxxt1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sbqpc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g6xj6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pjlhd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tgb3i"]
+
+[node name="DialogueOptionClass" type="Button"]
+offset_right = 267.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+theme_override_colors/font_hover_color = Color(0.411765, 0.160784, 0.160784, 1)
+theme_override_colors/font_color = Color(0.160784, 0.160784, 0.160784, 1)
+theme_override_fonts/font = ExtResource("1_u5kgu")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_toyo6")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_qfq4w")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_3mr0v")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_f24dx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_uxxt1")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_sbqpc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_g6xj6")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_pjlhd")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tgb3i")
+toggle_mode = true
+button_group = ExtResource("2_ynpro")
+text = "DIALOGUE_OPTION_CLASS"
+flat = true
+script = ExtResource("1_277a3")
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]

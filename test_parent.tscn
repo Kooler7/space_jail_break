@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://djlxbkuxx2hqp"]
+
+[ext_resource type="Script" path="res://test_parent.gd" id="1_wse8h"]
+[ext_resource type="Script" path="res://test_child.gd" id="2_d0tki"]
+
+[node name="Test_Parent" type="Node"]
+script = ExtResource("1_wse8h")
+
+[node name="Test_Child" type="Node" parent="."]
+script = ExtResource("2_d0tki")
+
+[node name="Timer" type="Timer" parent="Test_Child"]
+wait_time = 3.0

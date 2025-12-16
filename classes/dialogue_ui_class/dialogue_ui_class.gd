@@ -3,7 +3,6 @@ class_name DialogueUI
 extends CanvasLayer
 
 const DialogueBox = preload("res://GUI/dialogue_box/dialogue_box.gd")
-
 var speakers : Array
 var current_speaker : CharacterAvatarClass
 
@@ -11,12 +10,13 @@ var current_speaker : CharacterAvatarClass
 @onready var avatar_position : Marker2D = $AvatarPosition
 
 
-
 func _ready() -> void:
+	Globals.dialogue_ui = self
 	DialogueManager.dialogue_ui = self
 	speakers = avatar_position.get_children()
 	scale.x = Settings.camera.zoom.x
 	scale.y = Settings.camera.zoom.y
+
 
 
 #Функция управления показом автвров говорящих

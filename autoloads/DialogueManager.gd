@@ -8,10 +8,16 @@ var dialogue_ui : DialogueUI = null
 
 var current_dialogue_tree : DialogueTree = null
 var current_dialogue_node : DialogueNode = null
+var current_dialogue_option : DialogueOption = null
+var option_callable : Callable
 
 ##Обработка сигнала "on_option_clicked"
-func _on_option_clicked() -> void:
+func _on_option_clicked(option : DialogueOption) -> void:
+	current_dialogue_option = option
 	dialogue_ui.dialogue_box.update_visibility_state(dialogue_ui.dialogue_box.VisibilityStates.REMOVE_OPTIONS)
+	option_callable = current_dialogue_option.option_action
+	option_callable.call()
+	current_dialogue_option = null
 	
 
 ##Обработка сигнала "dialogue_box_clicked"
@@ -48,6 +54,8 @@ func finish_dialogue() -> void:
 	print(Globals.current_object.mouse_detector.input_pickable)
 	current_dialogue_node = null
 	current_dialogue_tree = null
+	current_dialogue_option = null
+	Globals.current_object = null
 
 
 
@@ -77,6 +85,7 @@ func execute_text() -> void:
 	dialogue_ui.toggle_speaker_avatar(current_dialogue_node.speaker)
 	await dialogue_ui.dialogue_box.update_visibility_state(dialogue_ui.dialogue_box.VisibilityStates.POP_IN)
 	await dialogue_ui.dialogue_box.text_typing(temp_text_translation)
+
 
 
 ##Обработка узла типа "Опции"

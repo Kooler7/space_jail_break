@@ -10,3 +10,5 @@ var story_manager : StoryManager
 var current_object : InteractiveObject
 
 var current_puzzle
+
+var dialogue_ui : DialogueUI

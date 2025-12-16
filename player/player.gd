@@ -8,6 +8,7 @@ const BlackScreen = preload("res://GUI/black_screen/black_screen.gd")
 const Movement = preload("res://player/player_movement/player_movement.gd")
 
 
+
 enum PlayerActivityStates {
 	ACTIVE,
 	INACTIVE

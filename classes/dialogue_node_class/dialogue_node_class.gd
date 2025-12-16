@@ -9,7 +9,7 @@ enum NodeTypes {
 	RANDOMIZER, ## Узел, автоматически переключающийся на случайный из массива random_nodes
 	TEXT, ## Узел, отображающий текст
 	OPTIONS, ## Узел, отображающий кнопки выбора
-	ACTION ## Узел, содержащий действие в зависимости от current_action_type
+	ACTION ## Узел, содержащий действие с GameState в зависимости от current_action_type
 }
 @export var current_node_type : NodeTypes = NodeTypes.TEXT ## Тип узла диалога
 
@@ -51,7 +51,3 @@ enum ActionTypes {
 @export var options : Array[PackedScene] = [] 
 ##Имя следующего узла диалога
 @export var next_node : String = "END" 
-
-@export_category("For Action!")
-##Название функции для вызова
-@export var callable : String = "" 
