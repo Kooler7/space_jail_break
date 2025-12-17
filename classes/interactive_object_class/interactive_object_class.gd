@@ -15,6 +15,12 @@ const HOVER_MODULATE = Color(1.8, 1.8, 1.8, 1)
 
 var dialogues : Array = []
 
+##Публичные функции
+#region
+func set_mouse_detector_pickability(new_pickability: bool) -> void:
+	if mouse_detector.input_pickable != new_pickability:
+		mouse_detector.input_pickable = new_pickability
+#endregion
 
 
 func _on_mouse_detector_mouse_entered() -> void:

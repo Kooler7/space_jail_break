@@ -17,7 +17,6 @@ enum VisibilityStates {
 }
 var current_visibility_state : VisibilityStates = VisibilityStates.POP_OUT
 
-#var modulate_tween : Tween
 
 var options : Array
 
@@ -138,4 +137,4 @@ func remove_options() -> void:
 ##Перехват клика по диалоговому окну
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
-		DialogueManager.on_dialogue_box_clicked(DialogueManager.current_dialogue_tree)
+		DialogueManager.change_dialogue_node()

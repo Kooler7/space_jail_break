@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://classes/dialogue_tree_class/DialogueTreeClass.gd" id="1_8n1ve"]
 [ext_resource type="Script" path="res://classes/dialogue_node_class/dialogue_node_class.gd" id="2_bl06g"]
 [ext_resource type="PackedScene" uid="uid://cwerxskf2bvdb" path="res://levels/chapter_1/dialogues/options/try_door/try_door_option.tscn" id="3_sv8a3"]
-[ext_resource type="PackedScene" uid="uid://cj44ga1tehaxn" path="res://levels/chapter_1/dialogues/options/exit_dialogue/exit_dialogue.tscn" id="4_kd2j5"]
+[ext_resource type="PackedScene" uid="uid://cj44ga1tehaxn" path="res://levels/chapter_1/dialogues/options/exit_dialogue/exit_dialogue_option.tscn" id="4_kd2j5"]
 [ext_resource type="Script" path="res://classes/dialogue_condition_class/dialogue_condition_class.gd" id="5_soxth"]
 
 [node name="DoorClosedPipe" type="Node" node_paths=PackedStringArray("conditions")]

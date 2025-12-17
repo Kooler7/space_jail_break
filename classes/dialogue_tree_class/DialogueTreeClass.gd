@@ -77,10 +77,6 @@ func check_item(item: String, expected_value: bool) -> bool:
 
 #Функция проверки глобального этапа\решения или этапа\решения уровня
 func check_condition(storage: Dictionary, condition_key: String, expected_value: bool) -> bool:
-	if GameState.has_flag(storage, condition_key):
-		if storage[condition_key] == expected_value:
-			return true
-		else:
-			return false
-	else:
-		return false
+	if GameState.get_flag_value(storage, condition_key) == expected_value:
+		return true
+	return false

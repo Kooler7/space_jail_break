@@ -68,12 +68,15 @@ func _ready() -> void:
 	Settings.camera = camera
 
 
+
 func _process(delta: float) -> void:
 	if is_can_pause:
 		if Input.is_action_just_released("ui_cancel"):
 			if current_game_state == PlayerGameStates.UNPAUSED:
 				await update_game_state(PlayerGameStates.PAUSED)
 				return
+
+
 
 ##Обработка состояния активности и неактивности игрока
 func update_activity_state(new_state : PlayerActivityStates) -> void:

@@ -21,14 +21,23 @@ func _ready() -> void:
 	level_flags = {}
 	level_decisions = {}
 
-func set_flag(flags: Dictionary, name: String, value):
-	if flags.has(name) and flags[name] == value:
-		return
-	flags[name] = value
-	emit_signal("flag_changed", name, value)
-#
+func set_flag(flags: Dictionary, name: String, value: bool):
+	if has_flag(flags, name):
+		if flags.has(name) and flags[name] == value:
+			return
+		flags[name] = value
+		emit_signal("flag_changed", name, value)
+
+func get_flag_value(flags: Dictionary, name: String) -> bool:
+	if has_flag(flags, name):
+		return flags[name]
+	return false
+
 func has_flag(flags: Dictionary, name: String) -> bool:
-	return level_flags.has(name)
+	if flags.has(name):
+		return true
+	print("Нет флага " + name + "в словаре")
+	return false
 
 func add_item(item: String):
 	if inventory.has(item) == false:

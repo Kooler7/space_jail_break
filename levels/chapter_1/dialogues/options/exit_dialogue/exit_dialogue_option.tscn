@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj44ga1tehaxn"]
+
+[ext_resource type="PackedScene" uid="uid://cmpsmlpifqkin" path="res://classes/dialogue_option_class/dialogue_option_class.tscn" id="1_5v4i6"]
+[ext_resource type="Script" path="res://levels/chapter_1/dialogues/options/exit_dialogue/exit_dialogue_option.gd" id="2_bu4u7"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_cdvgg"]
+
+[node name="ExitDialogueOption" instance=ExtResource("1_5v4i6")]
+button_group = SubResource("ButtonGroup_cdvgg")
+text = "Закончить"
+script = ExtResource("2_bu4u7")
