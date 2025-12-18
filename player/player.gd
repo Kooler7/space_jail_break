@@ -64,7 +64,7 @@ var is_can_pause : bool = false
 
 
 func _ready() -> void:
-	Globals.player = self
+	Globals.set_player(self)
 	Settings.camera = camera
 
 

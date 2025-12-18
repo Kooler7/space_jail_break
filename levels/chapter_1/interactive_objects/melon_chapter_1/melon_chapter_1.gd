@@ -9,7 +9,7 @@ func _ready() -> void:
 
 func _on_mouse_detector_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
-		Globals.current_object = self
+		Globals.set_current_object(self)
 		if dialogues != null:
 			for dialogue in dialogues:
 				if dialogue.is_available():

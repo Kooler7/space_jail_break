@@ -24,13 +24,13 @@ func set_mouse_detector_pickability(new_pickability: bool) -> void:
 
 
 func _on_mouse_detector_mouse_entered() -> void:
-	Globals.player.explainer_text = object_name
-	Globals.player.update_in_world_state(Player.PlayerInWorldStates.EXPLAIN)
+	Globals.get_player().explainer_text = object_name
+	Globals.get_player().update_in_world_state(Player.PlayerInWorldStates.EXPLAIN)
 	icon.modulate = HOVER_MODULATE
 
 
 func _on_mouse_detector_mouse_exited() -> void:
-	Globals.player.update_in_world_state(Player.PlayerInWorldStates.CAN_MOVE)
+	Globals.get_player().update_in_world_state(Player.PlayerInWorldStates.CAN_MOVE)
 	icon.modulate = IDLE_MODULATE
 
 

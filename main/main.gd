@@ -14,10 +14,10 @@ var is_loading_starting : bool = false
 
 
 func _ready() -> void:
-	Globals.main = self
+	Globals.set_main(self)
 	SaveLoad.load_settings()
 	SaveLoad.load_game()
-	Globals.story_manager.change_story_node("MainMenu")
+	Globals.get_story_manager().change_story_node("MainMenu")
 
 
 func _process(_delta: float) -> void:
@@ -39,8 +39,8 @@ func start_loading() -> void:
 	#то включается заход в темное и перевод игрока в неактивное состояние
 	var levels : int = level_viewer.get_child_count()
 	if levels > 0:
-		Globals.player.update_health_state(Player.PlayerHealthStates.ALIVE)
-		await Globals.player.update_loading_state(Player.PlayerLoadingStates.LOADING)
+		Globals.get_player().update_health_state(Player.PlayerHealthStates.ALIVE)
+		await Globals.get_player().update_loading_state(Player.PlayerLoadingStates.LOADING)
 	#Передача в лоадер пути нового уровня и переключение переменной в true
 	ResourceLoader.load_threaded_request(loading_level_path)
 	is_loading_starting = true
@@ -68,8 +68,8 @@ func instance_level() -> void:
 	clear_paths()
 	
 	#Запуск функции выхода из черного и перевод игрока в активное состояние
-	Globals.player.movement.check_player_position(Globals.player.movement.PlayerPositions.SCREEN_1)
-	await Globals.player.update_loading_state(Player.PlayerLoadingStates.LOADED)
+	Globals.get_player().movement.check_player_position(Player.Movement.PlayerPositions.SCREEN_1)
+	await Globals.get_player().update_loading_state(Player.PlayerLoadingStates.LOADED)
 	AudioManager.on_sounds()
 	
 	

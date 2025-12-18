@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@onready var player : Player = Globals.player
+@onready var player : Player = Globals.get_player()
 @onready var steam_sound : AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var screen_1 : Node2D = $Screen1
 @onready var screen_2 : Node2D = $Screen2
@@ -28,7 +28,7 @@ var level_decisions : Dictionary = {
 func _ready() -> void:
 	GameState.inventory = []
 	#Помещение игрока в начальные координаты
-	Globals.player.movement.check_player_position(Globals.player.movement.PlayerPositions.SCREEN_1)
+	Globals.get_player().movement.check_player_position(Player.Movement.PlayerPositions.SCREEN_1)
 	#Передача в GameState возможных этапов на уровне
 	GameState.level_flags = level_flags
 	#Передача в GameState возможных решений на уровне
@@ -36,7 +36,7 @@ func _ready() -> void:
 	#Передача игроку имени достигнутого уровня
 	GameState.current_level = name
 	#Перевод игрока в состояние управления паузой игры
-	Globals.player.is_can_pause = true
+	Globals.get_player().is_can_pause = true
 	#Сохранение игры
 	SaveLoad.save_game()
 	#Включение звука

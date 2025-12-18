@@ -59,7 +59,7 @@ var main_screen_buttons : Array
 func _ready() -> void:
 	#Отключение блокировки кнопок
 	#Globals.player.update_game_state(Globals.player.GameActionStates.ACTIVE)
-	Globals.player.movement.check_player_position(Globals.player.movement.PlayerPositions.SCREEN_1)
+	Globals.get_player().movement.check_player_position(Player.Movement.PlayerPositions.SCREEN_1)
 	choose_prison_activity(5)
 	choose_agenda(2)
 
@@ -94,32 +94,32 @@ func on_accept_button_pressed() ->void:
 		#Вызов функции соответствующей имени нажатой кнопки из переменной
 		call(buttons_actions[current_button_name])
 		#Включение блокировки кнопок
-		Globals.player.update_activity_state(Player.PlayerActivityStates.INACTIVE)
+		Globals.get_player().update_activity_state(Player.PlayerActivityStates.INACTIVE)
 
 	#Если нет нажатой кнопки
 	else :
 		#Включение блокировки кнопок
-		Globals.player.update_activity_state(Player.PlayerActivityStates.INACTIVE)
+		Globals.get_player().update_activity_state(Player.PlayerActivityStates.INACTIVE)
 		await play_call_response(denied_stream)
 		#Отключение блокировки кнопок
-		Globals.player.update_activity_state(Player.PlayerActivityStates.ACTIVE)
+		Globals.get_player().update_activity_state(Player.PlayerActivityStates.ACTIVE)
 
 
 ##Действия при нажатии кнопки закрытия настроек
 func on_back_btn_pressed() -> void:
 	button_click.play()
 	SaveLoad.save_settings()
-	Globals.player.movement.check_player_position(Globals.player.movement.PlayerPositions.SCREEN_1)
+	Globals.get_player().movement.check_player_position(Player.Movement.PlayerPositions.SCREEN_1)
 	#Отключение блокировки кнопок
-	Globals.player.update_activity_state(Player.PlayerActivityStates.ACTIVE)
+	Globals.get_player().update_activity_state(Player.PlayerActivityStates.ACTIVE)
 
 
 
 ##Действия при подтверждении нажатия кнопки "Настройка"
 func on_settings_btn_pressed() -> void:
 	await play_call_response(accepted_stream)
-	Globals.player.movement.check_player_position(Globals.player.movement.PlayerPositions.SCREEN_2)
-	Globals.player.update_activity_state(Player.PlayerActivityStates.ACTIVE)
+	Globals.get_player().movement.check_player_position(Player.Movement.PlayerPositions.SCREEN_2)
+	Globals.get_player().update_activity_state(Player.PlayerActivityStates.ACTIVE)
 
 
 
@@ -144,11 +144,11 @@ func on_resume_btn_pressed() -> void:
 	if GameState.current_level != "":
 		await play_call_response(accepted_stream)
 		await slide_sell()
-		Globals.story_manager.change_story_node(GameState.current_level)
+		Globals.get_story_manager().change_story_node(GameState.current_level)
 	elif GameState.current_level == "":
 		await play_call_response(denied_stream)
 	##Отключение блокировки кнопок
-	Globals.player.update_activity_state(Player.PlayerActivityStates.ACTIVE)
+	Globals.get_player().update_activity_state(Player.PlayerActivityStates.ACTIVE)
 
 
 ##Действия при подтверждении нажатия кнопки "Выход"
