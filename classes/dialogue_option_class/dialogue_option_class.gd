@@ -2,11 +2,10 @@
 class_name DialogueOption
 extends Button
 
-
-func option_action() -> void:
-	pass
+## Имя следующего узла диалога при нажатии этого выбора
+@export var next_dialogue_node_name : String 
 
 
 
 func _on_toggled(toggled_on: bool) -> void:
-	DialogueManager._on_option_clicked(self)
+	DialogueManager.on_option_made(self)

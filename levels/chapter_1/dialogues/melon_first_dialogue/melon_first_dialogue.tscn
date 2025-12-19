@@ -10,7 +10,8 @@ conditions = [NodePath("Condition")]
 
 [node name="N1" type="Node" parent="."]
 script = ExtResource("2_hgmhy")
-current_node_type = 0
+current_node_type = 2
+current_action_type = 0
 random_nodes = Array[String](["N2", "N3", "N4"])
 
 [node name="N2" type="Node" parent="."]
@@ -37,6 +38,7 @@ next_node = "N6"
 [node name="N6" type="Node" parent="."]
 script = ExtResource("2_hgmhy")
 node_text = "Похоже в цеху кто-то накосячил и он бахнул. Мы так-то не сахар здесь варили."
+options = Array[PackedScene]([null])
 next_node = "N7"
 
 [node name="N7" type="Node" parent="."]

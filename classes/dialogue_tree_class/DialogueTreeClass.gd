@@ -4,8 +4,8 @@ class_name DialogueTree
 
 extends Node
 
-var tree_nodes : Array = []
-var temp_conditions : Array = []
+var _tree_nodes : Array = []
+var _temp_conditions : Array = []
 
 
 
@@ -16,13 +16,13 @@ var temp_conditions : Array = []
 
 
 func _ready() -> void:
-	tree_nodes = get_children()
+	_tree_nodes = get_children()
 
 
 
 ##Функция получения искомого узла диалога по его имени
 func get_node_safe(node_name: String) -> DialogueNode:
-	for node in tree_nodes:
+	for node in _tree_nodes:
 		if node.name == node_name:
 			return node
 	return null
@@ -35,7 +35,7 @@ func is_available() -> bool:
 	if conditions == []:
 		return false
 	
-	temp_conditions = []
+	_temp_conditions = []
 	
 	#Цикл проверки каждого условия из массива условий
 	for condition in conditions:
@@ -43,40 +43,45 @@ func is_available() -> bool:
 			
 			#Действия если условие для доступа к диалогу в сюжетных флагах уровня
 			condition.ConditionTypes.LEVEL_FLAG:
-				temp_conditions.push_back(check_condition(GameState.level_flags, condition.condition_key, condition.expected_value))
+				_temp_conditions.push_back(_check_condition(GameState.\
+									level_flags, condition.condition_key, condition.expected_value))
 
 			#Действия если условие для доступа к диалогу в инвентаре
 			condition.ConditionTypes.ITEM:
-				temp_conditions.push_back(check_item(condition.condition_key, condition.expected_value))
+				_temp_conditions.push_back(_check_item(condition.\
+															condition_key, condition.expected_value))
 
 			#Действия если условие для доступа к диалогу в сюжетных глобальных флагах
 			condition.ConditionTypes.GLOBAL_FLAG:
-				temp_conditions.push_back(check_condition(GameState.global_flags, condition.condition_key, condition.expected_value))
+				_temp_conditions.push_back(_check_condition(GameState.\
+									global_flags, condition.condition_key, condition.expected_value))
 			
 			#Действия если условие для доступа к диалогу в решениях на уровне
 			condition.ConditionTypes.LEVEL_DECISION:
-				temp_conditions.push_back(check_condition(GameState.level_decisions, condition.condition_key, condition.expected_value))
+				_temp_conditions.push_back(_check_condition(GameState.\
+								level_decisions, condition.condition_key, condition.expected_value))
 			
 			#Действия если условие для доступа к диалогу в глобальных решениях
 			condition.ConditionTypes.GLOBAL_DECISION:
-				temp_conditions.push_back(check_condition(GameState.global_decisions, condition.condition_key, condition.expected_value))
+				_temp_conditions.push_back(_check_condition(GameState.\
+								global_decisions, condition.condition_key, condition.expected_value))
 	
 	#Если не выполнено хотябы одно из условий, то диалог недоступен
-	if temp_conditions.has(false) or temp_conditions == null:
+	if _temp_conditions.has(false) or _temp_conditions == null:
 		return false
 	else:
 		return true
 
 
 #Функция проверки элемента в инвентаре
-func check_item(item: String, expected_value: bool) -> bool:
+func _check_item(item: String, expected_value: bool) -> bool:
 	if GameState.has_item(item) == expected_value:
 		return true
 	else:
 		return false
 
 #Функция проверки глобального этапа\решения или этапа\решения уровня
-func check_condition(storage: Dictionary, condition_key: String, expected_value: bool) -> bool:
+func _check_condition(storage: Dictionary, condition_key: String, expected_value: bool) -> bool:
 	if GameState.get_flag_value(storage, condition_key) == expected_value:
 		return true
 	return false

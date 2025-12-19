@@ -12,7 +12,6 @@ conditions = [NodePath("Condition_1")]
 
 [node name="N1" type="Node" parent="."]
 script = ExtResource("2_bl06g")
-current_node_type = 0
 random_nodes = Array[String](["N2", "N3", "N4", "N5"])
 
 [node name="N2" type="Node" parent="."]
