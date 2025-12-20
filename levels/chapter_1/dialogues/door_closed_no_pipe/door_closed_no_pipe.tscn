@@ -6,10 +6,12 @@
 
 [node name="DoorClosedNoPipe" type="Node" node_paths=PackedStringArray("conditions")]
 script = ExtResource("1_vurs8")
-conditions = [NodePath("Condition_1")]
+conditions = [NodePath("Condition_1"), NodePath("Condition_2"), NodePath("Condition_3")]
 
 [node name="N1" type="Node" parent="."]
 script = ExtResource("2_p77yy")
+current_node_type = 2
+current_action_type = 0
 random_nodes = Array[String](["N2", "N3", "N4"])
 
 [node name="N2" type="Node" parent="."]

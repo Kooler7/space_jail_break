@@ -34,12 +34,11 @@ func _on_mouse_detector_mouse_exited() -> void:
 	icon.modulate = IDLE_MODULATE
 
 func check_available_dialogue_tree() -> DialogueTree:
+	
 	if dialogues != null:
 		for dialogue in dialogues:
 			if dialogue.is_available():
 				return dialogue
-				DialogueManager.start_dialogue()
-			return
 	return
 
 func _on_mouse_detector_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:

@@ -45,11 +45,13 @@ func start_dialogue() -> void:
 func on_option_made(option : DialogueOption) -> void:
 	dialogue_ui.dialogue_box.update_visibility_state(dialogue_ui.\
 								dialogue_box.VisibilityStates.REMOVE_OPTIONS)
-	if option.next_dialogue_node_name != null and option.next_dialogue_node_name != "":
-		_current_dialogue_node.next_node = option.next_dialogue_node_name
-		change_dialogue_node()
-	elif option.next_dialogue_node_name == null or option.next_dialogue_node_name == "":
-		_finish_dialogue()
+	_current_dialogue_node.next_node = option.next_dialogue_node_name
+	change_dialogue_node()
+	#if option.next_dialogue_node_name != null and option.next_dialogue_node_name != "":
+		#_current_dialogue_node.next_node = option.next_dialogue_node_name
+		#change_dialogue_node()
+	#elif option.next_dialogue_node_name == null or option.next_dialogue_node_name == "":
+		#_finish_dialogue()
 
 ##Обработка сигнала "dialogue_box_clicked"
 func change_dialogue_node() -> void:

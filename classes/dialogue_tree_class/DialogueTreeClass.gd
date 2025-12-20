@@ -65,7 +65,7 @@ func is_available() -> bool:
 			condition.ConditionTypes.GLOBAL_DECISION:
 				_temp_conditions.push_back(_check_condition(GameState.\
 								global_decisions, condition.condition_key, condition.expected_value))
-	
+
 	#Если не выполнено хотябы одно из условий, то диалог недоступен
 	if _temp_conditions.has(false) or _temp_conditions == null:
 		return false

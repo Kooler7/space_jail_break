@@ -8,11 +8,14 @@
 
 [node name="DoorClosedPipe" type="Node" node_paths=PackedStringArray("conditions")]
 script = ExtResource("1_8n1ve")
-conditions = [NodePath("Condition_1")]
+conditions = [NodePath("Condition_1"), NodePath("Condition_2"), NodePath("Condition_3")]
 
 [node name="N1" type="Node" parent="."]
 script = ExtResource("2_bl06g")
+current_node_type = 2
+current_action_type = 0
 random_nodes = Array[String](["N2", "N3", "N4", "N5"])
+next_node = "N2"
 
 [node name="N2" type="Node" parent="."]
 script = ExtResource("2_bl06g")
@@ -36,7 +39,16 @@ next_node = "N6"
 
 [node name="N6" type="Node" parent="."]
 script = ExtResource("2_bl06g")
+current_node_type = 1
+options = Array[PackedScene]([ExtResource("3_sv8a3"), ExtResource("4_kd2j5")])
+
+[node name="N7" type="Node" parent="."]
+script = ExtResource("2_bl06g")
 current_node_type = 2
+flags = [{
+"key": "try_door",
+"value": true
+}]
 options = Array[PackedScene]([ExtResource("3_sv8a3"), ExtResource("4_kd2j5")])
 
 [node name="Condition_1" type="Node" parent="."]

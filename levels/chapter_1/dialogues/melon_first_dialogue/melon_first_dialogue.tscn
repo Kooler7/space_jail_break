@@ -38,7 +38,6 @@ next_node = "N6"
 [node name="N6" type="Node" parent="."]
 script = ExtResource("2_hgmhy")
 node_text = "Похоже в цеху кто-то накосячил и он бахнул. Мы так-то не сахар здесь варили."
-options = Array[PackedScene]([null])
 next_node = "N7"
 
 [node name="N7" type="Node" parent="."]
@@ -60,7 +59,7 @@ next_node = "N10"
 
 [node name="N10" type="Node" parent="."]
 script = ExtResource("2_hgmhy")
-current_node_type = 3
+current_node_type = 2
 flags = [{
 "key": "melon_first_dialogue_complete",
 "value": true

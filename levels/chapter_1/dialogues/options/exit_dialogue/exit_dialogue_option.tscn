@@ -9,3 +9,4 @@
 button_group = SubResource("ButtonGroup_cdvgg")
 text = "Закончить"
 script = ExtResource("2_bu4u7")
+next_dialogue_node_name = "END"

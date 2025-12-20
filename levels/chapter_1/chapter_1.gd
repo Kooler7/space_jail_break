@@ -26,11 +26,13 @@ var level_decisions : Dictionary = {
 
 
 func _ready() -> void:
+	GameState.flag_changed.connect(_on_level_flag_changed)
 	GameState.inventory = []
 	#Помещение игрока в начальные координаты
 	Globals.get_player().movement.check_player_position(Player.Movement.PlayerPositions.SCREEN_1)
 	#Передача в GameState возможных этапов на уровне
 	GameState.level_flags = level_flags
+	print(GameState.level_flags)
 	#Передача в GameState возможных решений на уровне
 	GameState.level_decisions = level_decisions
 	#Передача игроку имени достигнутого уровня
@@ -53,3 +55,7 @@ func place_interactive_objects() -> void:
 			var temp_scene = load(interactive_objects_paths[part_name])
 			var interactive_object = temp_scene.instantiate()
 			marker_node.add_child(interactive_object)
+
+func _on_level_flag_changed(flag_name, value) -> void:
+	if flag_name == "try_door" and value == true:
+		Globals.get_player().movement.check_player_position(Player.Movement.PlayerPositions.SCREEN_3)

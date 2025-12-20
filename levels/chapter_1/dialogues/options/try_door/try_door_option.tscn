@@ -9,3 +9,4 @@
 button_group = SubResource("ButtonGroup_a81h4")
 text = "Отжать дверь"
 script = ExtResource("2_e6rqh")
+next_dialogue_node_name = "N7"
