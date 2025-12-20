@@ -8,73 +8,80 @@ const PIPE_ROTATION_SPEED : float = 2
 const MIN_DIAGRAM_ANGLE : float = 0
 const MAX_DIAGRAM_ANGLE : float = 180
 
-@onready var diagram : Sprite2D = $Force
-@onready var diagram_timer : Timer = $DiagramTimer
-@onready var diagram_pipe : Sprite2D = $DiagramPipe
+@onready var _diagram : Sprite2D = $Force
+@onready var _diagram_timer : Timer = $DiagramTimer
+@onready var _diagram_pipe : Sprite2D = $DiagramPipe
 
-var is_pipe_placed = false
-var delta_angle : float
-var is_started = false
-
-
+var _is_pipe_placed = false
+var _delta_angle : float
+var _is_diagram_active = false
 
 
 
 func _process(delta: float) -> void:
-	if is_started:
-		delta_angle = abs(diagram_pipe.rotation_degrees - diagram.rotation_degrees)
-		if delta_angle < 10:
-			if is_pipe_placed == false:
-				is_pipe_placed = true
-				emit_signal("pipe_placed")
-		elif delta_angle > 10:
-			if is_pipe_placed == true:
-				is_pipe_placed = false
-				emit_signal("pipe_lost_place")
-		turn_pipe_to_idle(delta)
+	if _is_diagram_active:
+		_delta_angle = abs(_diagram_pipe.rotation_degrees - _diagram.rotation_degrees)
+		if _delta_angle < 10:
+			_is_pipe_placed = true
+			emit_signal("pipe_placed")
+		elif _delta_angle > 10:
+			_is_pipe_placed = false
+			emit_signal("pipe_lost_place")
+		_turn_pipe_to_idle(delta)
 
 
+func set_diagram_activity(value: bool) -> void:
+	if value:
+		_calculate_timeout()
+	if not value:
+		_diagram_timer.stop()
+		_is_pipe_placed = value
+	_is_diagram_active = value
+
+func get_pipe_place() -> bool:
+	return _is_pipe_placed
+
+func _calculate_timeout() -> void:
+	_diagram_timer.wait_time = randi_range(1, 3)
+	_diagram_timer.start()
+	await _diagram_timer.timeout
+	_calculate_new_diagram_angle()
 
 
-func calculate_new_diagram_angle() -> void:
-	if is_started:
-		diagram_timer.wait_time = randi_range(1, 3)
-		diagram_timer.start()
-		await  diagram_timer.timeout
+func _calculate_new_diagram_angle() -> void:
+	if _is_diagram_active:
 		var take_angle = randi_range(0, 1)
 		if take_angle == 1:
 			var angle = randi_range(MIN_DIAGRAM_ANGLE, MAX_DIAGRAM_ANGLE)
-			rotate_diagram(angle)
-			calculate_new_diagram_angle()
-		elif take_angle == 0:
-			calculate_new_diagram_angle()
+			_rotate_diagram(angle)
+		_calculate_timeout()
 
 
-func rotate_diagram(new_angle : float) -> void:
-	var duration : float = abs(new_angle - diagram.rotation_degrees) * 0.01
+func _rotate_diagram(new_angle : float) -> void:
+	var duration : float = abs(new_angle - _diagram.rotation_degrees) * 0.01
 	var rotate_tween = create_tween()
-	rotate_tween.tween_property(diagram, "rotation_degrees", new_angle, duration)
+	rotate_tween.tween_property(_diagram, "rotation_degrees", new_angle, duration)
 	rotate_tween.play()
 
 
-func turn_pipe_to_idle(delta : float) -> void:
-	if is_started:
-		if diagram_pipe.rotation_degrees > 90:
-			diagram_pipe.rotation_degrees -= PIPE_TO_IDLE_SPEED * delta
+func _turn_pipe_to_idle(delta : float) -> void:
+	if _is_diagram_active:
+		if _diagram_pipe.rotation_degrees > 90:
+			_diagram_pipe.rotation_degrees -= PIPE_TO_IDLE_SPEED * delta
 			return
-		if diagram_pipe.rotation_degrees < 90:
-			diagram_pipe.rotation_degrees += PIPE_TO_IDLE_SPEED * delta
+		if _diagram_pipe.rotation_degrees < 90:
+			_diagram_pipe.rotation_degrees += PIPE_TO_IDLE_SPEED * delta
 			return
 
 
 
 func  _input(event: InputEvent) -> void:
-	if is_started:
+	if _is_diagram_active:
 		if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_LEFT:
-				diagram_pipe.rotation_degrees -= PIPE_ROTATION_SPEED
+				_diagram_pipe.rotation_degrees -= PIPE_ROTATION_SPEED
 				return
 			if event.button_index == MOUSE_BUTTON_RIGHT:
-				diagram_pipe.rotation_degrees += PIPE_ROTATION_SPEED
+				_diagram_pipe.rotation_degrees += PIPE_ROTATION_SPEED
 				return
 			return

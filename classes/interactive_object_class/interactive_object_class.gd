@@ -13,33 +13,36 @@ extends Node2D
 const IDLE_MODULATE = Color(1, 1, 1, 1)
 const HOVER_MODULATE = Color(1.8, 1.8, 1.8, 1)
 
-var dialogues : Array = []
+var _dialogues : Array = []
 
 ##Публичные функции
 #region
+#Включение или отключение детектирования событий мыши
 func set_mouse_detector_pickability(new_pickability: bool) -> void:
 	if mouse_detector.input_pickable != new_pickability:
 		mouse_detector.input_pickable = new_pickability
+
+#Получение доступного диалога
+func check_available_dialogue_tree() -> DialogueTree:
+	if _dialogues != null:
+		for dialogue in _dialogues:
+			if dialogue.is_available():
+				return dialogue
+	return
 #endregion
 
 
+#Обработка сигнала при наведении мыши на объект
 func _on_mouse_detector_mouse_entered() -> void:
 	Globals.get_player().explainer_text = object_name
 	Globals.get_player().update_in_world_state(Player.PlayerInWorldStates.EXPLAIN)
 	icon.modulate = HOVER_MODULATE
 
-
+#Обработка сигнала при выводе мыши из объекта
 func _on_mouse_detector_mouse_exited() -> void:
 	Globals.get_player().update_in_world_state(Player.PlayerInWorldStates.CAN_MOVE)
 	icon.modulate = IDLE_MODULATE
 
-func check_available_dialogue_tree() -> DialogueTree:
-	
-	if dialogues != null:
-		for dialogue in dialogues:
-			if dialogue.is_available():
-				return dialogue
-	return
-
+#Обработка клика мыши на объекте
 func _on_mouse_detector_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	pass # Replace with function body.

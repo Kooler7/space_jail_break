@@ -71,9 +71,7 @@ func instance_level() -> void:
 	Globals.get_player().movement.check_player_position(Player.Movement.PlayerPositions.SCREEN_1)
 	await Globals.get_player().update_loading_state(Player.PlayerLoadingStates.LOADED)
 	AudioManager.on_sounds()
-	
-	
-	
+
 
 
 #Функция очистки путей

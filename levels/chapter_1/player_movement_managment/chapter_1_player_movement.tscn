@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8virrjs8pyge"]
-
-[ext_resource type="Script" path="res://levels/chapter_1/player_movement_managment/chapter_1_player_movement.gd" id="1_m76aq"]
-
-[node name="Chapter1PlayerMovement" type="Node"]
-script = ExtResource("1_m76aq")

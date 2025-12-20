@@ -16,7 +16,7 @@ enum VisibilityStates {
 	FILL_OPTIONS,
 	REMOVE_OPTIONS
 }
-var current_visibility_state : VisibilityStates = VisibilityStates.POP_OUT
+var _current_visibility_state : VisibilityStates = VisibilityStates.POP_OUT
 
 
 var options : Array = []
@@ -29,32 +29,32 @@ var text : String = ""
 
 
 func update_visibility_state(new_visibility_state: VisibilityStates) -> void:
-	if current_visibility_state != new_visibility_state:
+	if _current_visibility_state != new_visibility_state:
 		match new_visibility_state:
 			VisibilityStates.POP_IN:
 				await _dialogue_box_popin()
-				current_visibility_state = VisibilityStates.POP_IN
+				_current_visibility_state = VisibilityStates.POP_IN
 				return
 			VisibilityStates.POP_OUT:
 				await _dialogue_box_popout()
-				current_visibility_state = VisibilityStates.POP_OUT
+				_current_visibility_state = VisibilityStates.POP_OUT
 				return
 			VisibilityStates.Fill_TEXT:
 				await _text_typing(text)
 				return
 			VisibilityStates.FILL_OPTIONS:
-				if current_visibility_state == VisibilityStates.POP_IN:
+				if _current_visibility_state == VisibilityStates.POP_IN:
 					await  _fill_options(options)
-					current_visibility_state = VisibilityStates.FILL_OPTIONS
+					_current_visibility_state = VisibilityStates.FILL_OPTIONS
 				else :
 					await _dialogue_box_popin()
 					await  _fill_options(options)
-					current_visibility_state = VisibilityStates.FILL_OPTIONS
+					_current_visibility_state = VisibilityStates.FILL_OPTIONS
 				return
 			VisibilityStates.REMOVE_OPTIONS:
-				if current_visibility_state == VisibilityStates.FILL_OPTIONS:
+				if _current_visibility_state == VisibilityStates.FILL_OPTIONS:
 					await _remove_options()
-					current_visibility_state = VisibilityStates.REMOVE_OPTIONS
+					_current_visibility_state = VisibilityStates.REMOVE_OPTIONS
 				return
 		return
 
