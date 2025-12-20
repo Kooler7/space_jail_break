@@ -2,8 +2,8 @@
 class_name DialogueOption
 extends Button
 
-## Имя следующего узла диалога при нажатии этого выбора
-@export var next_dialogue_node_name : String 
+
+@export var next_dialogue_node_name : String ## Имя следующего узла диалога при нажатии этого выбора
 
 
 

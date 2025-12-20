@@ -11,8 +11,9 @@ var _temp_conditions : Array = []
 
 #Условия при которых данное дерево диалога доступно для использования
 @export_category("Add Conditions!")
-## Условия при которых данное дерево диалога доступно для использования
-@export var conditions : Array[DialogueCondition] = [] 
+
+
+@export var conditions : Array[DialogueCondition] = [] ## Условия при которых данное дерево диалога доступно для использования
 
 
 func _ready() -> void:

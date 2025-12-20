@@ -4,7 +4,7 @@ class_name DialogueNode
 extends Node
 
 
-#Тип узла диалога
+##Тип узла диалога
 enum NodeTypes {
 	TEXT, ## Узел, отображающий текст
 	OPTIONS, ## Узел, отображающий кнопки выбора
@@ -12,7 +12,7 @@ enum NodeTypes {
 }
 @export var current_node_type : NodeTypes = NodeTypes.TEXT ## Тип узла диалога
 
-#Тип действия, используемый для узла диалога типа Action
+##Тип действия, используемый для узла диалога типа Action.
 enum ActionTypes {
 	RANDOMIZER, ## Выбор из массива random_nodes следующего узла и автоматическое переключение на него
 	SET_LEVEL_FLAG, ## Добавление значения флагу уровня
