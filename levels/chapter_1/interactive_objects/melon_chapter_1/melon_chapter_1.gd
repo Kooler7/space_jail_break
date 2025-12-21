@@ -3,7 +3,7 @@ extends InteractiveObject
 
 
 func _ready() -> void:
-	dialogues = $Dialogues.get_children()
+	_dialogues = $Dialogues.get_children()
 
 
 

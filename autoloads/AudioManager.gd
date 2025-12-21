@@ -5,6 +5,7 @@ const CALL_BUTTON_VOLUME = 0
 const OBJECTS_VOLUME = -5
 const PRISON_ACTIVITY_VOLUME = -10
 const AGENDA_VOLUME = -10.5
+const BACKGROUND_MUSIC_VOLUME = -12
 const VOLUME_SPEED = 0.2
 
 
@@ -38,6 +39,9 @@ func on_sounds() -> void:
 			"Agenda_Bus":
 				current_bus_index = AudioServer.get_bus_index(current_bus_name)
 				fading_rising_sounds(current_bus_index, AGENDA_VOLUME)
+			"BackgroundMusic_Bus":
+				current_bus_index = AudioServer.get_bus_index(current_bus_name)
+				fading_rising_sounds(current_bus_index, BACKGROUND_MUSIC_VOLUME)
 
 
 

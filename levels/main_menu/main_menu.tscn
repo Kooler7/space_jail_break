@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b0oxpwdga5piw"]
+[gd_scene load_steps=41 format=3 uid="uid://b0oxpwdga5piw"]
 
 [ext_resource type="Script" path="res://levels/main_menu/main_menu.gd" id="1_2parm"]
 [ext_resource type="Texture2D" uid="uid://chjf8xbx7d6p7" path="res://assets/main_menu/images/sell.png" id="3_12bmi"]
@@ -37,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://bm75462v7555w" path="res://assets/main_menu/images/settings_close_btn_pressed_ru.png" id="24_6tuk6"]
 [ext_resource type="AudioStream" uid="uid://sw1qitwr88hb" path="res://assets/main_menu/audio/we_will_die_ru.ogg" id="34_gyoxc"]
 [ext_resource type="AudioStream" uid="uid://p8x6h21vnk61" path="res://assets/main_menu/audio/door_opening.ogg" id="36_bsjtv"]
+[ext_resource type="AudioStream" uid="uid://c2ipn2u0c71dr" path="res://assets/main_menu/audio/background_music.wav" id="38_e0ne8"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_6i8l5"]
 
@@ -329,7 +330,12 @@ bus = &"Objects_Bus"
 stream = ExtResource("36_bsjtv")
 bus = &"Objects_Bus"
 
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("38_e0ne8")
+
 [node name="PrisonActivityTimer" type="Timer" parent="."]
 wait_time = 15.0
 
 [node name="AgendaSpeechTimer" type="Timer" parent="."]
+
+[node name="BackgroundMusicTimer" type="Timer" parent="."]

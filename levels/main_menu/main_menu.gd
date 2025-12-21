@@ -5,6 +5,14 @@ extends Node2D
 const SELL_END_POSITION = Vector2(-1000, 0)
 const SELL_SPEED = 0.5
 
+#Константы для рандрмизирования времени паузы проигрывания звуков
+const AGENDA_MIN_VALUUE = 5
+const AGENDA_MAX_VALUE = 10
+const ACTIVITY_MIN_VALUE = 5
+const ACTIVITY_MAX_VALUE = 8
+const BACKGROUND_MUSIC_MIN_VALUE = 10
+const BACKGROUND_MUSIC_MAX_VALUE = 30
+
 
 @export var main_screen_buttons_group : ButtonGroup
 
@@ -31,10 +39,12 @@ const SELL_SPEED = 0.5
 @onready var door_opening : AudioStreamPlayer2D = $DoorOpening
 @onready var call_btn_speech : AudioStreamPlayer2D = $CallBtnSpeech
 @onready var button_click : AudioStreamPlayer2D = $ButtonClick
+@onready var background_music : AudioStreamPlayer2D = $BackgroundMusic
 
 #Таймеры для рандомизации проигрывания звуков
 @onready var prison_activity_timer : Timer = $PrisonActivityTimer
 @onready var agenda_speech_timer : Timer = $AgendaSpeechTimer
+@onready var background_music_timer : Timer = $BackgroundMusicTimer
 
 
 #Словарь функций, срабатывающих при нажатии той или иной кнопки
@@ -58,13 +68,11 @@ var main_screen_buttons : Array
 
 func _ready() -> void:
 	#Отключение блокировки кнопок
-	#Globals.player.update_game_state(Globals.player.GameActionStates.ACTIVE)
-	Globals.get_player().movement.check_player_position(Player.Movement.PlayerPositions.SCREEN_1)
+	#Globals.get_player().movement.check_player_position(Player.Movement.PlayerPositions.SCREEN_1)
 	choose_prison_activity(5)
 	choose_agenda(2)
+	choose_background_music(10)
 
-	
-	
 	#Присоединение сигналов кнопок меню
 	main_screen_buttons = main_screen_buttons_group.get_buttons()
 	main_screen_buttons.sort()
@@ -94,22 +102,26 @@ func on_accept_button_pressed() ->void:
 		#Вызов функции соответствующей имени нажатой кнопки из переменной
 		call(buttons_actions[current_button_name])
 		#Включение блокировки кнопок
-		Globals.get_player().update_activity_state(Player.PlayerActivityStates.INACTIVE)
+		Globals.get_player().update_activity_state(Player.\
+												PlayerActivityStates.INACTIVE)
 
 	#Если нет нажатой кнопки
 	else :
 		#Включение блокировки кнопок
-		Globals.get_player().update_activity_state(Player.PlayerActivityStates.INACTIVE)
+		Globals.get_player().update_activity_state(Player.\
+												PlayerActivityStates.INACTIVE)
 		await play_call_response(denied_stream)
 		#Отключение блокировки кнопок
-		Globals.get_player().update_activity_state(Player.PlayerActivityStates.ACTIVE)
+		Globals.get_player().update_activity_state(Player.\
+													PlayerActivityStates.ACTIVE)
 
 
 ##Действия при нажатии кнопки закрытия настроек
 func on_back_btn_pressed() -> void:
 	button_click.play()
 	SaveLoad.save_settings()
-	Globals.get_player().movement.check_player_position(Player.Movement.PlayerPositions.SCREEN_1)
+	Globals.get_player().movement.check_player_position(Player.Movement.\
+														PlayerPositions.SCREEN_1)
 	#Отключение блокировки кнопок
 	Globals.get_player().update_activity_state(Player.PlayerActivityStates.ACTIVE)
 
@@ -118,7 +130,8 @@ func on_back_btn_pressed() -> void:
 ##Действия при подтверждении нажатия кнопки "Настройка"
 func on_settings_btn_pressed() -> void:
 	await play_call_response(accepted_stream)
-	Globals.get_player().movement.check_player_position(Player.Movement.PlayerPositions.SCREEN_2)
+	Globals.get_player().movement.check_player_position(Player.Movement.\
+														PlayerPositions.SCREEN_2)
 	Globals.get_player().update_activity_state(Player.PlayerActivityStates.ACTIVE)
 
 
@@ -127,7 +140,7 @@ func on_settings_btn_pressed() -> void:
 func on_start_btn_pressed() -> void:
 	await play_call_response(accepted_stream)
 	await slide_sell()
-	Globals.story_manager.change_story_node("SummaryIntro")
+	Globals.get_story_manager().change_story_node("SummaryIntro")
 
 
 ##Анимация открытия камеры
@@ -163,10 +176,10 @@ func choose_agenda(wait_time : float) -> void:
 	await  agenda_speech_timer.timeout
 	var play_or_not : int = randi_range(0, 1)
 	if play_or_not < 1:
-		choose_agenda(randf_range(5, 10))
+		choose_agenda(randf_range(AGENDA_MIN_VALUUE, AGENDA_MAX_VALUE))
 	elif play_or_not > 0:
 		await play_agenda(agenda_players[randi_range(0, 2)])
-		choose_agenda(randf_range(5, 10))
+		choose_agenda(randf_range(AGENDA_MIN_VALUUE, AGENDA_MAX_VALUE))
 
 ##Выбор проигрывателя тюремной активности и запуск функции проигрывания
 func choose_prison_activity(wait_time : float) -> void:
@@ -175,11 +188,24 @@ func choose_prison_activity(wait_time : float) -> void:
 	await prison_activity_timer.timeout
 	var play_or_not : int = randi_range(0, 1)
 	if play_or_not < 1:
-		choose_prison_activity(randf_range(15, 20))
+		choose_prison_activity(randf_range(ACTIVITY_MIN_VALUE, ACTIVITY_MAX_VALUE))
 	elif play_or_not > 0:
 		await play_prison_activity(prison_activities_piayers[randi_range(0, 2)])
-		choose_prison_activity(randf_range(15, 20))
+		choose_prison_activity(randf_range(ACTIVITY_MIN_VALUE, ACTIVITY_MAX_VALUE))
 
+##Выбор длительности паузы при проигрывании фоновой музыки
+func choose_background_music(wait_time: float) -> void:
+	background_music_timer.wait_time = wait_time
+	background_music_timer.start()
+	await background_music_timer.timeout
+	var play_or_not : int = randi_range(0, 1)
+	if play_or_not < 1:
+		choose_background_music(randf_range(BACKGROUND_MUSIC_MIN_VALUE,\
+													 BACKGROUND_MUSIC_MAX_VALUE))
+	elif play_or_not > 0:
+		await play_background_music()
+		choose_background_music(randf_range(BACKGROUND_MUSIC_MIN_VALUE,\
+													 BACKGROUND_MUSIC_MAX_VALUE))
 
 ##Проигрывание агитации
 func play_agenda(new_agenda : NodePath) -> void:
@@ -192,10 +218,16 @@ func play_agenda(new_agenda : NodePath) -> void:
 ##Проигрывание звуков тюремной активности
 func play_prison_activity(new_activity : NodePath) -> void:
 	var activity : AudioStreamPlayer2D = get_node(new_activity)
+	print(activity.name)
 	activity.play()
 	await activity.finished
 	return
 
+##Проигрывание фоновой музыки
+func play_background_music() -> void:
+	background_music.play()
+	await background_music.finished
+	return
 
 ##Проигрывание голосового ответа на нажатие кнопки "Вызов"
 func play_call_response(new_stream : AudioStreamOggVorbis) -> void:
